@@ -1,0 +1,226 @@
+#!/usr/bin/env python3
+"""Build the skills/ and workflows/ sections of the docs site.
+
+Usage: build_library.py SITE_CONTENT_EN DOCS_DIR [--linkmap build/linkmap.json]
+
+SITE_CONTENT_EN is the website's `src/content/en` folder. The pages there are
+generated from the vault (frontmatter only, no body), so this reads them as
+data. COPY PHASE: this is a one-off bridge. Once the docs site is the home of
+these pages, point this at the vault via the website's catalogue.py instead and
+delete the pages from the website.
+
+Writes docs/skills/*.md, docs/workflows/*.md, an index per section grouped by
+business area, and a link map so wiki pages can link to skills and workflows.
+"""
+import argparse, json, re
+from collections import defaultdict
+from pathlib import Path
+import yaml
+
+AREA_ORDER = ["marketing", "sales", "finance", "operations", "project-delivery",
+              "people", "strategy", "research", "foundational"]
+
+
+def load(path):
+    t = path.read_text(encoding="utf-8")
+    if not t.startswith("---\n"):
+        return {}, t
+    end = t.find("\n---", 4)
+    return _walk(yaml.safe_load(t[4:end]) or {}), t[end + 4:].strip()
+
+
+def _walk(v):
+    if isinstance(v, str):
+        return plain(v)
+    if isinstance(v, list):
+        return [_walk(x) for x in v]
+    if isinstance(v, dict):
+        return {k: _walk(x) for k, x in v.items()}
+    return v
+
+
+def uniq(xs):
+    seen, out = set(), []
+    for x in xs or []:
+        k = x if isinstance(x, str) else (x.get("label") if isinstance(x, dict) else str(x))
+        if k not in seen:
+            seen.add(k); out.append(k)
+    return out
+
+
+MDLINK = re.compile(r"\[([^\]]+)\]\((?!https?://)[^)]*\)")
+
+
+def plain(s):
+    """Flatten relative markdown links (they point at unpublished skill files)."""
+    return MDLINK.sub(r"\1", s) if isinstance(s, str) else s
+
+
+def cell(s):
+    return plain(str(s)).replace("|", "\\|").replace("\n", " ").strip()
+
+
+def bullets(items):
+    return "\n".join(f"- {i}" for i in items) + "\n" if items else ""
+
+
+def title_of(slug):
+    return slug.replace("-", " ").replace("_", " ")
+
+
+def front(title, desc=None):
+    h = {"title": title}
+    if desc:
+        h["description"] = desc
+    return "---\n" + yaml.safe_dump(h, allow_unicode=True, width=1000) + "---\n\n"
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("site"); ap.add_argument("docs")
+    ap.add_argument("--linkmap", default=None)
+    a = ap.parse_args()
+    site, docs = Path(a.site), Path(a.docs)
+
+    lib, _ = load(site / "skills.md")
+    areas = {x["key"]: x for x in lib.get("areas", [])}
+    areas["foundational"] = lib.get("foundational", {"key": "foundational", "label": "Foundational", "blurb": ""})
+
+    skills = {}
+    for p in sorted((site / "skills").glob("*.md")):
+        fm, _ = load(p)
+        skills[fm.get("skillName") or p.stem] = fm
+    workflows = {}
+    for p in sorted((site / "workflows").glob("*.md")):
+        fm, body = load(p)
+        workflows[p.stem] = (fm, body)
+
+    sk_dir, wf_dir = docs / "skills", docs / "workflows"
+    sk_dir.mkdir(parents=True, exist_ok=True); wf_dir.mkdir(parents=True, exist_ok=True)
+
+    by_skill = defaultdict(list)
+    for slug, (fm, _) in workflows.items():
+        by_skill[fm.get("skillName")].append(slug)
+
+    # ---- skill pages
+    for name, fm in skills.items():
+        out = [front(name, fm.get("summary") or fm.get("desc")), f"# {name}\n\n"]
+        if fm.get("summary") or fm.get("desc"):
+            out.append(f"{fm.get('summary') or fm.get('desc')}\n\n")
+        meta = [("Area", areas.get(fm.get("area"), {}).get("label", fm.get("area"))),
+                ("Category", (fm.get("catLabel") or "").replace("-", " ")),
+                ("Level", fm.get("difficulty")), ("Input", fm.get("inputType")),
+                ("Output", fm.get("outputType")), ("Setup", fm.get("requires")),
+                ("Roles", fm.get("roles"))]
+        meta = [(k, v) for k, v in meta if v]
+        if meta:
+            out.append("| | |\n|---|---|\n" + "\n".join(f"| **{k}** | {cell(v)} |" for k, v in meta) + "\n\n")
+        if fm.get("desc") and fm.get("desc") != fm.get("summary"):
+            out.append(f"{fm['desc']}\n\n")
+        if fm.get("prompts"):
+            out.append("## How you ask\n\n" + "".join(f"- “{p}”\n" for p in fm["prompts"]) + "\n")
+        if fm.get("inputs"):
+            out.append("## Inputs\n\n" + bullets(uniq(fm["inputs"])) + "\n")
+        if fm.get("outputs"):
+            out.append("## Outputs\n\n" + bullets(uniq(fm["outputs"])) + "\n")
+        wfs = by_skill.get(name, [])
+        if wfs:
+            out.append("## Seen in these workflows\n\n" + "".join(
+                f"- [{workflows[w][0].get('title') or title_of(w)}](../workflows/{w}.md)\n" for w in wfs) + "\n")
+        (sk_dir / f"{name}.md").write_text("".join(out), encoding="utf-8")
+
+    # ---- workflow pages
+    for slug, (fm, body) in workflows.items():
+        title = fm.get("title") or title_of(slug)
+        out = [front(title, fm.get("outcome")), f"# {title}\n\n"]
+        if fm.get("subtitle"):
+            out.append(f"*{fm['subtitle']}*\n\n")
+        yt = fm.get("youtubeId")
+        if yt:
+            out.append(f'<div class="video-wrap"><iframe width="100%" height="420" '
+                       f'src="https://www.youtube.com/embed/{yt}?rel=0" title="{cell(title)}" '
+                       f'frameborder="0" allowfullscreen loading="lazy"></iframe></div>\n\n')
+        if fm.get("hook"):
+            out.append("> " + str(fm["hook"]).strip().replace("\n", "\n> ") + "\n\n")
+        if fm.get("outcome"):
+            out.append(f"**Outcome:** {fm['outcome']}\n\n")
+        meta = [("Area", areas.get(fm.get("area"), {}).get("label", fm.get("area"))),
+                ("Level", fm.get("difficulty")),
+                ("Roles", ", ".join(fm.get("primaryRoles") or [])),
+                ("Time savings", fm.get("timeSavings")), ("Try it", fm.get("trigger")),
+                ("Compounding", fm.get("compounding")), ("Frequency", fm.get("frequency")),
+                ("Published", fm.get("published"))]
+        meta = [(k, v) for k, v in meta if v]
+        if meta:
+            out.append("| | |\n|---|---|\n" + "\n".join(f"| **{k}** | {cell(v)} |" for k, v in meta) + "\n\n")
+        for head, key in (("Inputs", "inputs"), ("What BOB does", "steps"), ("Outputs", "outputs")):
+            items = fm.get(key)
+            if not items:
+                continue
+            lines = []
+            for n, it in enumerate(items, 1):
+                if isinstance(it, dict):
+                    lab = f"{it.get('icon', '')} {it.get('label', '')}".strip()
+                else:
+                    lab = str(it)
+                lines.append(f"{n}. {lab}" if key == "steps" else f"- {lab}")
+            out.append(f"## {head}\n\n" + "\n".join(lines) + "\n\n")
+        if fm.get("benefits"):
+            out.append("## Benefits\n\n" + bullets(fm["benefits"]) + "\n")
+        sk = fm.get("skillName")
+        if sk in skills:
+            out.append(f"Built on the [{sk}](../skills/{sk}.md) skill.\n")
+        (wf_dir / f"{slug}.md").write_text("".join(out), encoding="utf-8")
+
+    # ---- indexes
+    def group(rows):
+        g = defaultdict(list)
+        for r in rows:
+            g[r[0] or "foundational"].append(r[1:])
+        return g
+
+    def index(path, title, intro, rows, linkdir):
+        g = group(rows)
+        txt = [front(title), f"# {title}\n\n{intro}\n\n"]
+        for key in AREA_ORDER + sorted(k for k in g if k not in AREA_ORDER):
+            if key not in g:
+                continue
+            ar = areas.get(key, {"label": key})
+            txt.append(f"## {ar.get('label', key)}\n\n")
+            if ar.get("blurb"):
+                txt.append(f"{ar['blurb']}\n\n")
+            txt.append("| Name | What it does |\n|---|---|\n")
+            for slug, label, d in sorted(g[key], key=lambda x: x[1].lower()):
+                txt.append(f"| [{cell(label)}]({slug}.md) | {cell(d)} |\n")
+            txt.append("\n")
+        path.write_text("".join(txt), encoding="utf-8")
+
+    index(sk_dir / "index.md", "Skills",
+          f"{len(skills)} skills across every part of the business. Each page lists how to ask, what it needs and what it produces.",
+          [(f.get("area"), n, n, f.get("summary") or f.get("desc") or "") for n, f in skills.items()], "")
+    index(wf_dir / "index.md", "Workflows",
+          f"{len(workflows)} end-to-end workflows, built from the skills. Many have a video walkthrough.",
+          [(f.get("area"), s, f.get("title") or title_of(s), f.get("outcome") or f.get("subtitle") or "")
+           for s, (f, _) in workflows.items()], "")
+
+    # ---- link map for the wiki export (keys = normalised names)
+    def norm(s):
+        return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+    lm = {}
+    lm["skills"] = "skills/index.md"
+    lm["workflows"] = "workflows/index.md"
+    for s in skills:
+        lm[norm(s)] = f"skills/{s}.md"
+    for s, (f, _) in workflows.items():
+        lm[norm(s)] = f"workflows/{s}.md"
+        lm.setdefault(norm(s.removeprefix("pb-")), f"workflows/{s}.md")
+        if f.get("title"):
+            lm.setdefault(norm(f["title"]), f"workflows/{s}.md")
+    if a.linkmap:
+        Path(a.linkmap).parent.mkdir(parents=True, exist_ok=True)
+        Path(a.linkmap).write_text(json.dumps(lm, indent=1))
+    print(f"skills={len(skills)} workflows={len(workflows)} linkmap={len(lm)}")
+
+
+if __name__ == "__main__":
+    main()

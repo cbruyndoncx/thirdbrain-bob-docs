@@ -1,0 +1,20 @@
+site_name: BOB Documentation
+site_description: Documentation, skills and workflows for BOB, the AI business workspace
+# site_url: https://docs.example.com/   # set once the domain is chosen
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - content.code.copy
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
