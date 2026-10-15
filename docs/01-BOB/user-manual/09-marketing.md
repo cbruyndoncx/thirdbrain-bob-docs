@@ -100,7 +100,7 @@ To run a campaign:
 
 For email-based nurture or outbound sequences, `outbound-sequence` (see [chapter 8](08-sales-crm.md)) produces the sequence structure, and `social-publisher` or your email tool handles sending. BOB links the sequence notes so you can review the full arc before any piece goes out.
 
-Relevant playbooks: [Content strategy to publish](../../workflows/pb-content-strategy-to-publish.md), [Content campaign launch](../../workflows/pb-content-launch.md), [Daily Content Machine](../../workflows/pb-daily-content-machine.md), [Blog creation quality loop](../../workflows/pb-blog-creation-quality-loop.md).
+Relevant playbooks: [Content strategy to publish](../../workflows/marketing/pb-content-strategy-to-publish.md), [Content campaign launch](../../workflows/marketing/pb-content-launch.md), [Daily Content Machine](../../workflows/marketing/pb-daily-content-machine.md), [Blog creation quality loop](../../workflows/marketing/pb-blog-creation-quality-loop.md).
 
 ## 9.5 Audits
 
@@ -122,7 +122,7 @@ Some marketing work needs to be sent to clients or prospects as a finished docum
 - `branded-pdf` renders any approved note as an on-brand PDF, applying your brand-system colours, typeface, and logo.
 - `lead-magnet-generator` builds a multi-page downloadable guide, checklist, or toolkit from a topic, plus the promotion posts to distribute it.
 - Visual skills (`visual-designer`, `excalidraw-diagrams`, `d2-diagram`) produce charts, diagrams, and visual assets that can be embedded in documents or posts.
-- Video and motion graphics skills exist for producing short explainer videos, testimonial clips, and social video content — the [Daily Content Machine](../../workflows/pb-daily-content-machine.md) and AI News Daily Video Pipeline playbooks orchestrate these.
+- Video and motion graphics skills exist for producing short explainer videos, testimonial clips, and social video content — the [Daily Content Machine](../../workflows/marketing/pb-daily-content-machine.md) and AI News Daily Video Pipeline playbooks orchestrate these.
 
 Rendered files are saved to `{client.deliverables}` if client-facing, or to the relevant `{company.marketing}` subfolder for owned channels.
 

@@ -21,7 +21,7 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Plan-to-Produce](../workflows/pb-plan-to-produce.md) | You want demand turned into a full production plan |
+| [Plan-to-Produce](../workflows/operations/pb-plan-to-produce.md) | You want demand turned into a full production plan |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -29,11 +29,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Forecast** | predict demand | forecast demand | [demand-forecasting](../skills/demand-forecasting.md) |
-| **Plan** | plan the run | plan production | [production-planning](../skills/production-planning.md) |
-| **Source materials** | list what's needed | build a bill of materials | [bill-of-materials](../skills/bill-of-materials.md) |
-| **Inspect** | keep quality | set up quality control | [quality-control](../skills/quality-control.md) |
-| **Store** | manage stock | check inventory health | [inventory-management](../skills/inventory-management.md) |
+| **Forecast** | predict demand | forecast demand | [demand-forecasting](../skills/operations/demand-forecasting.md) |
+| **Plan** | plan the run | plan production | [production-planning](../skills/operations/production-planning.md) |
+| **Source materials** | list what's needed | build a bill of materials | [bill-of-materials](../skills/operations/bill-of-materials.md) |
+| **Inspect** | keep quality | set up quality control | [quality-control](../skills/operations/quality-control.md) |
+| **Store** | manage stock | check inventory health | [inventory-management](../skills/operations/inventory-management.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

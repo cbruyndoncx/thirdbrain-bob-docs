@@ -113,7 +113,7 @@ For cold or semi-warm outreach, use the channel-appropriate skill.
 
 BOB drafts in your brand voice (as captured by `brand-voice-generator` — see [chapter 9](09-marketing.md)). Each draft lands in `{company.marketing}/{channel}/` as a file you review before sending. BOB does not send messages.
 
-For account-based or multi-channel campaigns, use the [ABM multi-channel sequence](../../workflows/pb-abm-multi-channel-sequence.md) playbook, which chains these skills with tracking checkpoints.
+For account-based or multi-channel campaigns, use the [ABM multi-channel sequence](../../workflows/sales/pb-abm-multi-channel-sequence.md) playbook, which chains these skills with tracking checkpoints.
 
 ### Pipeline reporting
 
@@ -170,17 +170,17 @@ For collection follow-up after an invoice is overdue, see [chapter 10, Finance](
 
 | Playbook | When to use |
 |----------|-------------|
-| [Lead-to-Cash E2E](../../workflows/pb-lead-to-cash-e2e.md) | Run the full chain end to end for a new deal |
-| [Sales Call Prep](../../workflows/pb-sales-call-prep.md) | Prepare for a discovery or proposal call |
-| [MEDDPICC Qualification](../../workflows/pb-meddpicc-qualification.md) | Rigorous enterprise qualification |
-| [SPICED Discovery](../../workflows/pb-spiced-discovery.md) | Structured discovery for consultative sales |
-| [Gap Selling Discovery](../../workflows/pb-gap-selling-discovery.md) | Surface the prospect's current-state pain |
-| [Challenger Sale](../../workflows/pb-challenger-sale.md) | Teach, tailor, take-control selling approach |
-| [Proposal from meeting](../../workflows/pb-proposal-from-meeting.md) | Fast proposal from a meeting transcript |
-| [Mutual Action Plan](../../workflows/pb-mutual-action-plan.md) | Shared close plan with the prospect |
-| [Procurement to Signature](../../workflows/pb-procurement-to-signature.md) | Navigate procurement and legal cycles |
-| [Win-Loss Review](../../workflows/pb-win-loss-review.md) | Structured debrief on deals closed or lost |
-| [Sales conversion improvement](../../workflows/pb-sales-conversion-improvement.md) | Diagnose and fix a dropping win rate |
+| [Lead-to-Cash E2E](../../workflows/sales/pb-lead-to-cash-e2e.md) | Run the full chain end to end for a new deal |
+| [Sales Call Prep](../../workflows/sales/pb-sales-call-prep.md) | Prepare for a discovery or proposal call |
+| [MEDDPICC Qualification](../../workflows/sales/pb-meddpicc-qualification.md) | Rigorous enterprise qualification |
+| [SPICED Discovery](../../workflows/sales/pb-spiced-discovery.md) | Structured discovery for consultative sales |
+| [Gap Selling Discovery](../../workflows/sales/pb-gap-selling-discovery.md) | Surface the prospect's current-state pain |
+| [Challenger Sale](../../workflows/sales/pb-challenger-sale.md) | Teach, tailor, take-control selling approach |
+| [Proposal from meeting](../../workflows/sales/pb-proposal-from-meeting.md) | Fast proposal from a meeting transcript |
+| [Mutual Action Plan](../../workflows/sales/pb-mutual-action-plan.md) | Shared close plan with the prospect |
+| [Procurement to Signature](../../workflows/sales/pb-procurement-to-signature.md) | Navigate procurement and legal cycles |
+| [Win-Loss Review](../../workflows/sales/pb-win-loss-review.md) | Structured debrief on deals closed or lost |
+| [Sales conversion improvement](../../workflows/sales/pb-sales-conversion-improvement.md) | Diagnose and fix a dropping win rate |
 
 ## 8.9 Good practices
 
@@ -188,5 +188,5 @@ For collection follow-up after an invoice is overdue, see [chapter 10, Finance](
 - **Record disqualification reasons.** "Not now — budget frozen until Q1" is more useful than `disqualified`. BOB uses these notes when you ask it to identify re-engagement timing.
 - **Don't skip the qualification scorecard.** Running `lead-qualifier` takes two minutes and forces you to test your assumptions before spending time on a proposal.
 - **Mark drafts `status: approved` before distributing.** This creates a clear audit trail of what was sent and when.
-- **Run a win-loss review after every closed deal.** The [Win-Loss Review](../../workflows/pb-win-loss-review.md) playbook takes under 20 minutes and builds the pattern library BOB uses to improve future proposals.
+- **Run a win-loss review after every closed deal.** The [Win-Loss Review](../../workflows/sales/pb-win-loss-review.md) playbook takes under 20 minutes and builds the pattern library BOB uses to improve future proposals.
 

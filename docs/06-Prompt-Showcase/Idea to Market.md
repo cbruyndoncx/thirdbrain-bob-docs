@@ -21,8 +21,8 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Concept-to-Launch](../workflows/pb-concept-to-launch.md) | You want a concept taken all the way to launch |
-| [Productized offer finder](../workflows/pb-productized-offer-finder.md) | You want to find a productizable offer from what you do |
+| [Concept-to-Launch](../workflows/strategy/pb-concept-to-launch.md) | You want a concept taken all the way to launch |
+| [Productized offer finder](../workflows/strategy/pb-productized-offer-finder.md) | You want to find a productizable offer from what you do |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -30,11 +30,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Ideate** | shape the idea | business model canvas, jobs-to-be-done, startup build | [business-model-canvas](../skills/business-model-canvas.md) · [jtbd-building](../skills/jtbd-building.md) · [ai-startup-building](../skills/ai-startup-building.md) |
-| **Validate** | test the bet | run continuous discovery | [continuous-discovery](../skills/continuous-discovery.md) |
-| **Test** | try with users | plan product testing | [product-testing](../skills/product-testing.md) |
-| **Position** | make value clear | craft positioning | [positioning-craft](../skills/positioning-craft.md) |
-| **Launch** | go to market | check launch readiness | [launch-readiness](../skills/launch-readiness.md) |
+| **Ideate** | shape the idea | business model canvas, jobs-to-be-done, startup build | [business-model-canvas](../skills/strategy/business-model-canvas.md) · [jtbd-building](../skills/strategy/jtbd-building.md) · [ai-startup-building](../skills/strategy/ai-startup-building.md) |
+| **Validate** | test the bet | run continuous discovery | [continuous-discovery](../skills/strategy/continuous-discovery.md) |
+| **Test** | try with users | plan product testing | [product-testing](../skills/strategy/product-testing.md) |
+| **Position** | make value clear | craft positioning | [positioning-craft](../skills/strategy/positioning-craft.md) |
+| **Launch** | go to market | check launch readiness | [launch-readiness](../skills/strategy/launch-readiness.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

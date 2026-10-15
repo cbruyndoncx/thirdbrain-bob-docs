@@ -21,7 +21,7 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Market-to-Order](../workflows/pb-market-to-order.md) | You want market demand converted into qualified orders |
+| [Market-to-Order](../workflows/marketing/pb-market-to-order.md) | You want market demand converted into qualified orders |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -29,10 +29,10 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Signal** | read the market | analyze demand signals | [demand-signal-analysis](../skills/demand-signal-analysis.md) |
-| **Price** | set the price | build a pricing strategy | [pricing-strategy](../skills/pricing-strategy.md) |
-| **Campaign** | drive demand | plan a paid campaign | [paid-ads](../workflows/paid-ads.md) |
-| **Qualify** | convert it | set up an A/B test, track campaign-to-order | [ab-test-setup](../skills/ab-test-setup.md) · [campaign-to-order-tracking](../skills/campaign-to-order-tracking.md) |
+| **Signal** | read the market | analyze demand signals | [demand-signal-analysis](../skills/operations/demand-signal-analysis.md) |
+| **Price** | set the price | build a pricing strategy | [pricing-strategy](../skills/marketing/pricing-strategy.md) |
+| **Campaign** | drive demand | plan a paid campaign | [paid-ads](../workflows/marketing/paid-ads.md) |
+| **Qualify** | convert it | set up an A/B test, track campaign-to-order | [ab-test-setup](../skills/marketing/ab-test-setup.md) · [campaign-to-order-tracking](../skills/marketing/campaign-to-order-tracking.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

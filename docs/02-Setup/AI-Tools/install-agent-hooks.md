@@ -179,7 +179,7 @@ Exit 0 means pass (or skip). Exit 2 means the note failed, and the reason is on 
 
 ## Related
 
-- [vault-validator](../../skills/vault-validator.md) skill: the validator, the adapter, and the foreground
+- [vault-validator](../../skills/foundational/vault-validator.md) skill: the validator, the adapter, and the foreground
   `frontmatter_watcher.py` backstop for writes that no hook sees.
-- [hook-authoring](../../skills/hook-authoring.md) skill: authoring and porting hooks between agents.
+- [hook-authoring](../../skills/foundational/hook-authoring.md) skill: authoring and porting hooks between agents.
 - FRONTMATTER-REQUIRED: required fields per `type:`.

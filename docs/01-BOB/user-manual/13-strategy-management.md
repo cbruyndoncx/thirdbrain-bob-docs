@@ -95,12 +95,12 @@ The `plan-to-perform` value chain maps the full planning cycle:
 |-------|--------------------|
 | Assess current state | `business-baseline`, `owner-priority-system`, `market-sizing-analysis` |
 | Strategise | `strategy-frameworks`, `growth-engine`, `growth-scaling-playbook` |
-| Plan | `okr-frameworks` + [Plan my next 12 months](../../workflows/pb-plan-my-next-12-months.md) playbook |
+| Plan | `okr-frameworks` + [Plan my next 12 months](../../workflows/strategy/pb-plan-my-next-12-months.md) playbook |
 | Budget | `startup-financial-modeling` |
 | Execute | `ship-decisions`, `delegation` |
 | Review | `business-pulse`, `weekly-review`, `vault-maturity-score` |
 
-For a quarterly reset, run the [Quarterly Replan](../../workflows/pb-quarterly-replan.md) playbook. It chains assessment, OKR review, and replanning into a single guided workflow.
+For a quarterly reset, run the [Quarterly Replan](../../workflows/strategy/pb-quarterly-replan.md) playbook. It chains assessment, OKR review, and replanning into a single guided workflow.
 
 ### `strategy-frameworks`
 
@@ -172,7 +172,7 @@ When you create a project or a campaign, link it to the strategy note that motiv
 | `operating-dashboard` | cross-cutting (reporting) |
 | `business-pulse` | review |
 
-**Playbooks:** [Plan my next 12 months](../../workflows/pb-plan-my-next-12-months.md), [Quarterly Replan](../../workflows/pb-quarterly-replan.md), [Business Owner Operating System](../../workflows/pb-business-owner-operating-system.md), [Weekly Business Review](../../workflows/pb-weekly-business-review.md), [Growth opportunity mapping](../../workflows/pb-growth-opportunity-mapping.md)
+**Playbooks:** [Plan my next 12 months](../../workflows/strategy/pb-plan-my-next-12-months.md), [Quarterly Replan](../../workflows/strategy/pb-quarterly-replan.md), [Business Owner Operating System](../../workflows/strategy/pb-business-owner-operating-system.md), [Weekly Business Review](../../workflows/strategy/pb-weekly-business-review.md), [Growth opportunity mapping](../../workflows/strategy/pb-growth-opportunity-mapping.md)
 
 ---
 

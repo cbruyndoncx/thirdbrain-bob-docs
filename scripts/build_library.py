@@ -12,7 +12,7 @@ delete the pages from the website.
 Writes docs/skills/*.md, docs/workflows/*.md, an index per section grouped by
 business area, and a link map so wiki pages can link to skills and workflows.
 """
-import argparse, json, re
+import argparse, json, os, re
 from collections import defaultdict
 from pathlib import Path
 import yaml
@@ -60,6 +60,15 @@ def cell(s):
     return plain(str(s)).replace("|", "\\|").replace("\n", " ").strip()
 
 
+def unbracket(v):
+    v = str(v).strip()
+    return v[1:-1] if v.startswith("[") and v.endswith("]") else v
+
+
+def meta_list(rows):
+    return "".join(f"- **{k}:** {cell(unbracket(v))}\n" for k, v in rows if v) + "\n" if any(v for _, v in rows) else ""
+
+
 def bullets(items):
     return "\n".join(f"- {i}" for i in items) + "\n" if items else ""
 
@@ -98,6 +107,18 @@ def main():
     sk_dir, wf_dir = docs / "skills", docs / "workflows"
     sk_dir.mkdir(parents=True, exist_ok=True); wf_dir.mkdir(parents=True, exist_ok=True)
 
+    def area_of(fm):
+        return fm.get("area") or "foundational"
+
+    def sk_rel(n):           # path under docs/
+        return f"skills/{area_of(skills[n])}/{n}.md"
+
+    def wf_rel(s):
+        return f"workflows/{area_of(workflows[s][0])}/{s}.md"
+
+    def rel(frm, to):
+        return os.path.relpath(to, os.path.dirname(frm)).replace("\\", "/")
+
     by_skill = defaultdict(list)
     for slug, (fm, _) in workflows.items():
         by_skill[fm.get("skillName")].append(slug)
@@ -112,9 +133,7 @@ def main():
                 ("Level", fm.get("difficulty")), ("Input", fm.get("inputType")),
                 ("Output", fm.get("outputType")), ("Setup", fm.get("requires")),
                 ("Roles", fm.get("roles"))]
-        meta = [(k, v) for k, v in meta if v]
-        if meta:
-            out.append("| | |\n|---|---|\n" + "\n".join(f"| **{k}** | {cell(v)} |" for k, v in meta) + "\n\n")
+        out.append(meta_list(meta))
         if fm.get("desc") and fm.get("desc") != fm.get("summary"):
             out.append(f"{fm['desc']}\n\n")
         if fm.get("prompts"):
@@ -126,8 +145,9 @@ def main():
         wfs = by_skill.get(name, [])
         if wfs:
             out.append("## Seen in these workflows\n\n" + "".join(
-                f"- [{workflows[w][0].get('title') or title_of(w)}](../workflows/{w}.md)\n" for w in wfs) + "\n")
-        (sk_dir / f"{name}.md").write_text("".join(out), encoding="utf-8")
+                f"- [{workflows[w][0].get('title') or title_of(w)}]({rel(sk_rel(name), wf_rel(w))})\n" for w in wfs) + "\n")
+        dest = docs / sk_rel(name); dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text("".join(out), encoding="utf-8")
 
     # ---- workflow pages
     for slug, (fm, body) in workflows.items():
@@ -150,9 +170,7 @@ def main():
                 ("Time savings", fm.get("timeSavings")), ("Try it", fm.get("trigger")),
                 ("Compounding", fm.get("compounding")), ("Frequency", fm.get("frequency")),
                 ("Published", fm.get("published"))]
-        meta = [(k, v) for k, v in meta if v]
-        if meta:
-            out.append("| | |\n|---|---|\n" + "\n".join(f"| **{k}** | {cell(v)} |" for k, v in meta) + "\n\n")
+        out.append(meta_list(meta))
         for head, key in (("Inputs", "inputs"), ("What BOB does", "steps"), ("Outputs", "outputs")):
             items = fm.get(key)
             if not items:
@@ -169,8 +187,9 @@ def main():
             out.append("## Benefits\n\n" + bullets(fm["benefits"]) + "\n")
         sk = fm.get("skillName")
         if sk in skills:
-            out.append(f"Built on the [{sk}](../skills/{sk}.md) skill.\n")
-        (wf_dir / f"{slug}.md").write_text("".join(out), encoding="utf-8")
+            out.append(f"Built on the [{sk}]({rel(wf_rel(slug), sk_rel(sk))}) skill.\n")
+        dest = docs / wf_rel(slug); dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text("".join(out), encoding="utf-8")
 
     # ---- indexes
     def group(rows):
@@ -191,16 +210,16 @@ def main():
                 txt.append(f"{ar['blurb']}\n\n")
             txt.append("| Name | What it does |\n|---|---|\n")
             for slug, label, d in sorted(g[key], key=lambda x: x[1].lower()):
-                txt.append(f"| [{cell(label)}]({slug}.md) | {cell(d)} |\n")
+                txt.append(f"| [{cell(label)}]({slug}) | {cell(d)} |\n")
             txt.append("\n")
         path.write_text("".join(txt), encoding="utf-8")
 
     index(sk_dir / "index.md", "Skills",
           f"{len(skills)} skills across every part of the business. Each page lists how to ask, what it needs and what it produces.",
-          [(f.get("area"), n, n, f.get("summary") or f.get("desc") or "") for n, f in skills.items()], "")
+          [(f.get("area"), sk_rel(n)[len("skills/"):], n, f.get("summary") or f.get("desc") or "") for n, f in skills.items()], "")
     index(wf_dir / "index.md", "Workflows",
           f"{len(workflows)} end-to-end workflows, built from the skills. Many have a video walkthrough.",
-          [(f.get("area"), s, f.get("title") or title_of(s), f.get("outcome") or f.get("subtitle") or "")
+          [(f.get("area"), wf_rel(s)[len("workflows/"):], f.get("title") or title_of(s), f.get("outcome") or f.get("subtitle") or "")
            for s, (f, _) in workflows.items()], "")
 
     # ---- link map for the wiki export (keys = normalised names)
@@ -210,12 +229,12 @@ def main():
     lm["skills"] = "skills/index.md"
     lm["workflows"] = "workflows/index.md"
     for s in skills:
-        lm[norm(s)] = f"skills/{s}.md"
+        lm[norm(s)] = sk_rel(s)
     for s, (f, _) in workflows.items():
-        lm[norm(s)] = f"workflows/{s}.md"
-        lm.setdefault(norm(s.removeprefix("pb-")), f"workflows/{s}.md")
+        lm[norm(s)] = wf_rel(s)
+        lm.setdefault(norm(s.removeprefix("pb-")), wf_rel(s))
         if f.get("title"):
-            lm.setdefault(norm(f["title"]), f"workflows/{s}.md")
+            lm.setdefault(norm(f["title"]), wf_rel(s))
     if a.linkmap:
         Path(a.linkmap).parent.mkdir(parents=True, exist_ok=True)
         Path(a.linkmap).write_text(json.dumps(lm, indent=1))

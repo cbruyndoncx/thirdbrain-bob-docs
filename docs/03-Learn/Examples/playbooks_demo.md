@@ -267,11 +267,11 @@ Pick any playbook and say `start playbook: [name]`. Here are good starting point
 
 | If you want to... | Run this playbook |
 |-------------------|-------------------|
-| Audit a client's online presence | [Digital authority baseline](../../workflows/pb-digital-authority-baseline.md) |
-| Help a client price better | [Margin improvement](../../workflows/pb-margin-improvement.md) |
-| Reduce founder dependency | [Founder independence](../../workflows/pb-founder-independence.md) |
-| Make a big strategic decision | [Strategic decision framework](../../workflows/pb-strategic-decision-framework.md) |
-| Improve a client's sales process | [Sales conversion improvement](../../workflows/pb-sales-conversion-improvement.md) |
+| Audit a client's online presence | [Digital authority baseline](../../workflows/marketing/pb-digital-authority-baseline.md) |
+| Help a client price better | [Margin improvement](../../workflows/finance/pb-margin-improvement.md) |
+| Reduce founder dependency | [Founder independence](../../workflows/strategy/pb-founder-independence.md) |
+| Make a big strategic decision | [Strategic decision framework](../../workflows/strategy/pb-strategic-decision-framework.md) |
+| Improve a client's sales process | [Sales conversion improvement](../../workflows/sales/pb-sales-conversion-improvement.md) |
 
 See all available playbooks: browse `{company.playbooks}` or check the playbooks-in-flight dashboard for active runs.
 

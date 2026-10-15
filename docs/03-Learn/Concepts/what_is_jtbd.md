@@ -118,4 +118,4 @@ See [playbooks](playbooks.md) for how this works in practice.
 - Clayton Christensen — *Competing Against Luck* (the foundational text)
 - Bob Moesta — *Demand-Side Sales 101* (the four forces in practice)
 - Alan Klement — *When Coffee and Kale Compete* (job stories over user stories)
-- The [jtbd-building](../../skills/jtbd-building.md) skill applies JTBD to product research and messaging
+- The [jtbd-building](../../skills/strategy/jtbd-building.md) skill applies JTBD to product research and messaging

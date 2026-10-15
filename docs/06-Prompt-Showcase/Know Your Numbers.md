@@ -21,11 +21,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Monthly Close](../workflows/pb-monthly-close.md) | It's month-end and you need to close the books |
-| [Cash Control Routine](../workflows/pb-cash-control-routine.md) | You want a steady routine for staying on top of cash |
-| [Monthly Business Review](../workflows/pb-monthly-business-review.md) | You want the numbers turned into a monthly decision review |
-| [Cash flow optimization](../workflows/pb-cash-flow-optimization.md) | Cash is tight and you want to free it up |
-| [Margin improvement](../workflows/pb-margin-improvement.md) | Margins are thin and you want to find the leaks |
+| [Monthly Close](../workflows/finance/pb-monthly-close.md) | It's month-end and you need to close the books |
+| [Cash Control Routine](../workflows/finance/pb-cash-control-routine.md) | You want a steady routine for staying on top of cash |
+| [Monthly Business Review](../workflows/finance/pb-monthly-business-review.md) | You want the numbers turned into a monthly decision review |
+| [Cash flow optimization](../workflows/finance/pb-cash-flow-optimization.md) | Cash is tight and you want to free it up |
+| [Margin improvement](../workflows/finance/pb-margin-improvement.md) | Margins are thin and you want to find the leaks |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -33,11 +33,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Capture** | record transactions | log invoices, post a journal entry | [invoice-collector](../skills/invoice-collector.md) · [journal-entry-poster](../skills/journal-entry-poster.md) |
-| **Reconcile** | match the books | reconcile the bank | [bank-reconciliation](../skills/bank-reconciliation.md) |
-| **Close-period** | close the period | trial balance, VAT return, run the close | [trial-balance-generator](../skills/trial-balance-generator.md) · [vat-return-preparer](../skills/vat-return-preparer.md) · [period-close-orchestrator](../skills/period-close-orchestrator.md) |
-| **Report** | see how it's going | financial summary, statements | [financial-reporting](../skills/financial-reporting.md) · [financial-statement-generator](../skills/financial-statement-generator.md) |
-| **Decide** | act on it | set a decision cadence | [financial-decision-cadence](../skills/financial-decision-cadence.md) |
+| **Capture** | record transactions | log invoices, post a journal entry | [invoice-collector](../skills/finance/invoice-collector.md) · [journal-entry-poster](../skills/finance/journal-entry-poster.md) |
+| **Reconcile** | match the books | reconcile the bank | [bank-reconciliation](../skills/finance/bank-reconciliation.md) |
+| **Close-period** | close the period | trial balance, VAT return, run the close | [trial-balance-generator](../skills/finance/trial-balance-generator.md) · [vat-return-preparer](../skills/finance/vat-return-preparer.md) · [period-close-orchestrator](../skills/finance/period-close-orchestrator.md) |
+| **Report** | see how it's going | financial summary, statements | [financial-reporting](../skills/finance/financial-reporting.md) · [financial-statement-generator](../skills/finance/financial-statement-generator.md) |
+| **Decide** | act on it | set a decision cadence | [financial-decision-cadence](../skills/finance/financial-decision-cadence.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

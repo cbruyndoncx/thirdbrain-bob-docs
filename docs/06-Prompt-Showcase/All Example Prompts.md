@@ -3983,7 +3983,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "Where does a meeting note go?"
 - "which folder holds deliverables for this client?"
 - "A prototype vault with different folder names has to run the same skill library"
-- "Do NOT use for PMBOK project tailoring ([project-context](../skills/project-context.md)), personal values"
+- "Do NOT use for PMBOK project tailoring ([project-context](../skills/project-delivery/project-context.md)), personal values"
 
 **corpus-integrity**
 - "corpus check"
@@ -4125,7 +4125,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "make a pipeline PDF for business-baseline"
 - "show what pack this skill belongs to"
 - "create a skill explainer PDF"
-- "Document [business-baseline](../workflows/business-baseline.md) like the website audit PDF"
+- "Document [business-baseline](../workflows/strategy/business-baseline.md) like the website audit PDF"
 - "Create a pipeline explainer for this skill"
 - "Show which pack this skill belongs to"
 - "Make a prospect-safe PDF explaining the workflow behind a skill"

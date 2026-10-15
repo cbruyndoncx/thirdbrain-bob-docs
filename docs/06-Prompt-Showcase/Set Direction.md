@@ -21,11 +21,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Plan my next 12 months](../workflows/pb-plan-my-next-12-months.md) | You want a year mapped into a concrete plan |
-| [Quarterly Replan](../workflows/pb-quarterly-replan.md) | It's quarter-end and the plan needs resetting |
-| [Business Owner Operating System](../workflows/pb-business-owner-operating-system.md) | You want a repeatable operating rhythm as the owner |
-| [Operations optimization](../workflows/pb-operations-optimization.md) | Operations are messy and you want them streamlined |
-| [Weekly Business Review](../workflows/pb-weekly-business-review.md) | You want a weekly rhythm for reviewing the business |
+| [Plan my next 12 months](../workflows/strategy/pb-plan-my-next-12-months.md) | You want a year mapped into a concrete plan |
+| [Quarterly Replan](../workflows/strategy/pb-quarterly-replan.md) | It's quarter-end and the plan needs resetting |
+| [Business Owner Operating System](../workflows/strategy/pb-business-owner-operating-system.md) | You want a repeatable operating rhythm as the owner |
+| [Operations optimization](../workflows/operations/pb-operations-optimization.md) | Operations are messy and you want them streamlined |
+| [Weekly Business Review](../workflows/strategy/pb-weekly-business-review.md) | You want a weekly rhythm for reviewing the business |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -33,10 +33,10 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Assess** | see where you stand | baseline the business, size the market, prioritize | [business-baseline](../workflows/business-baseline.md) · [market-sizing-analysis](../skills/market-sizing-analysis.md) · [owner-priority-system](../skills/owner-priority-system.md) |
-| **Strategize** | set direction | design a growth engine | [growth-engine](../skills/growth-engine.md) |
-| **Budget** | put numbers to it | model the finances | [startup-financial-modeling](../skills/startup-financial-modeling.md) |
-| **Review** | stay on track | weekly review, business pulse | [weekly-review](../skills/weekly-review.md) · [business-pulse](../skills/business-pulse.md) |
+| **Assess** | see where you stand | baseline the business, size the market, prioritize | [business-baseline](../workflows/strategy/business-baseline.md) · [market-sizing-analysis](../skills/strategy/market-sizing-analysis.md) · [owner-priority-system](../skills/strategy/owner-priority-system.md) |
+| **Strategize** | set direction | design a growth engine | [growth-engine](../skills/strategy/growth-engine.md) |
+| **Budget** | put numbers to it | model the finances | [startup-financial-modeling](../skills/strategy/startup-financial-modeling.md) |
+| **Review** | stay on track | weekly review, business pulse | [weekly-review](../skills/foundational/weekly-review.md) · [business-pulse](../skills/strategy/business-pulse.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

@@ -21,11 +21,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Delivery orchestrator](../workflows/pb-delivery-orchestrator.md) | You want delivery coordinated across the whole lifecycle |
-| [Delivery efficiency](../workflows/pb-delivery-efficiency.md) | Delivery feels slow or leaky and you want it tightened |
-| [Customer Support Ticket Resolution](../workflows/pb-customer-support-ticket-resolution.md) | An incoming support ticket needs working to resolution |
-| [Issue-to-Resolution](../workflows/pb-issue-to-resolution.md) | A problem needs triage, fix, and follow-through |
-| [FIDIC Contract Claims Management](../workflows/pb-fidic-contract-claims-management.md) | You're managing contractual claims on a construction project |
+| [Delivery orchestrator](../workflows/operations/pb-delivery-orchestrator.md) | You want delivery coordinated across the whole lifecycle |
+| [Delivery efficiency](../workflows/operations/pb-delivery-efficiency.md) | Delivery feels slow or leaky and you want it tightened |
+| [Customer Support Ticket Resolution](../workflows/operations/pb-customer-support-ticket-resolution.md) | An incoming support ticket needs working to resolution |
+| [Issue-to-Resolution](../workflows/operations/pb-issue-to-resolution.md) | A problem needs triage, fix, and follow-through |
+| [FIDIC Contract Claims Management](../workflows/project-delivery/pb-fidic-contract-claims-management.md) | You're managing contractual claims on a construction project |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -33,11 +33,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Plan** | set the project up | a schedule, project context | [project-schedule](../skills/project-schedule.md) · [project-context](../skills/project-context.md) |
-| **Execute** | handle contract issues | analyze a clause, assess a variation | [contract-clause-analyzer](../workflows/contract-clause-analyzer.md) · [variation-order-analyzer](../workflows/variation-order-analyzer.md) |
-| **Support** | deal with problems | triage an issue, escalate, find root cause | [issue-triage](../skills/issue-triage.md) · [escalation-routing](../skills/escalation-routing.md) · [root-cause-analysis](../skills/root-cause-analysis.md) |
-| **Review** | wrap up | close the project, track resolutions | [project-closure](../skills/project-closure.md) · [resolution-tracker](../skills/resolution-tracker.md) |
-| **Retain** | keep them | spot churn risk | [retention-check](../skills/retention-check.md) |
+| **Plan** | set the project up | a schedule, project context | [project-schedule](../skills/project-delivery/project-schedule.md) · [project-context](../skills/project-delivery/project-context.md) |
+| **Execute** | handle contract issues | analyze a clause, assess a variation | [contract-clause-analyzer](../workflows/operations/contract-clause-analyzer.md) · [variation-order-analyzer](../workflows/operations/variation-order-analyzer.md) |
+| **Support** | deal with problems | triage an issue, escalate, find root cause | [issue-triage](../skills/operations/issue-triage.md) · [escalation-routing](../skills/operations/escalation-routing.md) · [root-cause-analysis](../skills/operations/root-cause-analysis.md) |
+| **Review** | wrap up | close the project, track resolutions | [project-closure](../skills/project-delivery/project-closure.md) · [resolution-tracker](../skills/operations/resolution-tracker.md) |
+| **Retain** | keep them | spot churn risk | [retention-check](../skills/sales/retention-check.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

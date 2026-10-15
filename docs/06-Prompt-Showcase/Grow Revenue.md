@@ -21,12 +21,12 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Grow my revenue](../workflows/pb-grow-my-revenue.md) | Revenue has plateaued and you want a prioritized 90-day plan |
-| [Lead-to-Cash E2E](../workflows/pb-lead-to-cash-e2e.md) | You want the full journey orchestrated end to end |
-| [Sales conversion improvement](../workflows/pb-sales-conversion-improvement.md) | Leads come in but too few convert |
-| [MEDDPICC Qualification](../workflows/pb-meddpicc-qualification.md) | You need a rigorous qualification framework on live deals |
-| [Proposal from meeting](../workflows/pb-proposal-from-meeting.md) | Turn discovery-call notes straight into a proposal |
-| [Win-Loss Review](../workflows/pb-win-loss-review.md) | Learn systematically from deals you won and lost |
+| [Grow my revenue](../workflows/sales/pb-grow-my-revenue.md) | Revenue has plateaued and you want a prioritized 90-day plan |
+| [Lead-to-Cash E2E](../workflows/sales/pb-lead-to-cash-e2e.md) | You want the full journey orchestrated end to end |
+| [Sales conversion improvement](../workflows/sales/pb-sales-conversion-improvement.md) | Leads come in but too few convert |
+| [MEDDPICC Qualification](../workflows/sales/pb-meddpicc-qualification.md) | You need a rigorous qualification framework on live deals |
+| [Proposal from meeting](../workflows/sales/pb-proposal-from-meeting.md) | Turn discovery-call notes straight into a proposal |
+| [Win-Loss Review](../workflows/sales/pb-win-loss-review.md) | Learn systematically from deals you won and lost |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -34,10 +34,10 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Prospect** | reach new people | cold emails, ad copy, LinkedIn outreach | [cold-email](../skills/cold-email.md) · [ad-creative](../skills/ad-creative.md) · [linkedin-outreach](../skills/linkedin-outreach.md) |
-| **Qualify** | decide who's worth it | score a lead, define your ICP | [lead-qualifier](../skills/lead-qualifier.md) · [icp-discovery](../skills/icp-discovery.md) |
-| **Propose** | make the case | proposal, ROI case | [proposal-writer](../workflows/proposal-writer.md) · [roi-calculator](../skills/roi-calculator.md) |
-| **Collect** | get paid | chase an overdue invoice | [ar-followup](../skills/ar-followup.md) |
+| **Prospect** | reach new people | cold emails, ad copy, LinkedIn outreach | [cold-email](../skills/sales/cold-email.md) · [ad-creative](../skills/marketing/ad-creative.md) · [linkedin-outreach](../skills/sales/linkedin-outreach.md) |
+| **Qualify** | decide who's worth it | score a lead, define your ICP | [lead-qualifier](../skills/sales/lead-qualifier.md) · [icp-discovery](../skills/marketing/icp-discovery.md) |
+| **Propose** | make the case | proposal, ROI case | [proposal-writer](../workflows/sales/proposal-writer.md) · [roi-calculator](../skills/strategy/roi-calculator.md) |
+| **Collect** | get paid | chase an overdue invoice | [ar-followup](../skills/finance/ar-followup.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

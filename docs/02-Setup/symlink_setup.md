@@ -91,4 +91,4 @@ Windows-native clients, which then load zero skills without erroring.
 ## Related
 
 - [SYMLINK-SETUP](SYMLINK-SETUP.md) — canonical reference: filesystem matrix, WSL/Win32 behaviour, Windows-side verification
-- [bob-doctor](../skills/bob-doctor.md) — checks these links as part of environment readiness
+- [bob-doctor](../skills/foundational/bob-doctor.md) — checks these links as part of environment readiness

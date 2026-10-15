@@ -22,7 +22,7 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 | Playbook | When you'd run it |
 |---|---|
 | Procure-to-Pay cycle | You want the full buy-to-pay process run cleanly |
-| [New supplier onboarding](../workflows/pb-new-supplier-onboarding.md) | You're bringing on a new supplier |
+| [New supplier onboarding](../workflows/operations/pb-new-supplier-onboarding.md) | You're bringing on a new supplier |
 | Supplier review and contract renewal | A supplier contract is up for review or renewal |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
@@ -31,11 +31,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Request** | ask to buy | raise a requisition | [purchase-requisition](../skills/purchase-requisition.md) |
-| **Source** | find suppliers | compare suppliers, plan project procurement | [strategic-sourcing](../skills/strategic-sourcing.md) · [project-procurement](../skills/project-procurement.md) |
-| **Order** | place the order | raise a purchase order | [purchase-order](../skills/purchase-order.md) |
-| **Review** | judge a supplier | review supplier performance | [supplier-feedback](../skills/supplier-feedback.md) |
-| **Pay** | settle up | run order-to-pay | [order-to-pay](../skills/order-to-pay.md) |
+| **Request** | ask to buy | raise a requisition | [purchase-requisition](../skills/operations/purchase-requisition.md) |
+| **Source** | find suppliers | compare suppliers, plan project procurement | [strategic-sourcing](../skills/operations/strategic-sourcing.md) · [project-procurement](../skills/project-delivery/project-procurement.md) |
+| **Order** | place the order | raise a purchase order | [purchase-order](../skills/operations/purchase-order.md) |
+| **Review** | judge a supplier | review supplier performance | [supplier-feedback](../skills/operations/supplier-feedback.md) |
+| **Pay** | settle up | run order-to-pay | [order-to-pay](../skills/strategy/order-to-pay.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

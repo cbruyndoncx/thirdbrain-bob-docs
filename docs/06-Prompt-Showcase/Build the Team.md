@@ -21,7 +21,7 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Hire-to-Productivity](../workflows/pb-hire-to-productivity.md) | You want the whole hiring journey run from need to first milestone |
+| [Hire-to-Productivity](../workflows/people/pb-hire-to-productivity.md) | You want the whole hiring journey run from need to first milestone |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -29,12 +29,12 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Need** | size the gap | analyze team composition | [team-composition-analysis](../skills/team-composition-analysis.md) |
-| **Recruit** | find people | run a hiring search | [hiring](../skills/hiring.md) |
-| **Hire** | make it official | draft an employment contract | [employment-contract-templates](../skills/employment-contract-templates.md) |
-| **Onboard** | ramp them up | build an onboarding plan | [employee-onboarding](../skills/employee-onboarding.md) |
-| **Perform** | set expectations | run a performance review | [performance-review](../skills/performance-review.md) |
-| **Develop** | grow them | prep a one-on-one | [one-on-ones](../skills/one-on-ones.md) |
+| **Need** | size the gap | analyze team composition | [team-composition-analysis](../skills/people/team-composition-analysis.md) |
+| **Recruit** | find people | run a hiring search | [hiring](../skills/people/hiring.md) |
+| **Hire** | make it official | draft an employment contract | [employment-contract-templates](../skills/people/employment-contract-templates.md) |
+| **Onboard** | ramp them up | build an onboarding plan | [employee-onboarding](../skills/people/employee-onboarding.md) |
+| **Perform** | set expectations | run a performance review | [performance-review](../skills/people/performance-review.md) |
+| **Develop** | grow them | prep a one-on-one | [one-on-ones](../skills/people/one-on-ones.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

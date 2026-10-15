@@ -21,10 +21,10 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Client onboarding](../workflows/pb-client-onboarding.md) | You're bringing a new client on board |
-| [Client success capture](../workflows/pb-client-success-capture.md) | You want to capture proof and feedback from a happy client |
-| [Fix my retention](../workflows/pb-fix-my-retention.md) | Clients are leaving and you want to stop the bleed |
-| [Quarterly business review](../workflows/pb-quarterly-business-review.md) | It's time for a QBR with a client |
+| [Client onboarding](../workflows/sales/pb-client-onboarding.md) | You're bringing a new client on board |
+| [Client success capture](../workflows/sales/pb-client-success-capture.md) | You want to capture proof and feedback from a happy client |
+| [Fix my retention](../workflows/sales/pb-fix-my-retention.md) | Clients are leaving and you want to stop the bleed |
+| [Quarterly business review](../workflows/strategy/pb-quarterly-business-review.md) | It's time for a QBR with a client |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -32,11 +32,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Onboard** | set them up | onboard a new client | [create-client](../workflows/create-client.md) |
-| **Review** | watch the account | track client health | [client-health-tracker](../skills/client-health-tracker.md) |
-| **Feedback** | listen | customer pulse, run a survey, collect a testimonial | [customer-pulse](../skills/customer-pulse.md) · [survey-feedback-pipeline](../skills/survey-feedback-pipeline.md) · [testimonial-collector](../skills/testimonial-collector.md) |
-| **Renew** | manage the exit/renewal | offboard cleanly | [client-offboarding](../skills/client-offboarding.md) |
-| **Expand** | grow the account | plan client ascension | [client-ascension](../skills/client-ascension.md) |
+| **Onboard** | set them up | onboard a new client | [create-client](../workflows/sales/create-client.md) |
+| **Review** | watch the account | track client health | [client-health-tracker](../skills/sales/client-health-tracker.md) |
+| **Feedback** | listen | customer pulse, run a survey, collect a testimonial | [customer-pulse](../skills/sales/customer-pulse.md) · [survey-feedback-pipeline](../skills/sales/survey-feedback-pipeline.md) · [testimonial-collector](../skills/sales/testimonial-collector.md) |
+| **Renew** | manage the exit/renewal | offboard cleanly | [client-offboarding](../skills/sales/client-offboarding.md) |
+| **Expand** | grow the account | plan client ascension | [client-ascension](../skills/sales/client-ascension.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 

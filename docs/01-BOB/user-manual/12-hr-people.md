@@ -140,7 +140,7 @@ The output is a delegation brief per task, including a "good enough" standard so
 | `delegation` | cross-cutting |
 | `hr-ops` | cross-cutting |
 
-**Playbook:** [Hire-to-Productivity](../../workflows/pb-hire-to-productivity.md) chains these stages end to end. Run it for a new hire rather than triggering skills individually.
+**Playbook:** [Hire-to-Productivity](../../workflows/people/pb-hire-to-productivity.md) chains these stages end to end. Run it for a new hire rather than triggering skills individually.
 
 ---
 

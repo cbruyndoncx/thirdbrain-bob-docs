@@ -21,7 +21,7 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [Order-to-Fulfill](../workflows/pb-order-to-fulfill.md) | You want an order taken cleanly from receipt to sign-off |
+| [Order-to-Fulfill](../workflows/operations/pb-order-to-fulfill.md) | You want an order taken cleanly from receipt to sign-off |
 
 → Browse every workflow in [PLAYBOOKS](../03-Learn/Concepts/playbooks.md).
 
@@ -29,11 +29,11 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Stage | When you want to… | Ask for… | Skill |
 |---|---|---|---|
-| **Order** | take the order | manage orders | [order-management](../skills/order-management.md) |
-| **Schedule** | plan the work | schedule production | [production-scheduling](../skills/production-scheduling.md) |
-| **Pack** | prepare to ship | optimize packaging | [packaging-logistics](../skills/packaging-logistics.md) |
-| **Ship** | get it there | compare carriers, cut shipping cost | [logistics-shipping](../skills/logistics-shipping.md) |
-| **Confirm** | close it out | confirm delivery | [delivery-confirmation](../skills/delivery-confirmation.md) |
+| **Order** | take the order | manage orders | [order-management](../skills/operations/order-management.md) |
+| **Schedule** | plan the work | schedule production | [production-scheduling](../skills/operations/production-scheduling.md) |
+| **Pack** | prepare to ship | optimize packaging | [packaging-logistics](../skills/operations/packaging-logistics.md) |
+| **Ship** | get it there | compare carriers, cut shipping cost | [logistics-shipping](../skills/operations/logistics-shipping.md) |
+| **Confirm** | close it out | confirm delivery | [delivery-confirmation](../skills/operations/delivery-confirmation.md) |
 
 → The full skill catalogue lives in [SKILLS](../skills/index.md).
 
