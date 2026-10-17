@@ -43,6 +43,12 @@ theme:
 hooks:
   - scripts/nav_hook.py
 
+# The hook already drops menu entries whose page is gone; the only links MkDocs cannot match to a
+# file are the hook's section shortcuts (page address + #anchor), which are valid.
+validation:
+  nav:
+    not_found: info
+
 extra_css:
   - stylesheets/brand.css
 

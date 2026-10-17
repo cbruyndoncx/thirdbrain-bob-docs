@@ -8,7 +8,9 @@ nav.yml holds the curated menu with readable labels. This hook, run by `mkdocs b
   - an entry whose page is gone (a renamed or removed Wiki page) is left out and logged;
   - `hidden` pages stay out of the menu (MkDocs still builds them);
   - every other page in neither list goes under "More" and is logged, so a new Wiki page is
-    visible straight away and the log says where to place it.
+    visible straight away and the log says where to place it;
+  - an entry `page.md#anchor` is a shortcut to a section of a page listed elsewhere in the menu
+    (one source, two ways in); it links to that page's clean address plus the anchor.
 
 It also gives every menu page a clean address taken from its place in the menu, so readers see
 /get-started/quickstart/ instead of the vault folder /02-Setup/quickstart/: the section labels
@@ -35,6 +37,7 @@ ROOT = Path(__file__).resolve().parent.parent
 LIBRARY = ("skills", "workflows")
 SECTION_PAGE = ("Overview", "Contents")   # the label that gives a page its section's address
 _clean: dict[str, str] = {}              # docs-relative source path -> clean address ("a/b")
+_SHORTCUT = "shortcut:"                  # placeholder for `page.md#anchor` until addresses are known
 
 
 def _slug(label: str) -> str:
@@ -81,6 +84,12 @@ def _resolve(entries: list, pages: set[str], listed: set[str], docs: Path, prefi
             children = _resolve(value, pages, listed, docs, prefix + (_slug(label),))
             if children:
                 out.append({label: children})
+        elif isinstance(value, str) and "#" in value:
+            page = value.split("#", 1)[0]
+            if page in pages:
+                out.append({label: _SHORTCUT + value})
+            else:
+                log.info("nav.yml: %s is not in the docs (renamed or removed?), left out of the menu", value)
         elif value in pages:
             listed.add(value)
             if value != "index.md" and label:
@@ -107,8 +116,26 @@ def on_config(config):
     if more:
         log.info("nav.yml: %d page(s) not placed, shown under More: %s", len(more), ", ".join(more))
         nav.append({"More": more})
-    config["nav"] = nav
+    config["nav"] = _shortcuts(nav)
     return config
+
+
+def _shortcuts(entries: list) -> list:
+    """Replace `page.md#anchor` placeholders with the page's clean address and the anchor. The
+    result is a site-relative link, which the theme makes relative to each page."""
+    out = []
+    for entry in entries:
+        if isinstance(entry, dict):
+            (label, value), = entry.items()
+            if isinstance(value, list):
+                value = _shortcuts(value)
+            elif isinstance(value, str) and value.startswith(_SHORTCUT):
+                page, anchor = value[len(_SHORTCUT):].split("#", 1)
+                base = _clean.get(page) or page[:-3]
+                value = f"{base}/#{anchor}"
+            entry = {label: value}
+        out.append(entry)
+    return out
 
 
 def on_files(files, config):

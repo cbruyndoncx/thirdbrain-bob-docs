@@ -7,7 +7,8 @@
 #   - leaves out entries whose page no longer exists (a renamed Wiki page), and logs them;
 #   - leaves the `hidden` pages out of the menu (they are still built, linked and searchable);
 #   - adds every other page that is in neither list to "More", so a new Wiki page is never lost.
-#     When a page shows up there, give it a place below.
+#     When a page shows up there, give it a place below;
+#   - treats `page.md#anchor` as a shortcut to a section of a page that is listed elsewhere.
 
 nav:
   - Home: index.md
@@ -16,6 +17,7 @@ nav:
       - Start here: start_here.md
       - What is BOB?: 01-BOB/Onboarding/bob_overview.md
       - Quickstart: 02-Setup/quickstart.md
+      - How BOB finds your folders: 01-BOB/user-manual/03-getting-started.md#part-c-how-bob-finds-your-folders-the-context-pack
       - Learning path: 01-BOB/Onboarding/bob_learning_path.md
       - Before you install: 01-BOB/Onboarding/environment_checklist.md
       - Install:
