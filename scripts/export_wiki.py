@@ -24,6 +24,17 @@ EXCLUDE_PATHS = [          # relative to wiki root; prefix match
     "cc-prototype-dashboard.md",
     "CLAUDE.md",
     "AGENTS.md",
+    # Not for the public site (owner decision 2026-10-17). The release configs keep shipping
+    # these in full (`!` lines in their docs-online fence), so no pointer leads to a missing page.
+    "01-BOB/cadence-guide",                                   # older variant of the workspace guide
+    "02-Setup/AI-Tools/install_wsl2_claude_code.pdf.md",      # print twin of install_wsl2_claude_code
+    "03-Learn/Concepts/onboarding_wizard.md",                 # works only inside Obsidian (Dataview)
+    "03-Learn/Examples/Example Visualizations/Customer-Onboarding-Sequence.swimlane.md",       # Excalidraw data
+    "03-Learn/Examples/Example Visualizations/Customer-Onboarding-Sequence-Dark.swimlane.md",  # Excalidraw data
+    "04-Reference/quickref_for_cardboards_demo.md",           # demo notes without a heading
+    "04-Reference/bob-vault-mechanics-and-build-pipeline.md", # maintainer notes
+    "04-Reference/bob-workspace-entity-setup-audit.md",       # maintainer audit
+    "04-Reference/bob-workspace-navigation-inventory.md",     # maintainer inventory
 ]
 HOME_SRC = None   # the site home is pages/index.md (build.sh); start_here.md stays a page
 IMG_EXT = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"}

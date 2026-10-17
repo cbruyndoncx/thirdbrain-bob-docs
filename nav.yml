@@ -115,15 +115,8 @@ nav:
           - Linux bash cheat sheet: 04-Reference/linux_bash_cheatsheet.md
           - BPMN token simulation: 04-Reference/bpmn_token_simulation.md
 
-# Built and searchable, but not in the menu.
+# Built and searchable, but not in the menu. Pages that should not be on the site at all go in
+# EXCLUDE_PATHS in scripts/export_wiki.py instead.
 hidden:
   - 01-BOB/Onboarding/MOC-bob_onboarding.md          # a map of content; the menu does its job
-  - 02-Setup/AI-Tools/install_wsl2_claude_code.pdf.md  # the print twin of install_wsl2_claude_code
   - 02-Setup/SYMLINK-SETUP.md                        # the long link-type reference behind symlink_setup
-  - 03-Learn/Concepts/onboarding_wizard.md           # works only inside Obsidian (Dataview)
-  - 03-Learn/Examples/Example Visualizations/*.swimlane.md  # Excalidraw drawing data, not prose
-  - 04-Reference/quickref_for_cardboards_demo.md     # demo notes without a heading
-  - 04-Reference/bob-vault-mechanics-and-build-pipeline.md  # maintainer notes
-  - 04-Reference/bob-workspace-entity-setup-audit.md        # maintainer audit
-  - 04-Reference/bob-workspace-navigation-inventory.md      # maintainer inventory
-  - 01-BOB/cadence-guide/*                           # older variant of the workspace guide
