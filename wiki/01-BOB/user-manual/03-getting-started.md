@@ -4,7 +4,7 @@ title: "BOB User Manual — 3. Getting Started"
 description: "From installation to a first real deliverable — the guided first-run path"
 status: draft
 created: 2026-08-07
-modified: 2026-10-12
+modified: 2026-10-17
 tags: [bob, user-manual, wiki]
 ---
 
@@ -85,7 +85,44 @@ Before anything else, run the installation doctor:
 
 It checks your whole environment in one pass — operating system, vault location, Obsidian and its required plugins, the AI engine, sign-in state — and reports, in plain English, what's ready and exactly what's still missing. Run it as often as you like; it changes nothing, it only reports. If the agent panel itself misbehaves, its companion `/acp-doctor` diagnoses and repairs the agent connection specifically.
 
-## Part C — Verify with one question
+## Part C — How BOB finds your folders: the context pack
+
+BOB never hard-codes your folder names. Every skill asks for a **context key**, a logical name
+such as `{company.clients}` (your clients) or `{client.meetings}` (one client's meetings), and the
+**context pack** maps each key to a real folder in your vault. That is how BOB knows where to read
+your notes and where to save what it writes, and it is why the same skills work on the standard
+numbered folder layout and on a vault whose folders carry names of your own.
+
+**On day one there is nothing to set up.** A new vault uses the default pack, which is the
+numbered folder layout the vault ships with. A workspace that keeps other folder names needs a
+pack of its own; see "Folder names of your own" below.
+
+**Check it once.** Ask BOB `Which pack is active and where did it come from?`, or run:
+
+```
+uv run {skills.root}/context-pack/scripts/resolve_context.py --show
+```
+
+(`{skills.root}` is the folder that holds your skills.) It shows which pack is active, where it was
+found, your workspace folder and its top-level folders. On a new vault it reads "found by
+default", which is expected. If a pack was set up for your own folder names, it should name that
+pack instead; "found by default" then means the pack is not being found, and
+[[20-troubleshooting|chapter 20, Troubleshooting]] explains what to check.
+
+**See where things go.** `resolve_context.py --key company.clients` prints the folder a key means,
+and `resolve_context.py --route meeting` prints where a new meeting note is filed. When BOB saves
+your first deliverable in Part E, the path it reports comes from this mapping.
+
+**Folder names of your own.** Create a workspace pack (the command is in
+[[02-system-overview|chapter 2, System overview]]), change the entries in its `context.yaml`, and
+move the folders yourself: the pack only maps, it creates nothing. Obsidian's own settings and the
+Bases read folder names literally and need re-rendering from the pack; see
+[[21-reference|chapter 21, The context pack]].
+
+**Do not rename folders on the fly.** Renaming a folder in Obsidian does not update the pack, so
+skills keep saving to the old location until you change the pack to match.
+
+## Part D — Verify with one question
 
 Open the Agent Client panel and ask something simple:
 
@@ -95,7 +132,7 @@ What skills do you have for writing proposals?
 
 In a full vault the answer should name skills stored in your vault. In a starter vault it may name skills that BOB read from the skills server instead; that is expected. A healthy install usually answers within about a minute (the first call after a restart can take longer). If you get no skill names, in a starter vault run the first-run check in the server section above, and see [[20-troubleshooting|chapter 20, Troubleshooting]].
 
-## Part D — Your first real win
+## Part E — Your first real win
 
 Ask for something genuinely useful, in plain words. Pick whichever matches your week:
 
@@ -106,7 +143,7 @@ Ask for something genuinely useful, in plain words. Pick whichever matches your 
 
 Depending on the workflow, BOB either writes a file into your vault and reports its path, or returns the draft in the conversation for you to review and save (it is not a file until you ask BOB to save it). That's the moment it clicks: from a plain-English request to a saved, usable deliverable.
 
-## Part E — Team use: different skills for different roles
+## Part F — Team use: different skills for different roles
 
 A team shares one BOB, but not every person needs every skill. There are two different routes to skills in a starter vault, and they are not the same operation:
 
