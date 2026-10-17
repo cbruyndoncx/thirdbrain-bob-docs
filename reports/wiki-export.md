@@ -1,14 +1,11 @@
 # Export report
 
-Pages: 102  Images copied: 110
-
-## dropped-block (13)
-- 03-Learn/Concepts/onboarding_wizard.md: ```dataviewjs
+Pages: 86  Images copied: 72
 
 ## missing-image (1)
 - 02-Setup/AI-Tools/agent-client-installation.md: Agent Client Export Configuration Options.png
 
-## published-but-draft (24)
+## published-but-draft (23)
 - 01-BOB/user-manual/01-introduction.md
 - 01-BOB/user-manual/02-system-overview.md
 - 01-BOB/user-manual/03-getting-started.md
@@ -32,7 +29,6 @@ Pages: 102  Images copied: 110
 - 01-BOB/user-manual/21-reference.md
 - 01-BOB/user-manual/22-cheat-sheet.md
 - 01-BOB/user-manual/index.md
-- 03-Learn/Concepts/onboarding_wizard.md
 
 ## skipped-embed (2)
 - 01-BOB/user-manual/01-introduction.md: 01-introduction.mp3
