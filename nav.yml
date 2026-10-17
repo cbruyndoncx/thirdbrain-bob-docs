@@ -1,0 +1,129 @@
+# The docs site's menu. Paths are relative to docs/ (Wiki pages keep the vault's folders, so links
+# and release pointers stay stable); the labels are what readers see.
+#
+# scripts/nav_hook.py reads this file at build time. It:
+#   - replaces `Library: generated` with the skills and workflows from data/catalogue.json,
+#     grouped by business area;
+#   - leaves out entries whose page no longer exists (a renamed Wiki page), and logs them;
+#   - leaves the `hidden` pages out of the menu (they are still built, linked and searchable);
+#   - adds every other page that is in neither list to "More", so a new Wiki page is never lost.
+#     When a page shows up there, give it a place below.
+
+nav:
+  - Home: index.md
+
+  - Get started:
+      - Start here: start_here.md
+      - What is BOB?: 01-BOB/Onboarding/bob_overview.md
+      - Quickstart: 02-Setup/quickstart.md
+      - Learning path: 01-BOB/Onboarding/bob_learning_path.md
+      - Before you install: 01-BOB/Onboarding/environment_checklist.md
+      - Install:
+          - Agent client in Obsidian: 02-Setup/AI-Tools/agent-client-installation.md
+          - Claude Code on Windows (WSL2): 02-Setup/AI-Tools/install_wsl2_claude_code.md
+          - "Claude Code on Windows 11: full walkthrough": 02-Setup/AI-Tools/claude-code-installation-on-windows-using-wsl.md
+          - Agent hooks: 02-Setup/AI-Tools/install-agent-hooks.md
+          - Obsidian CLI: 02-Setup/obsidian_cli_setup.md
+          - Skills over MCP: 02-Setup/skills_over_mcp.md
+          - Skills for AI tools: 02-Setup/symlink_setup.md
+          - Run a Haiku agent via ACP: 02-Setup/AI-Tools/howto_acp_claude_haiku_obsidian.md
+      - First steps in Obsidian:
+          - Overview: 02-Setup/Obsidian/Onboarding/README.md
+          - Obsidian quick start: 02-Setup/Obsidian/Onboarding/01_obsidian_quick_start.md
+          - Your first skill: 02-Setup/Obsidian/Onboarding/02_your_first_skill.md
+          - Skills by use case: 02-Setup/Obsidian/Onboarding/03_skills_by_use_case.md
+          - From setup to showstopper: 02-Setup/Obsidian/Onboarding/04_learning_path.md
+
+  - User manual:
+      - Contents: 01-BOB/user-manual/index.md
+      - 1. Introduction: 01-BOB/user-manual/01-introduction.md
+      - 2. System overview: 01-BOB/user-manual/02-system-overview.md
+      - 3. Getting started: 01-BOB/user-manual/03-getting-started.md
+      - 4. Working day to day: 01-BOB/user-manual/04-daily-use.md
+      - 5. Core concepts: 01-BOB/user-manual/05-core-concepts.md
+      - 6. The workspace: 01-BOB/user-manual/06-workspace.md
+      - 7. The data model: 01-BOB/user-manual/07-data-model.md
+      - 8. Sales & CRM: 01-BOB/user-manual/08-sales-crm.md
+      - 9. Marketing & content: 01-BOB/user-manual/09-marketing.md
+      - 10. Finance & administration: 01-BOB/user-manual/10-finance.md
+      - 11. Operations & projects: 01-BOB/user-manual/11-operations-projects.md
+      - 12. HR & people: 01-BOB/user-manual/12-hr-people.md
+      - 13. Strategy & management: 01-BOB/user-manual/13-strategy-management.md
+      - 14. The skills system: 01-BOB/user-manual/14-skills-system.md
+      - 15. The skill catalog: 01-BOB/user-manual/15-skill-catalog.md
+      - 16. Playbooks & processes: 01-BOB/user-manual/16-playbooks-processes.md
+      - 17. The operating cadence: 01-BOB/user-manual/17-operating-cadence.md
+      - 18. Administration & configuration: 01-BOB/user-manual/18-administration.md
+      - 19. Data handling & safety: 01-BOB/user-manual/19-data-safety.md
+      - 20. Troubleshooting & FAQ: 01-BOB/user-manual/20-troubleshooting.md
+      - 21. Reference & glossary: 01-BOB/user-manual/21-reference.md
+      - 22. Cheat sheet: 01-BOB/user-manual/22-cheat-sheet.md
+
+  - Guides:
+      - Using BOB day to day: 03-Learn/using_bob.md
+      - The workspace:
+          - Overview: 01-BOB/BOB Workspace/index.md
+          - Planner: 01-BOB/BOB Workspace/planner.md
+          - CRM: 01-BOB/BOB Workspace/crm.md
+          - Partners (PRM): 01-BOB/BOB Workspace/prm.md
+          - Client work: 01-BOB/BOB Workspace/client-work.md
+          - Suppliers & procurement: 01-BOB/BOB Workspace/procurement.md
+          - Finance: 01-BOB/BOB Workspace/finance.md
+          - Reports: 01-BOB/BOB Workspace/reports.md
+          - AI workspace: 01-BOB/BOB Workspace/ai-workspace.md
+          - Extending the workspace: 04-Reference/extending-bob-workspace.md
+          - The extension model: 04-Reference/bob-workspace-extension-model.md
+      - Concepts:
+          - Playbooks: 03-Learn/Concepts/playbooks.md
+          - Playbook or skill?: 03-Learn/Concepts/playbook_vs_skill_faq.md
+          - Jobs to be done: 03-Learn/Concepts/what_is_jtbd.md
+          - Tasks and TaskNotes: 03-Learn/Concepts/tasks_vs_tasknotes.md
+          - Marketing skills: 03-Learn/Concepts/MARKETING-SKILLS-USER-GUIDE.md
+      - Examples:
+          - Playbooks in action: 03-Learn/Examples/playbooks_demo.md
+          - How Obsidian works: 03-Learn/Examples/Example Visualizations/obsidian-architecture.md
+
+  - Prompts:
+      - Prompt showcase: 06-Prompt-Showcase/Prompt Showcase.md
+      - Grow revenue: 06-Prompt-Showcase/Grow Revenue.md
+      - Deliver & delight: 06-Prompt-Showcase/Deliver & Delight.md
+      - Know your numbers: 06-Prompt-Showcase/Know Your Numbers.md
+      - Buy smart: 06-Prompt-Showcase/Buy Smart.md
+      - Build the team: 06-Prompt-Showcase/Build the Team.md
+      - Set direction: 06-Prompt-Showcase/Set Direction.md
+      - Ship & confirm: 06-Prompt-Showcase/Ship & Confirm.md
+      - Make it right: 06-Prompt-Showcase/Make It Right.md
+      - Turn demand into orders: 06-Prompt-Showcase/Turn Demand into Orders.md
+      - Idea to market: 06-Prompt-Showcase/Idea to Market.md
+      - Serve & grow clients: 06-Prompt-Showcase/Serve & Grow Clients.md
+      - Create & publish content: 06-Prompt-Showcase/Create & Publish Content.md
+      - All example prompts: 06-Prompt-Showcase/All Example Prompts.md
+
+  - Library: generated
+
+  - Help:
+      - Troubleshooting:
+          - Overview: 05-Troubleshoot/MOC-troubleshoot.md
+          - Installation: 05-Troubleshoot/ts_install.md
+          - Vault & Obsidian: 05-Troubleshoot/ts_vault.md
+          - Skills: 05-Troubleshoot/ts_skills.md
+          - Agent client: 05-Troubleshoot/ts_agent_client.md
+      - Reference:
+          - Invoking skills per agent: 04-Reference/skill_invocation_per_agent.md
+          - Folder structures: 04-Reference/reference-folder-structures.md
+          - Claude Code permissions: 04-Reference/claude_code_permissions_guide_export_to_pdf.md
+          - Linux bash cheat sheet: 04-Reference/linux_bash_cheatsheet.md
+          - BPMN token simulation: 04-Reference/bpmn_token_simulation.md
+
+# Built and searchable, but not in the menu.
+hidden:
+  - 01-BOB/Onboarding/MOC-bob_onboarding.md          # a map of content; the menu does its job
+  - 02-Setup/AI-Tools/install_wsl2_claude_code.pdf.md  # the print twin of install_wsl2_claude_code
+  - 02-Setup/SYMLINK-SETUP.md                        # the long link-type reference behind symlink_setup
+  - 03-Learn/Concepts/onboarding_wizard.md           # works only inside Obsidian (Dataview)
+  - 03-Learn/Examples/Example Visualizations/*.swimlane.md  # Excalidraw drawing data, not prose
+  - 04-Reference/quickref_for_cardboards_demo.md     # demo notes without a heading
+  - 04-Reference/bob-vault-mechanics-and-build-pipeline.md  # maintainer notes
+  - 04-Reference/bob-workspace-entity-setup-audit.md        # maintainer audit
+  - 04-Reference/bob-workspace-navigation-inventory.md      # maintainer inventory
+  - 01-BOB/cadence-guide/*                           # older variant of the workspace guide

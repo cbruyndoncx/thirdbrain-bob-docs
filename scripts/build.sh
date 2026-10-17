@@ -11,4 +11,5 @@ CATALOGUE="${2:-data/catalogue.json}"
 rm -rf docs build && mkdir -p docs build reports
 python3 scripts/build_library.py "$CATALOGUE" docs --linkmap build/linkmap.json
 python3 scripts/export_wiki.py "$WIKI" docs --linkmap build/linkmap.json
-cp -r assets/. docs/ 2>/dev/null || true
+cp -r assets/. docs/
+cp -r pages/. docs/   # site-only pages (the landing page), over the export

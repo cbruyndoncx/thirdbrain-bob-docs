@@ -1,18 +1,71 @@
-site_name: BOB Documentation
-site_description: Documentation, skills and workflows for BOB, the AI business workspace
+site_name: ThirdBrain BOB Docs
+site_description: Documentation, skills and workflows for ThirdBrain BOB, the Business Operating Brain
 site_url: https://cbruyndoncx.github.io/bob-docs/   # owner 2026-10-17: github.io for now; brn.cx cards and redirects link here
+copyright: ThirdBrain BOB by <a href="https://www.brn.cx/">BRNCX</a>
+
 theme:
   name: material
+  custom_dir: overrides   # adds the Apple touch icon
+  # The ThirdBrain BOB marks (product brand, approved 2026-10-10): the compact logo in the header
+  # (the full logo's THIRDBRAIN line is unreadable at header height) and the BOB icon as favicon.
+  logo: images/thirdbrain-bob-logo-compact.svg
+  favicon: images/thirdbrain-bob-icon.svg
+  font:
+    text: Atkinson Hyperlegible Next
+    code: Atkinson Hyperlegible Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   features:
-    - navigation.sections
-    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.indexes
+    - navigation.top
+    - navigation.footer
     - search.suggest
+    - search.highlight
+    - toc.follow
     - content.code.copy
+
+# The menu is nav.yml, turned into `nav` by this hook (plus the generated Library sections).
+hooks:
+  - scripts/nav_hook.py
+
+extra_css:
+  - stylesheets/brand.css
+
+extra:
+  generator: false
+  social:
+    - icon: material/web
+      link: https://www.brn.cx/
+      name: brn.cx
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@thirdbrain-bob
+      name: ThirdBrain BOB on YouTube
+    - icon: material/school-outline
+      link: https://www.skool.com/thirdbrain-tech-3102
+      name: ThirdBrain Tech on Skool
+
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - tables
   - toc:
       permalink: true

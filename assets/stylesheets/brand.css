@@ -1,0 +1,150 @@
+/* ThirdBrain BOB brand for the docs site: the v2 palette (approved 2026-10-10) and the website's
+   signature theme. Sources of truth: the vault's brand theme (brncx-brand-theme.md) and the
+   website's src/sass/theme/_theme-signature.scss. Body and code fonts are set in mkdocs.yml
+   (theme.font); Brygada 1918 for headings is loaded here. */
+@import url("https://fonts.googleapis.com/css2?family=Brygada+1918:wght@500;600;700&display=swap");
+
+:root {
+  --bob-chocolate: #3A2619;
+  --bob-chocolate-deep: #22170F;
+  --bob-blue-green: #217369;
+  --bob-signature: #86D3CA;
+  --bob-cream: #F4EEE6;
+  --bob-paper: #FAF6F0;
+  --bob-mist: #EAF4F2;
+  --bob-text-secondary: #6B5A4E;
+  --bob-border: #E3DBD3;
+  --bob-heading-font: "Brygada 1918", Georgia, serif;
+}
+
+/* Light: chocolate header, paper page, blue-green links. */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: var(--bob-chocolate);
+  --md-primary-fg-color--light: var(--bob-text-secondary);
+  --md-primary-fg-color--dark: var(--bob-chocolate-deep);
+  --md-primary-bg-color: #FFFDF9;
+  --md-primary-bg-color--light: rgba(255, 253, 249, 0.72);
+  --md-accent-fg-color: var(--bob-blue-green);
+  --md-accent-fg-color--transparent: rgba(33, 115, 105, 0.1);
+  --md-default-bg-color: var(--bob-paper);
+  --md-default-fg-color: rgba(58, 38, 25, 0.9);
+  --md-default-fg-color--light: rgba(58, 38, 25, 0.62);
+  --md-default-fg-color--lighter: rgba(58, 38, 25, 0.32);
+  --md-default-fg-color--lightest: rgba(58, 38, 25, 0.08);
+  --md-typeset-color: var(--bob-chocolate);
+  --md-typeset-a-color: var(--bob-blue-green);
+  --md-code-bg-color: var(--bob-cream);
+  --md-code-fg-color: var(--bob-chocolate);
+  --md-typeset-table-color: rgba(58, 38, 25, 0.12);
+  --md-footer-bg-color: var(--bob-chocolate);
+  --md-footer-bg-color--dark: var(--bob-chocolate-deep);
+  --bob-hero-bg: var(--bob-mist);
+  --bob-heading-color: var(--bob-chocolate);
+}
+
+/* Dark: the signature dark tokens, signature blue as the accent. */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #2B1D16;
+  --md-primary-fg-color--light: #6B5A4E;
+  --md-primary-fg-color--dark: var(--bob-chocolate-deep);
+  --md-primary-bg-color: var(--bob-cream);
+  --md-primary-bg-color--light: rgba(244, 238, 230, 0.72);
+  --md-accent-fg-color: var(--bob-signature);
+  --md-accent-fg-color--transparent: rgba(134, 211, 202, 0.12);
+  --md-default-bg-color: var(--bob-chocolate-deep);
+  --md-default-bg-color--light: #2B1D16;
+  --md-default-fg-color: rgba(244, 238, 230, 0.9);
+  --md-default-fg-color--light: rgba(244, 238, 230, 0.64);
+  --md-default-fg-color--lighter: rgba(244, 238, 230, 0.32);
+  --md-default-fg-color--lightest: rgba(244, 238, 230, 0.1);
+  --md-typeset-color: var(--bob-cream);
+  --md-typeset-a-color: var(--bob-signature);
+  --md-code-bg-color: #2B1D16;
+  --md-code-fg-color: var(--bob-cream);
+  --md-footer-bg-color: #1A110B;
+  --md-footer-bg-color--dark: #120B07;
+  --bob-hero-bg: var(--bob-chocolate);
+  --bob-heading-color: var(--bob-cream);
+}
+
+/* Headings and the header title in the display face. */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-header__topic,
+.md-nav__title {
+  font-family: var(--bob-heading-font);
+}
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  color: var(--bob-heading-color);
+  letter-spacing: -0.01em;
+}
+.md-typeset h1 { font-weight: 700; }
+.md-typeset h2 { font-weight: 600; }
+.md-header__topic:first-child { font-weight: 700; }
+
+/* The compact BOB logo is a wide label: at least 24 px high (the product logo rule). */
+.md-header__button.md-logo { padding: 0.3rem 0.2rem; }
+.md-header__button.md-logo img { height: 1.8rem; width: auto; }
+.md-nav__button.md-logo img { height: 2.4rem; width: auto; }
+
+/* Tabs sit on the header colour. */
+.md-tabs { background-color: var(--md-primary-fg-color); }
+
+/* Section labels in the sidebar: quieter, uppercase. */
+.md-nav--primary .md-nav__item--section > .md-nav__link {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Buttons in brand colours. */
+.md-typeset .md-button {
+  border-radius: 0.3rem;
+  font-weight: 600;
+}
+.md-typeset .md-button--primary {
+  background-color: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-default-bg-color);
+}
+
+/* Landing page. */
+.bob-hero {
+  background: var(--bob-hero-bg);
+  border-radius: 0.6rem;
+  padding: 1.6rem 2rem 1.4rem;
+  margin: 0 0 1.6rem;
+}
+.bob-hero h1 {
+  margin: 0 0 0.6rem;
+  font-size: 2.3rem;
+  line-height: 1.15;
+}
+.bob-hero p { font-size: 0.95rem; max-width: 40rem; }
+/* The mascot sits beside the introduction, never behind text (product brand rule). */
+.bob-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+}
+/* `.md-typeset` in the selector: Material's `.md-typeset img { height: auto }` would win otherwise
+   and stretch BOB to the column width. Sized to the text beside it, so on a full HD screen the
+   cards below start above the fold. */
+.md-typeset .bob-hero__mascot { height: 13rem; width: auto; max-width: none; display: block; }
+.md-typeset .bob-hero > p { margin: 0; }
+@media screen and (max-width: 44.9375em) {
+  .bob-hero { grid-template-columns: 1fr; }
+  .bob-hero__mascot { display: none; }
+}
+.md-typeset .grid.cards > ul > li {
+  border-radius: 0.5rem;
+  background: var(--md-default-bg-color);
+}
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--md-accent-fg-color);
+}

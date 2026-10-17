@@ -28,6 +28,15 @@ Optional arguments: `[VAULT] [WEBSITE_REPO]` after `--no-push`. The emitter read
 release-history repository (found through the vault's release-ops settings) and leaves out skills
 and playbooks added to the vault after the release. The website applies the same filter.
 
+## Menu and branding
+
+- `nav.yml` is the menu: Wiki pages by path with readable labels, the generated Library, and the
+  `hidden` pages. `scripts/nav_hook.py` applies it at build time. A Wiki page that is in neither
+  list appears under **More** and is named in the build log: give it a place in `nav.yml`.
+- `pages/` holds site-only pages (the landing page), copied over the export by `build.sh`.
+- `assets/` holds the logo and `stylesheets/brand.css` (the v2 brand: chocolate, blue-green and
+  signature blue, Brygada 1918 headings; body and code fonts are set in `mkdocs.yml`).
+
 ## Build locally
 
     scripts/build.sh && mkdocs serve

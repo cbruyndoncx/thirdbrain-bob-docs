@@ -25,7 +25,7 @@ EXCLUDE_PATHS = [          # relative to wiki root; prefix match
     "CLAUDE.md",
     "AGENTS.md",
 ]
-HOME_SRC = "start_here.md"   # becomes index.md
+HOME_SRC = None   # the site home is pages/index.md (build.sh); start_here.md stays a page
 IMG_EXT = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"}
 DROP_FENCES = ("dataview", "dataviewjs", "base")
 
