@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 """Build the skills/ and workflows/ sections of the docs site.
 
-Usage: build_library.py SITE_CONTENT_EN DOCS_DIR [--linkmap build/linkmap.json]
+Usage: build_library.py CATALOGUE_JSON DOCS_DIR [--linkmap build/linkmap.json]
 
-SITE_CONTENT_EN is the website's `src/content/en` folder. The pages there are
-generated from the vault (frontmatter only, no body), so this reads them as
-data. COPY PHASE: this is a one-off bridge. Once the docs site is the home of
-these pages, point this at the vault via the website's catalogue.py instead and
-delete the pages from the website.
+CATALOGUE_JSON is data/catalogue.json, written by the website's
+scripts/emit_catalogue.py (through scripts/sync_catalogue.sh). It carries the same
+skills, workflows and business areas the website publishes, as data.
 
 Writes docs/skills/*.md, docs/workflows/*.md, an index per section grouped by
 business area, and a link map so wiki pages can link to skills and workflows.
@@ -21,12 +19,6 @@ AREA_ORDER = ["marketing", "sales", "finance", "operations", "project-delivery",
               "people", "strategy", "research", "foundational"]
 
 
-def load(path):
-    t = path.read_text(encoding="utf-8")
-    if not t.startswith("---\n"):
-        return {}, t
-    end = t.find("\n---", 4)
-    return _walk(yaml.safe_load(t[4:end]) or {}), t[end + 4:].strip()
 
 
 def _walk(v):
@@ -86,23 +78,19 @@ def front(title, desc=None):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("site"); ap.add_argument("docs")
+    ap.add_argument("catalogue"); ap.add_argument("docs")
     ap.add_argument("--linkmap", default=None)
     a = ap.parse_args()
-    site, docs = Path(a.site), Path(a.docs)
+    docs = Path(a.docs)
+    cat = json.loads(Path(a.catalogue).read_text(encoding="utf-8"))
 
-    lib, _ = load(site / "skills.md")
-    areas = {x["key"]: x for x in lib.get("areas", [])}
-    areas["foundational"] = lib.get("foundational", {"key": "foundational", "label": "Foundational", "blurb": ""})
-
-    skills = {}
-    for p in sorted((site / "skills").glob("*.md")):
-        fm, _ = load(p)
-        skills[fm.get("skillName") or p.stem] = fm
+    areas = {x["key"]: x for x in cat["areas"]}
+    areas["foundational"] = cat["foundational"]
+    skills = {s["skillName"]: _walk(s) for s in sorted(cat["skills"], key=lambda s: s["skillName"])}
     workflows = {}
-    for p in sorted((site / "workflows").glob("*.md")):
-        fm, body = load(p)
-        workflows[p.stem] = (fm, body)
+    for w in sorted(cat["workflows"], key=lambda w: w["slug"]):
+        fm = {k: v for k, v in w.items() if k not in ("slug", "body")}
+        workflows[w["slug"]] = (_walk(fm), w["body"].strip())
 
     sk_dir, wf_dir = docs / "skills", docs / "workflows"
     sk_dir.mkdir(parents=True, exist_ok=True); wf_dir.mkdir(parents=True, exist_ok=True)
