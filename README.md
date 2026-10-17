@@ -24,8 +24,9 @@ Optional argument: `[VAULT_WIKI]` after the flag.
 
     scripts/sync_catalogue.sh         # emit catalogue.json for the latest thirdbrain-full tag, build, commit, push
 
-Optional arguments: `[VAULT] [WEBSITE_REPO] [RELEASE_REPO]` after `--no-push`. The release-history
-repository is only read. Skills and playbooks added to the vault after the release are left out.
+Optional arguments: `[VAULT] [WEBSITE_REPO]` after `--no-push`. The emitter reads the
+release-history repository (found through the vault's release-ops settings) and leaves out skills
+and playbooks added to the vault after the release. The website applies the same filter.
 
 ## Build locally
 

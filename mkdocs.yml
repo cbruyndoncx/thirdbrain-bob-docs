@@ -1,6 +1,6 @@
 site_name: BOB Documentation
 site_description: Documentation, skills and workflows for BOB, the AI business workspace
-# site_url: https://docs.example.com/   # set once the domain is chosen
+site_url: https://cbruyndoncx.github.io/bob-docs/   # owner 2026-10-17: github.io for now; brn.cx cards and redirects link here
 theme:
   name: material
   features:
