@@ -2,6 +2,7 @@
 """Export the BOB vault wiki to a MkDocs site tree.
 
 Usage: export_wiki.py SRC_WIKI DOCS_DIR [--exclude-drafts] [--linkmap build/linkmap.json]
+                      [--sources-list FILE]
 
 Writes into DOCS_DIR without clearing it (build.py owns cleaning), so it can
 sit beside the generated skills/ and workflows/ sections. Wikilinks that point
@@ -9,6 +10,8 @@ outside the wiki fall back to the link map written by build_library.py.
 
 Converts Obsidian syntax (wikilinks, embeds, callouts) to plain markdown,
 drops Obsidian-only blocks, copies referenced images, and writes a report.
+--sources-list writes the source paths it published (pages and copied images),
+which sync_wiki.sh uses to copy only those files into the public repository.
 """
 import argparse, json, os, re, shutil, sys
 from collections import defaultdict
@@ -57,6 +60,7 @@ def main():
     ap.add_argument("src"); ap.add_argument("docs")
     ap.add_argument("--exclude-drafts", action="store_true")
     ap.add_argument("--linkmap", default=None)
+    ap.add_argument("--sources-list", default=None)
     a = ap.parse_args()
     src, docs = Path(a.src), Path(a.docs)
     docs.mkdir(parents=True, exist_ok=True)
@@ -214,6 +218,9 @@ def main():
         for r in rel:
             if not r.endswith(".md") and Path(r).suffix.lower() not in IMG_EXT:
                 report["not-exported-asset"].append(r)
+
+    if a.sources_list:
+        Path(a.sources_list).write_text("".join(f"{r}\n" for r in sorted(set(pages) | copied)))
 
     rep_dir = docs.parent / "reports"
     rep_dir.mkdir(exist_ok=True)

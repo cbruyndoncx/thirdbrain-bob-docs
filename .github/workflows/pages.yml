@@ -19,6 +19,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+      - run: bash scripts/build.sh
       - run: mkdocs build --strict
       - uses: actions/upload-pages-artifact@v3
         with:
