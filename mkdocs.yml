@@ -1,6 +1,6 @@
 site_name: ThirdBrain BOB Docs
 site_description: Documentation, skills and workflows for ThirdBrain BOB, the Business Operating Brain
-site_url: https://cbruyndoncx.github.io/bob-docs/   # owner 2026-10-17: github.io for now; brn.cx cards and redirects link here
+site_url: https://cbruyndoncx.github.io/thirdbrain-bob-docs/   # repo renamed 2026-10-17; must match release-ops docs_site.base_url and the website DOCS_BASE_URL
 copyright: ThirdBrain BOB by <a href="https://www.brn.cx/">BRNCX</a>
 
 theme:
