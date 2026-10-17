@@ -41,7 +41,7 @@ Pages: 102  Images copied: 110
 ## unresolved-embed (1)
 - 04-Reference/extending-bob-workspace.md: file.base
 
-## unresolved-link (30)
+## unresolved-link (29)
 - 01-BOB/Onboarding/MOC-bob_onboarding.md: [[getting_started]]
 - 01-BOB/Onboarding/bob_learning_path.md: [[../../getting_started]]
 - 01-BOB/Onboarding/bob_learning_path.md: [[getting_started]]
@@ -65,5 +65,4 @@ Pages: 102  Images copied: 110
 - 06-Prompt-Showcase/Buy Smart.md: [[Procure-to-Pay cycle]]
 - 06-Prompt-Showcase/Buy Smart.md: [[Supplier review and contract renewal]]
 - 06-Prompt-Showcase/Create & Publish Content.md: [[Publish YouTube content piece]]
-- start_here.md: [[getting_started]]
 
