@@ -114,7 +114,7 @@ BOB Onboarding
 | Phase | Materials | Duration | Outcome |
 |-------|-----------|----------|---------|
 | **Onboarding** | bob_learning_path + bob_overview + environment_checklist | 5–8 hours | Understand system, verify environment ready |
-| **Installation** | [[getting_started]] (DIY) or DFY setup | 2–4 hours | All components installed & running |
+| **Installation** | [[03-getting-started]] (DIY) or DFY setup | 2–4 hours | All components installed & running |
 | **First Run** | [[quickstart]] | 30 min | Successfully ask BOB a business question |
 | **Learning Skills** | Skills documentation | Ongoing | Use BOB for real work |
 
@@ -123,7 +123,7 @@ BOB Onboarding
 ## Related Resources
 
 **In this vault:**
-- [[getting_started]] — General vault setup (Obsidian, plugins, CLI)
+- [[03-getting-started]] — General vault setup (Obsidian, plugins, CLI)
 - [[claude-code-installation-on-windows-using-wsl]] — Windows/WSL technical details
 - [[agent-client-installation]] — ACP plugin setup
 - [[obsidian-architecture]] — How Obsidian works (visual)

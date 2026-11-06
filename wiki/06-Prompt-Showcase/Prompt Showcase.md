@@ -10,7 +10,7 @@ Pick the area you're working in below. Each area page explains how that part of 
 > Open the **graph view** filtered to `path:"06-Prompt-Showcase" OR path:"Playbooks" OR path:"skill-docs"`. The center hub branches into the 12 business **areas**; each area links out to the **playbooks** and **skill docs** behind it — and those link onward to the underlying skills. Color by path: green for `Playbooks/`, blue for `skill-docs/`.
 
 > [!example] One-click graph
-> [Open the Prompt Showcase graph](obsidian://adv-uri?vault=brncx-skills&workspace=Prompt-Showcase)
+> [Open the Prompt Showcase graph](obsidian://adv-uri?workspace=Prompt-Showcase)
 > *(works once the `Prompt-Showcase` workspace has been saved — see **[[#Setup — save the graph workspace|Setup]]** at the bottom of this page)*
 
 ---
@@ -96,7 +96,7 @@ up by that string, and a mismatch fails silently rather than telling you it miss
 
 ### Checking it worked
 
-Click **[Open the Prompt Showcase graph](obsidian://adv-uri?vault=brncx-skills&workspace=Prompt-Showcase)**
+Click **[Open the Prompt Showcase graph](obsidian://adv-uri?workspace=Prompt-Showcase)**
 again. A filtered graph should open.
 
 If nothing happens, the layout did not save under that name — reopen **Manage workspace

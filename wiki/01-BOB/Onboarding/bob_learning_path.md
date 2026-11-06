@@ -153,7 +153,7 @@ You're now ready for the **installation phase** — which provides step-by-step 
 |-------|----------|------|
 | BOB Overview | [[bob_overview]] | 30 min |
 | Environment Check | [[environment_checklist]] | 45 min |
-| Obsidian Getting Started | [[getting_started]] | 20 min |
+| Obsidian Getting Started | [[03-getting-started]] | 20 min |
 | Claude Code Setup | [[claude-code-installation-on-windows-using-wsl]] | Reference |
 | Terminal Cheatsheet | [[linux_bash_cheatsheet]] | Reference |
 | Obsidian Architecture | [[obsidian-architecture]] | 10 min |
@@ -176,7 +176,7 @@ You're now ready for the **installation phase** — which provides step-by-step 
 
 Once you've completed this learning path:
 
-- **Installation**: see [[../../getting_started]] (full DIY) or jump to [[../../quickstart]] if you have a done-for-you install
+- **Installation**: see [[03-getting-started]] (full DIY) or jump to [[../../quickstart]] if you have a done-for-you install
 - **First Run**: see [[../../quickstart]] — verify your install in 5 minutes
 - **Day-to-Day Use**: see [[../../03-Learn/using_bob]] — patterns for real business work
 - **Advanced Topics**: skills customization, vault management, multiple AI providers

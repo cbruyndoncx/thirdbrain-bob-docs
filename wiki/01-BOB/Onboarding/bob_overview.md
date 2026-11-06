@@ -21,14 +21,14 @@ BOB is an AI-powered system that helps businesses run better by making intellige
 
 ### Key difference from ChatGPT
 
-| ChatGPT | BOB |
-|---------|-----|
-| Generic AI chat tool | AI system designed specifically for **business operations** |
-| Answers questions | **Solves business problems**: sales, finance, HR, strategy, operations |
-| No memory of your business | **Understands your company**: customer lists, processes, decisions, history |
-| Each conversation is separate | **Learns from your vault**: patterns, preferences, past work |
-| "Talk to AI" interface | **Integrated into your workflow**: works inside tools you already use |
-| One model (GPT) | **Multiple AI models**: Claude, OpenAI, Gemini — you choose |
+| ChatGPT                       | BOB                                                                         |
+| ----------------------------- | --------------------------------------------------------------------------- |
+| Generic AI chat tool          | AI system designed specifically for **business operations**                 |
+| Answers questions             | **Solves business problems**: sales, finance, HR, strategy, operations      |
+| No memory of your business    | **Understands your company**: customer lists, processes, decisions, history |
+| Each conversation is separate | **Learns from your vault**: patterns, preferences, past work                |
+| "Talk to AI" interface        | **Integrated into your workflow**: works inside tools you already use       |
+| One model provider (GPT)      | **Multiple AI model providers**: Claude, OpenAI, Gemini — you choose        |
 
 ---
 
@@ -56,7 +56,7 @@ BOB is built on **four layers**. Each layer does one thing:
 ```
 ┌─────────────────────────────────────────────────────────┐
 │  LAYER 1: OBSIDIAN (Your Knowledge Hub)                 │
-│  • All business data stored as markdown files            │
+│  • All business data stored as markdown files           │
 │  • Notes about customers, deals, processes, decisions   │
 │  • Vault = your company's brain (organized, searchable) │
 └─────────────────────────────────────────────────────────┘

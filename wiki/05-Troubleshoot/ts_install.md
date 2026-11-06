@@ -36,7 +36,7 @@ Minimum version: Node 18+, npm 9+. Check with `node --version`.
 
 1. When opening the vault, click **"Trust author and enable plugins"** — if you clicked "No", plugins are disabled globally
 2. Go to **Settings → Community plugins** → toggle **Enable community plugins** ON
-3. Plugins are not auto-installed — run BRAT's **"Check for updates"** (see Step 3 in [[getting_started]])
+3. Plugins are not auto-installed — run BRAT's **"Check for updates"** (see Step 3 in [[03-getting-started]])
 
 ---
 
@@ -52,6 +52,6 @@ uv --version
 
 ## Related
 
-- [[getting_started]] — Full installation guide
+- [[03-getting-started]] — Full installation guide
 - [[ts_agent_client]] — Agent Client won't start
 - [[ts_skills]] — Skills not loading after install

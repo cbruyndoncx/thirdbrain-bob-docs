@@ -219,7 +219,6 @@ Once you have installed your desired CLI tools and found their paths, you need t
 4.  You can also add any other ACP-compatible agents in the **Custom Agents** section — with the launcher, use command `/home/you/bin/acp-launch` and args `npm:@vendor/their-acp-adapter`.
 
 ### Export options
-![[Agent Client Export Configuration Options.png]]
 
 * #### Review default folder locations
 * Decide on your folder structure and update the default export folder and filenaming convention and image location if necessary

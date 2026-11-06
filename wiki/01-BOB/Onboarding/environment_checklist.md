@@ -236,7 +236,7 @@ Obsidian is a desktop app (installed on the host OS, not inside WSL2). Check on 
 
 **Your result**: ✅ / ❌
 
-- [ ] ✅ Not installed yet — install via [[../../getting_started]]
+- [ ] ✅ Not installed yet — install via [[03-getting-started]]
 - [ ] ✅ Already installed (note version)
 
 ---
@@ -282,7 +282,7 @@ Fill this in after running all checks:
 ## What Happens Next
 
 **If everything is ✅:**
-- You're ready to install BOB — see [[../../getting_started]] (DIY) or [[../../quickstart]] (DFY)
+- You're ready to install BOB — see [[03-getting-started]] (DIY) or [[../../quickstart]] (DFY)
 
 **If some items are ❌ or ⚠️:**
 - Note the missing items

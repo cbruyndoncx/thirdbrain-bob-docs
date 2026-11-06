@@ -281,7 +281,7 @@ Pick any playbook and say `start playbook: [name]`. Here are good starting point
 | Make a big strategic decision | [[Strategic decision framework]] |
 | Improve a client's sales process | [[Sales conversion improvement]] |
 
-See all available playbooks: browse `{company.playbooks}` or check the [[playbooks-in-flight]] dashboard for active runs.
+See all available playbooks: browse `{company.playbooks}`. In Obsidian, check the `playbooks-in-flight` dashboard for active runs.
 
 ---
 

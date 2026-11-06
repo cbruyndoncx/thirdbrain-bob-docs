@@ -62,11 +62,10 @@ BOB loads that skill and runs its workflow (asking you for inputs).
 
 **See available skills:** [[SKILLS]] (vault root — auto-generated index of all installed skills).
 
-**See what you bought:** [[SKILL-CATALOGUE-MAP]] — a visual catalogue of your package, tier first,
-then by category and by value chain.
+**See what you bought:** [[SKILLS]] — browse the skill catalogue by category and capability.
 
-**See how it fits together:** [[SKILL-PIPELINE-MAP]] — one page per business area, showing the
-stages in order, which skills run at each, and which of them call each other.
+**See how it fits together:** [[playbooks]] — browse the guided workflows that connect skills into
+multi-step outcomes.
 
 Both are regenerated from the skill library on every release, so they never go stale.
 
@@ -194,5 +193,5 @@ The vault is a flywheel. The more you use it, the smarter BOB gets.
 - [[03-Learn/Concepts/playbooks]] — Multi-step workflows
 - [[03-Learn/Concepts/what_is_jtbd]] — Jobs-to-be-Done framing
 - [[SKILLS]] — Auto-generated index of installed skills
-- [[SKILL-CATALOGUE-MAP]] — Visual catalogue of your package by tier, category and value chain
-- [[SKILL-PIPELINE-MAP]] — What runs after what, one page per business area
+- [[SKILLS]] — Skill catalogue by category and capability
+- [[playbooks]] — Guided workflows that connect skills into multi-step outcomes

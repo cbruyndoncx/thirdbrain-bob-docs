@@ -10,7 +10,6 @@ tags:
   - user-manual
   - wiki
 ---
-![[02-system-overview.mp3]]
 
 # 2. System Overview
 

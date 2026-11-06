@@ -9,9 +9,9 @@ tags: [bob, quickstart, userguide]
 
 # Quickstart — Your First 5 Minutes with BOB
 
-For users who already have BOB installed (done-for-you setup, or after completing [[getting_started]]). This page verifies the install works and shows your first real query.
+For users who already have BOB installed (done-for-you setup, or after completing [[03-getting-started]]). This page verifies the install works and shows your first real query.
 
-> If you don't have BOB installed yet → start with [[getting_started]] (vault root) instead.
+> If you don't have BOB installed yet → start with [[03-getting-started]] (vault root) instead.
 
 ---
 

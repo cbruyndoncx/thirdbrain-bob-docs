@@ -24,7 +24,7 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 | [[Content strategy to publish]] | You want a strategy taken through to published pieces |
 | [[Blog creation quality loop]] | You want a blog post written and quality-checked |
 | [[Content ingestion pipeline]] | You want source material captured and turned into content |
-| [[Publish YouTube content piece]] | You're publishing a piece to YouTube |
+| [[publish-youtube-content|Publish YouTube content piece]] | You're publishing a piece to YouTube |
 
 → Browse every workflow in [[PLAYBOOKS]].
 

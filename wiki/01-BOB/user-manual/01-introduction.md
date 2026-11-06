@@ -7,8 +7,6 @@ created: 2026-08-07
 modified: 2026-10-12
 tags: [bob, user-manual, wiki]
 ---
-![[01-introduction.mp3]]
-
 # 1. Introduction
 
 ## Purpose of this manual

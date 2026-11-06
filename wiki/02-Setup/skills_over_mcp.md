@@ -3,7 +3,7 @@ type: knowledge-base
 title: "Skills over MCP — Local and Served Skills"
 status: final
 created: 2026-09-26
-modified: 2026-10-16
+modified: 2026-10-25
 tags: [setup, skills, mcp, playbooks, value-chains]
 ---
 
@@ -17,7 +17,7 @@ should recognise both.
 | Skills | All local, in `{skills.root}` (default `00-CORE/Agents/skills/`) | Only the skills that operate the vault are local; every other skill is served by the skills MCP server |
 | Playbooks | Local, in `00-CORE/Playbooks/` | Served by the skills MCP server |
 | Value chains | Local, in `VALUE-CHAINS.md` | Served by the skills MCP server |
-| Catalogues | [[SKILLS.md]], [[PLAYBOOKS.md]], [[VALUE-CHAINS.md]] | Ask the MCP server; the local catalogues are absent or list only the local skills |
+| Catalogues | `SKILLS.md`, `PLAYBOOKS.md`, `VALUE-CHAINS.md` | Ask the MCP server; the local catalogues are absent or list only the local skills |
 
 Both variants use the same workspace: the same folders, data model, templates, Bases, TaskNotes,
 BOB Workspace and agent hooks. Notes a served skill writes are routed and validated exactly like
@@ -100,7 +100,47 @@ URL pinned to its checksum. The library ZIP is in the Skool community; download 
 Check the connection with `claude mcp get skills`. The first call after a restart can take a while,
 because the server scans the whole library before it answers.
 
+## Using the skills server from Workspace OS
+
+Workspace OS hands chats and cases to Claude Code as non-interactive runs. Such a run cannot stop and
+ask before it uses a tool, so a skills server only works in a workspace folder when both of these are
+set, on every machine that opens the folder. Without them the agent replies that it can see the skill
+catalogue but cannot use the skills.
+
+1. **Trust the folder.** Run `claude` in the folder once and accept the trust prompt. Until then Claude
+   Code ignores the folder's `.claude/settings.json`. The answer is stored as `hasTrustDialogAccepted`
+   under the folder in `~/.claude.json`; on Windows that is `%USERPROFILE%\.claude.json`, with the
+   folder written as `D:/OBS/<vault>`.
+2. **Allow the server's tools** in the folder's `.claude/settings.json`:
+
+   ```json
+   { "permissions": { "allow": ["mcp__skills", "mcp__claude_ai_BOB_skills"] } }
+   ```
+
+   `mcp__skills` is the server registered as `skills` above. `mcp__claude_ai_BOB_skills` is the BOB
+   skills connector added in claude.ai, which Claude Code loads when it is signed in with that
+   account. List only the servers the workspace should use.
+
+What a run can then do:
+
+- **A chat** reads skills, playbooks and value chains, but runs no shell commands other than the
+  Workspace OS tools, so it cannot run a skill's scripts.
+- **A case** can run a served skill's scripts. Workspace OS asks no approval for shell commands in a
+  case, so the approval the skills server asks for before a bundled script runs has to be given in the
+  case prompt, for example: "The owner approves running scripts bundled with the BOB skills this case
+  uses, after you check each one against its sha256 digest."
+- **With a Workspace OS connector switched on** (Settings → Connectors), a run loads only those
+  connectors, and no skills server is available in it.
+
+**The BOB skills connector.** Workspace OS built from the `bob-skills` branch of the fork
+(`cbruyndoncx/Workspace-OS`) has a **BOB skills** row under Connectors. Enter the server address and
+choose Connect: the hosted BOB server's `https://…/mcp` address, or `http://127.0.0.1:3939/mcp` for the
+skills server on this machine. It needs neither the trust prompt nor the allow entries above, and it
+works alongside the other connectors. Its switch **Chats may run skill scripts** (off by default)
+lets a chat run a skill's own scripts with `uv run` after checking each against the server's digest.
+With the switch off, hand script work to a case. Full description: `docs/BOB-SKILLS.md` in the fork.
+
 ## Related
 
 - [[symlink_setup]]: how the AI tools find the local skills
-- [[AGENTS.md]]: the bootstrap contract, including how skill commands are run
+- the vault bootstrap contract: the bootstrap contract, including how skill commands are run

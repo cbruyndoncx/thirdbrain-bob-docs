@@ -82,7 +82,7 @@ A skill produces an output. A playbook produces an output **that has passed a de
 
 ### 5. Progress is visible
 
-Running playbooks become TaskNotes with `remaining-steps` and `awaiting`. The `playbooks-in-flight` Base view shows what's running, what's blocked on you, what's almost done. With skills alone, in-flight work lives in your head.
+Running playbooks become TaskNotes with `remaining-steps` and `awaiting`. In Obsidian, the `playbooks-in-flight` Base view shows what's running, what's blocked on you, and what's almost done. With skills alone, in-flight work lives in your head.
 
 ### 6. They scale knowledge across people
 
@@ -131,7 +131,7 @@ Build a playbook when:
 
 - All skills: [[SKILLS]]
 - All playbooks: [[PLAYBOOKS]]
-- Where each fits in the business: [[VALUE-CHAINS]]
+- Where each fits in the business: [[playbooks]]
 - Mechanics of how playbooks run: [[03-Learn/Concepts/playbooks|playbooks]]
 - The thinking behind jobs and recipes: [[what_is_jtbd]]
 

@@ -47,5 +47,5 @@ export PATH="/Applications/Obsidian.app/Contents/MacOS:$PATH"
 
 ## Related
 
-- [[getting_started]] — Full installation guide
+- [[03-getting-started]] — Full installation guide
 - [[agent-client-installation]] — ACP plugin (alternative integration channel)

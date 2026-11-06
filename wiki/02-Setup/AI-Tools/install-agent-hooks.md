@@ -1,18 +1,25 @@
 ---
 type: knowledge-base
-title: Install the frontmatter hooks for Claude Code, Codex and Antigravity
+title: Install the agent hooks for Claude Code, Codex and Antigravity
 status: final
 created: 2026-09-26
-modified: 2026-09-26
-tags: [setup, hooks, claude-code, codex, antigravity, vault-validator]
-description: Per-machine install of the frontmatter-validation hook for the three coding agents, with the verification steps
+modified: 2026-11-01
+tags: [setup, hooks, claude-code, codex, antigravity, vault-validator, obsidian-ops]
+description: Per-machine install of the frontmatter-validation hook and the AGENTS.md refresh hook for the three coding agents, with the verification steps
 ---
 
-# Install the frontmatter hooks
+# Install the agent hooks
 
-Every note an agent writes with its file tools is checked right after the write, and the
-failures go back to the agent so it can fix the note in the same turn. The write itself is never
-undone. Two checks run:
+Two hooks run on every file an agent writes with its file tools:
+
+- the **frontmatter hook** checks the note right after the write and sends failures back to the
+  agent, so it can fix the note in the same turn;
+- the **AGENTS.md refresh hook** rebuilds the generated `AGENTS.md` of the folder written to, so
+  the folder's counts stay current. It refreshes only folders in the `agents:` scope of
+  obsidian-ops' `indexable_dirs.yaml` that already have a generated `AGENTS.md`, never creates
+  one, and never blocks a write.
+
+The write itself is never undone. The frontmatter hook runs two checks:
 
 - **Schema** (`validate_frontmatter.py`): type and required fields, checked against the generated
   JSON Schema for the note's `type:`.
@@ -22,9 +29,10 @@ undone. Two checks run:
   report.
 
 Hooks are **per machine**. They live in dot-folders (`.claude/`, `.codex/`, `.agents/`), which
-Obsidian Sync does not sync, so every new laptop needs this page once. Scripts that write notes
+Obsidian Sync does not sync and release packages do not ship (since 2026-11-01), so every new
+laptop and every freshly unpacked vault needs this page once. Scripts that write notes
 themselves (`uv run …`) are not seen by any hook. They must self-validate, as
-[[CONVENTIONS.md]] requires.
+vault conventions requires.
 
 ## What runs
 
@@ -43,9 +51,33 @@ Antigravity sends no file path to `PostToolUse`. The adapter therefore records t
 `PreToolUse` and validates once the tool calls finish (`PostInvocation`). The pending list lives
 in `$XDG_RUNTIME_DIR/vault-validator-agent-hook/`.
 
+The refresh hook is `{skills.root}/obsidian-ops/scripts/index_generator.py --vault <vault>
+--agents-hook --agent <claude|codex|antigravity>`, next to the frontmatter hook under the same
+events. It reads Claude Code's payload, Codex's `apply_patch` patch text (paths relative to the
+payload's `cwd`) and, for Antigravity, records the target at `PreToolUse` (`--event pre`, pending
+list in `$XDG_RUNTIME_DIR/obsidian-ops-agents-hook/`) and refreshes at `PostInvocation`
+(`--event postinv`). It always exits 0, and for Antigravity always prints the JSON answer agy
+requires. It needs obsidian-ops 1.4.0 or later: an older `index_generator.py` rejects `--agent`.
+
 Agent shells do not expand key notation, so the config files carry **literal absolute paths**.
 Below, `<vault>` is the vault root and `<skills>` is `<vault>/00-CORE/Agents/skills` on the
 default layout. Use `resolve_context.py --key skills.root` to find the real path.
+
+## Install and check with one command each
+
+`bob-install` writes both hooks into all three configs for the agents on `PATH`, with this
+machine's literal paths.
+It shows the diff before every write, keeps everything else in an existing file, and writes only
+when you answer `y` (a full `setup.sh` run offers this step too):
+
+```bash
+uv run <skills>/bob-install/scripts/install_agent_hooks.py --vault <vault> [--dry-run]
+```
+
+`bob-doctor` reports the result in its **Agent hooks** row: per agent and hook, whether the config
+exists and points at an existing `agent_hook.py` or `index_generator.py`, and the Codex and
+Antigravity trust state. Codex trust
+stays a manual check (step 4 below). The sections below are the same configs by hand.
 
 ## Prerequisites
 
@@ -70,13 +102,25 @@ Create or merge `<vault>/.claude/settings.json`:
             "timeout": 60
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --quiet \"$CLAUDE_PROJECT_DIR/00-CORE/Agents/skills/obsidian-ops/scripts/index_generator.py\" --vault \"$CLAUDE_PROJECT_DIR\" --agents-hook --agent claude",
+            "timeout": 60
+          }
+        ]
       }
     ]
   }
 }
 ```
 
-Restart Claude Code in the vault. Run `/hooks` and check that the `PostToolUse` entry is listed.
+`install_agent_hooks.py` writes the same two entries with literal paths instead of
+`$CLAUDE_PROJECT_DIR`. Restart Claude Code in the vault. Run `/hooks` and check that both
+`PostToolUse` entries are listed.
 
 ## Codex
 
@@ -100,13 +144,24 @@ Restart Claude Code in the vault. Run `/hooks` and check that the `PostToolUse` 
             "statusMessage": "Validating frontmatter"
           }
         ]
+      },
+      {
+        "matcher": "apply_patch|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --quiet <skills>/obsidian-ops/scripts/index_generator.py --vault <vault> --agents-hook --agent codex",
+            "timeout": 60,
+            "statusMessage": "Refreshing AGENTS.md"
+          }
+        ]
       }
     ]
   }
 }
 ```
 
-4. **Trust the hook.** Start `codex` in the vault, run `/hooks` and mark the new hook trusted.
+4. **Trust the hooks.** Start `codex` in the vault, run `/hooks` and mark each new hook trusted.
    Codex skips new or changed hooks until they are trusted, and it records trust against the
    hook's hash. Editing the command means trusting it again.
 
@@ -137,20 +192,42 @@ Then create `<vault>/.agents/hooks.json`:
         "timeout": 60
       }
     ]
+  },
+  "vault-agents-refresh": {
+    "PreToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --quiet <skills>/obsidian-ops/scripts/index_generator.py --vault <vault> --agents-hook --agent antigravity --event pre",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostInvocation": [
+      {
+        "type": "command",
+        "command": "uv run --quiet <skills>/obsidian-ops/scripts/index_generator.py --vault <vault> --agents-hook --agent antigravity --event postinv",
+        "timeout": 60
+      }
+    ]
   }
 }
 ```
 
-Run `/hooks` in `agy` and check that `vault-frontmatter` is listed. The `PreToolUse` handler
-returns `{"decision": "ask"}`, which defers to the normal approval flow. It must not return `{}`:
+Run `/hooks` in `agy` and check that `vault-frontmatter` and `vault-agents-refresh` are listed.
+Both `PreToolUse` handlers return `{"decision": "ask"}`, which defers to the normal approval flow. It must not return `{}`:
 agy 1.2.13 treats that as a hard deny and blocks every file write (found 2026-09-29).
 
 ## Verify
 
-The adapter's own tests need no agent:
+The adapter's and the refresh hook's own tests need no agent:
 
 ```bash
 cd <skills>/vault-validator && uv run scripts/test_agent_hook.py
+cd <skills>/obsidian-ops && uv run scripts/tests/test_agents_hook_payloads.py
 ```
 
 A live check per agent: ask it to create `00-CORE/TaskNotes/Tasks/zz-hook-probe.md` with the
@@ -183,7 +260,8 @@ Exit 0 means pass (or skip). Exit 2 means the note failed, and the reason is on 
 
 ## Related
 
+- [[obsidian-ops]] skill: `index_generator.py`, the refresh hook's script, and the `agents:` scope.
 - [[vault-validator]] skill: the validator, the adapter, and the foreground
   `frontmatter_watcher.py` backstop for writes that no hook sees.
 - [[hook-authoring]] skill: authoring and porting hooks between agents.
-- [[FRONTMATTER-REQUIRED.md]]: required fields per `type:`.
+- frontmatter requirements: required fields per `type:`.

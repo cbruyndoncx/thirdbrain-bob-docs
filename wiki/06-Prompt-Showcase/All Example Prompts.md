@@ -2,13 +2,20 @@
 
 ← [[Prompt Showcase]]
 
-The exhaustive companion to the curated showcase: **3413 example prompts (3366 unique)** auto-extracted from 393 skills' `description` and "When to use" sections. Type any of these in your own words.
+The exhaustive companion to the curated showcase: **3520 example prompts (3462 unique)** auto-extracted from 397 skills' `description` and "When to use" sections. Type any of these in your own words.
 
 > [!info] Curated vs complete
 > For a guided, by-area starting point see [[Prompt Showcase]]. This page is the full firehose — every advertised trigger across the whole skill library.
 
 
 ## business
+
+**ai-budget-review**
+- "AI budget for next year"
+- "which AI tools do we cut"
+- "what does this automation cost per run"
+- "put the AI budget on trial"
+- "A partner wants a client-facing AI spend review with the CUT / KEEP / DOUBLE framework"
 
 **ai-transformation**
 - "transform workflows with AI"
@@ -39,6 +46,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "ask the board"
 - "sparring"
 - "spar with me"
+- "step back"
+- "zoom out"
 
 **ask-zeus**
 - "ask zeus"
@@ -46,11 +55,16 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "I need advice"
 - "help me decide"
 - "Zeus"
+- "take a step back"
+- "zoom out"
+- "are we going down the wrong path"
+- "am I overcomplicating this"
 
 **bob-ai-audit**
 - "log this pain point"
 - "log this hidden cost"
 - "create an AI initiative card"
+- "record a success check for this initiative"
 - "generate the BPMN for this process"
 - "set up my Operational Audit dashboard"
 - "update the client audit summary"
@@ -76,6 +90,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 **brand-voice-generator**
 - "s origin story into a 5-lens brand DNA. Use when the user says 'create brand guidelines"
 - "define tone of voice"
+- "brand voice"
 - "build a style guide"
 - "make the brand sound consistent"
 - "founder DNA"
@@ -579,6 +594,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "doodle how our lead routing works"
 - "napkin sketch of the onboarding flow"
 - "explain this pipeline for non-technical people"
+- "make an interactive explainer page for how churn compounds"
 - "/doodle"
 - "The owner wants a simple, non-technical picture of how something works, for a client, a"
 - "The owner types `/doodle` followed by a subject"
@@ -661,6 +677,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "the emoji aren't showing in the PDF"
 - "render this doc on the Mac"
 - "make a flyer PNG"
+- "render the carousel slides"
 - "turn this table into an image for Skool"
 - "Build/rebuild the lead-magnet PDF"
 - "the emoji aren't rendering / show as blank boxes"
@@ -863,12 +880,13 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "User is heading to site and needs a BOQ-derived inspection checklist"
 
 **contract-clause-analyzer**
-- "contract review"
+- "FIDIC contract review"
 - "FIDIC analysis"
 - "clause risk"
 - "particular conditions"
 - "contract obligations"
 - "risk allocation"
+- "review this contract"
 - "Review or analyze a FIDIC contract"
 - "Identify risk allocation in contract clauses"
 - "Check Particular Conditions deviations from standard FIDIC"
@@ -935,8 +953,11 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "outstanding invoices"
 - "track this invoice"
 - "log an invoice"
+- "send this invoice"
 - "Log an invoice for {client}"
 - "create invoice"
+- "Issue / send invoice INV-…"
+- "mark INV-… as sent"
 - "Mark {client} as paid"
 - "payment received"
 - "Send payment reminder for {client}"
@@ -1086,6 +1107,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "everything is in my downloads"
 - "classify these invoice PDFs"
 - "which invoices am I still missing"
+- "process my receipts"
+- "expense claim"
 - "in my downloads"
 - "The user needs invoice PDFs gathered for a month, quarter, or named accounting period"
 - "Gmail is the system of record for finding supplier emails"
@@ -1431,7 +1454,10 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "Facebook ad copy"
 - "Google ad headlines"
 - "LinkedIn ad text"
+- "which ad format"
+- "UGC ad"
 - "I need more ad variations"
+- "it's not X, it's Y"
 
 **google-ads-scripts**
 - "Google Ads script"
@@ -1461,6 +1487,9 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "ad campaign"
 - "retargeting"
 - "audience targeting"
+- "audit my Google Ads account"
+- "weekly account check"
+- "is this campaign working"
 
 
 ## marketing-analytics
@@ -1472,6 +1501,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "conversion tracking"
 - "event tracking"
 - "UTM parameters"
+- "partner links"
+- "AI assistant traffic"
 - "tag manager"
 - "GTM"
 - "tracking plan"
@@ -1481,15 +1512,20 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "marketing ROI"
 - "channel attribution"
 - "demand generation effectiveness"
+- "my dashboards disagree"
+- "which conversion number is right"
 - "Which campaigns drove orders last quarter?"
 - "Show me campaign ROI with spend and revenue"
 - "Attribute our orders to the right campaigns"
 - "Which channel has the best ROI?"
 - "Compare paid search vs. email vs. social"
 - "Rank our channels by return on spend"
+- "What did our webinar or event return?"
 - "Where are leads dropping out?"
 - "What's the click-to-order conversion rate per campaign?"
 - "Show me the full funnel from campaign to order"
+- "Google Ads, Meta, GA4 and the CRM all show different numbers — which is right?"
+- "My dashboards disagree on conversions"
 
 **ga4-analytics**
 - "GA4 implementation"
@@ -1533,7 +1569,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "Building custom templates with sandboxed JavaScript"
 - "Automating GTM operations via the REST API"
 - "Optimising container performance and organisation"
-- "Ensuring privacy compliance and consent management"
+- "Ensuring privacy compliance and consent management (Consent Mode v2)"
+- "Setting up a server-side (sGTM) container"
 
 **yt-studio-analytics**
 - "pull my YouTube analytics"
@@ -1587,6 +1624,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "create show notes"
 - "format these testimonials"
 - "pull quotes from this"
+- "turn this article into three posts"
 - "give me subject line ideas"
 
 **content-scorer**
@@ -1607,6 +1645,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "blog strategy"
 - "topic clusters"
 - "content planning"
+- "editorial calendar"
+- "content distribution"
 
 **copy-editing**
 - "edit this copy"
@@ -1616,6 +1656,10 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "polish this"
 - "make this better"
 - "copy sweep"
+- "this sounds like AI"
+- "de-slop this"
+- "it's not X, it's Y"
+- "no X, no Y, no Z"
 
 **copywriting**
 - "write copy for"
@@ -1624,6 +1668,9 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "marketing copy"
 - "headline help"
 - "CTA copy"
+- "this sounds like AI"
+- "it's not X, it's Y"
+- "no X, no Y, no Z"
 
 **course-builder**
 - "design my Skool course"
@@ -1708,9 +1755,11 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "LinkedIn post"
 - "Twitter thread"
 - "Substack newsletter"
+- "Telegram channel post"
 - "social scheduling"
 - "content calendar"
 - "viral content"
+- "it's not X, it's Y"
 
 **social-listening**
 - "social listening"
@@ -1743,6 +1792,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "transcribe this"
 - "make notes from this link"
 - "analyze this video"
+- "what does this video say about"
 
 **webinar-strategy**
 - "webinar"
@@ -1751,6 +1801,11 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "virtual workshop"
 - "guest webinar"
 - "influencer webinar"
+- "conference"
+- "trade show"
+- "should we sponsor"
+- "booth"
+- "call for papers"
 
 
 ## marketing-funnel
@@ -1785,6 +1840,9 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "welcome sequence"
 - "onboarding emails"
 - "lifecycle emails"
+- "it's not X, it's Y"
+- "no X, no Y, no Z"
+- "Re"
 - "Create email templates for [scenarios]"
 - "Build an email template library"
 - "Need reusable templates, not an automated sequence"
@@ -1794,6 +1852,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "activation rate"
 - "first-run experience"
 - "aha moment"
+- "minimum path to value"
+- "free trial or freemium"
 
 **paywall-upgrade-cro**
 - "paywall"
@@ -1825,6 +1885,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "viral loop"
 - "refer a friend"
 - "partner program"
+- "built-in virality"
+- "affiliate payouts"
 
 
 ## marketing-seo
@@ -1896,6 +1958,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "comparison pages"
 - "integration pages"
 - "building many pages for SEO"
+- "which CMS for pSEO"
 
 **schema-markup**
 - "structured data"
@@ -1930,6 +1993,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "set thumbnail"
 - "make the video public"
 - "post to LinkedIn"
+- "comment on this LinkedIn post"
 - "publish to Substack"
 - "Substack article"
 - "post to my Instagram"
@@ -1972,6 +2036,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "[Product] vs [Product]"
 - "[Product] alternative"
 - "competitive landing pages"
+- "audit our competitor pages"
+- "competitive asset audit"
 
 **free-tool-strategy**
 - "engineering as marketing"
@@ -1996,6 +2062,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "buyer persona"
 - "buying committee"
 - "customer segmentation"
+- "ICP from closed-won deals"
+- "SPICED"
 
 **launch-strategy**
 - "launch"
@@ -2006,6 +2074,13 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "early access"
 - "waitlist"
 - "product update"
+- "are we ready to launch"
+- "site launch"
+- "go live"
+- "pre-launch QA"
+- "changelog"
+- "release notes"
+- "what did we ship"
 
 **marketing-ideas**
 - "marketing ideas"
@@ -2040,11 +2115,21 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "what do customers come for"
 
 **product-marketing-context**
-- "product context"
 - "marketing context"
 - "set up context"
 - "positioning document"
 - "messaging foundation"
+
+**reverse-engineer-marketing**
+- "s own company. Use when the user says 'how did X grow"
+- "growth teardown"
+- "marketing teardown"
+- "reverse engineer X"
+- "what is X doing for marketing"
+- "copy X's playbook"
+- "funnel hack"
+- "map their funnel"
+- "watch what X is doing"
 
 
 ## obsidian
@@ -2074,6 +2159,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "I have an Obsidian vault — make BOB work on it"
 - "audit my workspace coverage"
 - "diagnose what BOB is missing"
+- "write the folder CONTEXT.md files"
 - "Set up BOB Workspace on my existing vault"
 - "I have an Obsidian vault with templates already — make BOB work on it"
 - "Generate fileClasses from my current frontmatter"
@@ -2524,6 +2610,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "RFP template"
 - "TCO"
 - "BATNA"
+- "review this supplier contract"
 - "Analyze spending patterns and identify sourcing opportunities"
 - "Classify suppliers using Kraljic or similar portfolio models"
 - "Generate RFI, RFP, or RFQ documents from requirements"
@@ -2609,6 +2696,9 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "decision framework"
 - "expected value"
 - "decision paralysis"
+- "log this decision"
+- "decision review"
+- "which decisions are due"
 
 **design-first-dev**
 - "UI/UX decisions"
@@ -2652,6 +2742,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "executive dashboard"
 - "real-time monitoring"
 - "data visualization"
+- "build a dashboard from this data"
 
 **launch-execution**
 - "product launch"
@@ -2710,6 +2801,8 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "category entry points"
 - "mental availability"
 - "distinctive brand assets"
+- "how different are we from X"
+- "grade our differentiation"
 
 **prioritization-craft**
 - "RICE"
@@ -2884,6 +2977,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "log meetings"
 - "track tasks"
 - "capture ideas in my vault"
+- "brain dump"
 
 **daily-briefing**
 - "daily briefing"
@@ -3051,6 +3145,13 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "Needs to compile progress for stakeholders"
 - "Wants to generate status report from PM tool"
 - "Has standup transcript to summarize"
+
+**voice-of-you**
+- "what would I say to this"
+- "draft my reply to this question"
+- "has this been asked before"
+- "what questions are waiting on me"
+- "record my answer to this"
 
 **weekly-review**
 - "s focus, and energy levels. Use when user mentions 'weekly review"
@@ -3787,17 +3888,22 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "Document commission structures, split rules, and MBO components"
 
 **sales-enablement**
-- "webinar outline"
 - "lead magnet"
 - "scope of work"
 - "SOW"
 - "contract summary"
-- "Create a webinar outline"
+- "review this contract"
+- "should I sign"
+- "check this NDA"
+- "red flags in this agreement"
 - "Design a lead magnet"
 - "Build a scope of work"
 - "write an SOW"
 - "Summarize this contract in plain language"
+- "should I sign this?"
+- "any red flags in this agreement?"
 - "Need any asset that supports the sales process before close"
+- "A FIDIC construction contract → [[contract-clause-analyzer]]"
 
 **sales-forecast**
 - "forecast revenue"
@@ -3882,6 +3988,15 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "user interviews"
 - "feature requests"
 
+**warm-network-activation**
+- "do you know anyone who…"
+- "activate my network"
+- "who in my network should I reach out to"
+- "score my contacts"
+- "reconnect with old colleagues"
+- "warm outreach"
+- "I should really talk to my old colleagues"
+
 **win-loss-analysis**
 - "why did we lose that deal"
 - "win-loss review"
@@ -3944,7 +4059,6 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 
 **bob-doctor**
 - "what do I need"
-- "bob doctor"
 - "check my setup"
 - "is my environment ready"
 - "why won't BOB run"
@@ -3955,13 +4069,13 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "Generating per-OS evidence for the fresh-machine first-run proof"
 
 **bob-install**
-- "install BOB"
 - "set up my vault"
 - "run setup"
 - "I just unzipped the vault, now what"
 - "install the plugins"
-- "finish my install"
 - "set up Obsidian for BOB"
+- "connect the skills MCP server"
+- "install the agent hooks"
 - "update the system file"
 - "what tools are installed on this machine"
 - "install the wanted tools"
@@ -4168,6 +4282,7 @@ The exhaustive companion to the curated showcase: **3413 example prompts (3366 u
 - "scoring methodology"
 - "which context do we actually use"
 - "what has gone cold"
+- "which skills are never used"
 - "how much have we accumulated this period"
 - "A partner wants to see baseline maturity for the first time"
 - "Pitching ThirdBrain to a new partner who needs proof that context flow matters"

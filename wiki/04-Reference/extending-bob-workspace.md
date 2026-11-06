@@ -451,7 +451,7 @@ These cost real debugging time when building a standalone product vault on BOB W
 - **An entity nav item with no wired Base renders "coming soon".** Add the mapping under the top-level `bases` block (`bases: { <entity>: { file, view } }`) so the item renders its Base. Without it the surface is just a placeholder.
 - **Navigation is entity-backed.** A view that is *not* an entity (e.g. a habit tracker reading `habit_*` fields across daily notes) cannot be a navigation item. Surface it as a Base opened from the file tree, embedded in a note, or as a secondary tab — not a nav entry.
 - **Settings live in `workspace.json → settings`, not `data.json`.** `taskMode`, `taskNotesFolder`, `folderProjects`, `dailyNoteFolder`, and `modules` are persisted in the workspace definition; unknown keys placed in `data.json` are stripped on load.
-- *(Obsidian, not BOB)* Embedding a Base view inline uses a ` ```base ` code block; `![[file.base]]` does not render the view.
+- *(Obsidian, not BOB)* Embed a Base view with a fenced `base` code block. A file link such as `![[file.base]]` does not render the view.
 
 ## What Requires Code
 

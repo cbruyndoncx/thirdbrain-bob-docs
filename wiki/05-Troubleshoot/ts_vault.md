@@ -55,6 +55,6 @@ Check registered name: **Settings → About → Vault name**
 
 ## Related
 
-- [[getting_started]] — Opening the vault for the first time
+- [[03-getting-started]] — Opening the vault for the first time
 - [[ts_install]] — Plugin installation issues
 - [[MOC-troubleshoot]] — All troubleshooting areas
