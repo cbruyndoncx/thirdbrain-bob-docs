@@ -1,7 +1,7 @@
 {
- "release": "thirdbrain-full-v2.8.0",
+ "release": "thirdbrain-full-v2.9.0",
  "counts": {
-  "skills": 378,
+  "skills": 382,
   "workflows": 110,
   "playbooks": 82
  },
@@ -349,7 +349,7 @@
     "Conversion list, event and property table with triggers, the naming convention, and the assumptions and exclusions behind each entry.",
     "Per-event pass or fail against the validation checklist, the duplicates and missing properties found, the conversion-marking check, and any validation that could not be run.",
     "Per-event setup instructions, data-layer or gtag payloads, conversion marking steps, consent handling, and the deployment sequence.",
-    "The agreed source, medium, campaign, content, and term value sets, the usage rules and casing standard, and worked example URLs per channel.",
+    "The agreed source, medium, campaign, content, and term value sets, the usage rules and lowercase-hyphen standard, the pattern per partner type, the GA4 channel-group rules for custom mediums and AI assistants, and worked example URLs per channel.",
     "{scope.marketing.analytics}/tracking-implementation-{YYYY-MM-DD}.md",
     "{scope.marketing.analytics}/tracking-plan-{YYYY-MM-DD}.md",
     "{scope.marketing.analytics}/tracking-validation-{YYYY-MM-DD}.md"
@@ -445,7 +445,7 @@
    "inputs": [
     "client-tone-of-voice — Client brand voice for scheduled posts.",
     "request — Broad content ask such as 'help me post something' or 'I don't know what to post'.",
-    "brand-context — Answers to the 6 brand-brief questions, or existing profile/brand notes.",
+    "brand-context — Answers to the 5 brand-brief questions, or existing profile/brand notes.",
     "topic — Topic, idea, offer, story, or source angle.",
     "platform — Target platform.",
     "post — Draft post text or path.",
@@ -533,14 +533,18 @@
    "inputs": [
     "campaign-data — Spreadsheet or CSV with at minimum: campaign name, channel, spend, date range",
     "order-data — Spreadsheet or CSV with at minimum: order ID, order date, revenue, lead source or campaign tag",
-    "attribution-model — Attribution model to apply. 'auto' selects last-touch unless user specifies otherwise. See references/attribution_models.md. (last-touch | first-touch | linear | auto)",
+    "attribution-model — Attribution model to apply. 'auto' selects last-touch unless user specifies otherwise; 'first-and-last' reports both side by side, never summed. Data-driven credit is read from a platform export, not computed. See references/attribution_models.md. (last-touch | first-touch | first-and-last | last-non-direct | linear | time-decay | position-based | w-shaped | full-path | auto)",
     "campaign-data — Spreadsheet or CSV with campaign name, channel, spend, date range",
     "order-data — Spreadsheet or CSV with order ID, revenue, and a channel or campaign tag that matches the campaign data",
     "period — Date range to analyze (e.g. 'Q1 2025', 'last 90 days'). Defaults to full date range in the data.",
     "funnel-data — Spreadsheet or CSV with stage-level counts per campaign: impressions or clicks, leads generated, qualified leads, orders. At minimum: campaign name, leads, and orders.",
-    "campaign-spend — Separate spend file if not included in funnel data. Required for cost-per-stage metrics."
+    "campaign-spend — Separate spend file if not included in funnel data. Required for cost-per-stage metrics.",
+    "source-exports — One export per source for the same period, each with its conversion definition, attribution window and model, time zone and date range. At least two sources, one of them ideally the order system or CRM.",
+    "decision-question — What the answer will be used for (budget shift, channel cut, board figure).",
+    "survey-tally — Counts of 'How did you first hear about us?' answers by channel for the period, with the response rate. See references/self_reported_attribution.md."
    ],
    "outputs": [
+    "attribution-readout (markdown)",
     "attribution-report (markdown)",
     "channel-comparison (markdown)",
     "funnel-report (markdown)",
@@ -641,9 +645,13 @@
     "icp — Target audience",
     "marketing-context — Positioning, differentiation, competitors",
     "request — The page format wanted (alternative, alternatives, vs, or competitor vs competitor) and the competitors to cover",
-    "scope — `company`, or a client-id under `client.root` — a string with one reserved value, not a closed set"
+    "scope — `company`, or a client-id under `client.root` — a string with one reserved value, not a closed set",
+    "request — The assets to audit (pages, battle cards, talk tracks, decks) and the competitors they name.",
+    "marketing-context — Positioning and competitor list, used to find every asset that makes competitor claims."
    ],
    "outputs": [
+    "Claims checked per asset with check date and source, counts by status, and a fix list with replacement wording.",
+    "Data file corrected where a Changed claim is shared by several assets, with `last_verified` and sources updated.",
     "alternative-page (markdown)",
     "alternatives-page (markdown)",
     "competitor-data (yaml)",
@@ -654,6 +662,7 @@
     "vs-page (markdown)",
     "{scope.marketing.competitor-pages}/alternatives/{competitor}-alternative.md",
     "{scope.marketing.competitor-pages}/alternatives/{competitor}-alternatives.md",
+    "{scope.marketing.competitor-pages}/audits/competitor-asset-audit-{YYYY-MM-DD}.md",
     "{scope.marketing.competitor-pages}/competitor-hub.md",
     "{scope.marketing.competitor-pages}/competitor-page-plan.md",
     "{scope.marketing.competitor-pages}/competitors/{slug}.yaml",
@@ -663,7 +672,8 @@
     "Create a comparison page: Our Product vs Competitor X",
     "Research competitor features and build a comparison table",
     "Write an alternatives page targeting 'Competitor X alternatives'",
-    "Generate a competitive landing page for our vs page"
+    "Generate a competitive landing page for our vs page",
+    "Audit our competitor pages and battle cards for out-of-date claims"
    ]
   },
   {
@@ -704,7 +714,7 @@
    "skillName": "content-repurposer",
    "catLabel": "marketing-content",
    "area": "marketing",
-   "desc": "Reformat existing content into new assets — case studies, FAQs, podcast show notes, testimonial variants, quote cards, subject lines, MP4 video cuts, and repurposing…",
+   "desc": "Reformat existing content into new assets — case studies, FAQs, podcast show notes, testimonial variants, quote cards, subject lines, three-post sets from one article,…",
    "summary": "Take one piece of content and transform it into structured outputs for different formats and channels.",
    "difficulty": "beginner",
    "inputType": "conversation",
@@ -725,6 +735,10 @@
     "source-content — Email body or campaign brief the subject lines must accurately represent.",
     "source-content — The source asset being planned around — the article, talk, or report that will feed several channels.",
     "target-channels — Channels the plan must cover. Absent, the route proposes the channel set and says why each earned a slot.",
+    "source-content — The final or published long-form article the posts come from.",
+    "tone-of-voice — The one voice file all three posts use; stamped into the output as `brand_voice_source`.",
+    "receipt-source — Vault note holding the real number the third post is built on (KPI note, case study, ai-receipt output). Absent, that post is not written.",
+    "scope — `company`, or a client-id under {company.clients}/",
     "video_path — Path to source MP4/MOV on local filesystem",
     "words_json — Word-level timestamps from social_transcript.py --word-timestamps (improves caption sync)",
     "count — Number of clips to generate",
@@ -742,9 +756,11 @@
     "Ranked pull quotes, each verbatim, with the context line that makes it readable out of its source.",
     "Rendered vertical shorts, one per selected segment, with word-by-word captions burned in.",
     "Subject line options grouped by category, each with preview text and none overstating the email body.",
+    "Three post drafts (`status: draft`), five hook lines, every rejected line with its reason, and the source of the receipt number.",
     "prefer a permanent directory)",
     "{scope.marketing.content-production}/case_study_{client-or-topic}.md",
     "{scope.marketing.content-production}/faq_{topic}.md",
+    "{scope.marketing.content-production}/post_set_{source}.md",
     "{scope.marketing.content-production}/quotes_{source}.md",
     "{scope.marketing.content-production}/show_notes_{episode}.md",
     "{scope.marketing.content-production}/subject_lines_{campaign}.md",
@@ -753,13 +769,10 @@
    ],
    "prompts": [
     "Turn this client interview transcript into a case study",
-    "Generate an FAQ from this product documentation",
-    "Create show notes for this podcast episode transcript",
     "Format these customer testimonials into short and social variants",
-    "Pull the best quotes from this article for quote cards",
-    "Give me subject line ideas for this newsletter",
     "Cut this webinar recording into 30-60 second shorts",
-    "What else can I make from this blog post? Give me a repurposing matrix"
+    "What else can I make from this blog post? Give me a repurposing matrix",
+    "Turn this article into three LinkedIn posts and give me hook options"
    ]
   },
   {
@@ -825,7 +838,7 @@
     "marketing-context — Named competitors and positioning that set the comparison set for the gap matrix."
    ],
    "outputs": [
-    "Content pillars with rationale, prioritized topic list scored on customer impact / content-market fit / search potential / resources, and the topic cluster map.",
+    "Content pillars with rationale, prioritized topic list scored on customer impact / content-market fit / search potential / resources with an information-gain line per searchable topic, the 60/30/10 calendar split, a distribution plan per flagship piece, and the topic cluster map.",
     "Gap matrix scoring competitor topics you don't cover, quick-win keyword clusters (positions 11-20), and validated content gaps with priority.",
     "Myth vs Reality, Common Mistakes, Framework, Case Snippet, Tooling, Future Lens.",
     "Prioritized list of existing content by URL and current metrics, performance quadrant, opportunity type (CTR / ranking / conversion / refresh / consolidation), specific action, expected impact, and effort required.",
@@ -854,12 +867,15 @@
     "request — What to produce, including audience, CTA and any exact output sections the user wants.",
     "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
     "marketing-context — Audience, voice and positioning for the active scope (company or client marketing context).",
-    "variants — Two or more versions of the same copy, pasted or as file paths, with any approved facts, forbidden claims or keep/remove instructions."
+    "variants — Two or more versions of the same copy, pasted or as file paths, with any approved facts, forbidden claims or keep/remove instructions.",
+    "draft — The copy that holds the line to fix, pasted or as a file path, with any approved facts, forbidden claims or keep/remove instructions.",
+    "request — Which line, word or section to change, and what is wrong with it."
    ],
    "outputs": [
     "Edited copy, a short change summary, and open questions or missing proof.",
     "Edited copy, change summary by sweep, and open questions or missing proof.",
     "Edited copy, change summary for Sweeps 4 and 7, and the claims that still need proof, legal review or product confirmation.",
+    "Only the changed lines, each with a one-line reason, an optional alternative, and at most one line flagging a serious problem elsewhere.",
     "Variant comparison with the pick and its reasons, then the edited winner, change summary by sweep, and open questions or missing proof.",
     "{scope.marketing.content-production}/copy-editing-{YYYY-MM-DD}.md"
    ],
@@ -885,7 +901,7 @@
     "phrase-bank — Approved phrases and banned words.",
     "url — Live page URL to audit in URL Analysis Mode (or Sub-Agent Mode); omit when writing new copy from vault context",
     "scope — `company`, or a client-id under the client root (`client.root`) — a string with one reserved value, not a closed set",
-    "marketing-context — Marketing context for voice and positioning.",
+    "marketing-context — Marketing context for ICP and positioning (voice comes from tone_of_voice.md).",
     "icp — ICP — who the copy speaks to.",
     "profile — Company profile — sender identity and credibility anchors.",
     "tone-of-voice — Tone of voice — copy register and brand sound.",
@@ -1296,12 +1312,17 @@
     "marketing_context — Positioning and messaging context.",
     "script — Voiceover script driving scene timing",
     "brand_assets — Logo, product screenshots, brand colors/fonts",
-    "brand_assets — Logo, product shots, UI screenshots, brand colors, fonts",
+    "brand-design — Brand design spec (colour roles, type, logo rules) — the only source for our own brand.",
+    "brand-assets-register — Logo files with source and authenticity flag, written by brand-system discover-assets.",
+    "brand_assets — Third-party logos, product shots and UI screenshots, and anything the vault brand folder lacks",
     "brief — Scene narrative and key messages",
     "copy — Scene text content and narrative arc"
    ],
    "outputs": [
     "HTML audio element left as placeholder for user's music",
+    "Optional, Phase 1: the user's pick from the three-direction drafts (or the series direction carried over), in the user's words",
+    "Optional, Phase 1: verified facts about named products or technologies, each with source URL and date checked",
+    "Written in Phase 1 whenever the video names a real product or brand: the vault brand files used and third-party logos with sources",
     "design-spec (markdown)",
     "draft-video (mp4)",
     "final_mp4 (mp4)",
@@ -1310,8 +1331,11 @@
     "narration-timings (json)",
     "project/DESIGN.md",
     "project/SCRIPT.md",
+    "project/brand-spec.md",
+    "project/direction-approved.md",
     "project/draft.mp4",
     "project/final.mp4",
+    "project/product-facts.md",
     "project/production/index.html",
     "project/production/narration.json",
     "project/production/narration.wav",
@@ -1440,7 +1464,10 @@
     "Create a launch timeline for our new product release",
     "Plan a Product Hunt launch campaign",
     "Design a waitlist strategy for our beta launch",
-    "Draft announcement copy for our feature release"
+    "Draft announcement copy for our feature release",
+    "Are we ready to launch, or should we add one more feature first?",
+    "Build a QA checklist for our new website going live next week",
+    "Turn this week's merged PRs into a changelog and announcement drafts"
    ]
   },
   {
@@ -1722,7 +1749,7 @@
     "funnel-data — Inactivity and incomplete-setup cohorts exported from product analytics, used to size each stall pattern."
    ],
    "outputs": [
-    "Activation goal, first-run approach with its trade-off, step-by-step flow, checklist items, empty states, email sequence, and the metrics plan.",
+    "Activation goal, activation model with its reason, minimum-path-to-value step inventory, first-run approach with its trade-off, step-by-step flow, checklist items, empty states, email sequence, and the metrics plan.",
     "Stall patterns with their detection rule, the email and in-app re-entry point for each, and the escalation path for high-value accounts.",
     "Step map with drop-off per step, the activation event used, and each finding as impact plus recommendation plus priority.",
     "Welcome screen, checklist items, empty states, tooltips, email sequence, and milestone celebration copy, ready to paste into the product.",
@@ -1777,20 +1804,32 @@
     "performance-data — Campaign metrics — impressions, clicks, conversions, spend, CPA, CTR, frequency",
     "performance-export — Platform reporting export the metrics are quoted from, so every figure carries a named source, attribution window, and date range per the evidence-discipline constraint.",
     "target-cpa — Target CPA or ROAS goal",
-    "aov — Average order value for profitability check"
+    "aov — Average order value, used with gross margin for the first-order contribution check. AOV alone is not compared with CPA.",
+    "gross-margin — Gross margin as a fraction, plus any variable cost per order (fulfilment, payment fees, expected returns). Needed for first-order contribution and payback; absent, profitability is reported as MISSING rather than estimated.",
+    "performance-export — Platform export for this period and the prior comparable period (spend, pacing, traffic, conversions with attribution window, brand and non-brand split). Every figure in the check is quoted from it or marked MISSING.",
+    "change-history — Account change history for the period, read against every movement. Absent, it is listed under missing data.",
+    "crm-outcomes — Lead quality or downstream outcomes from the CRM, used to check conversions against a neutral source.",
+    "targets — Target CPA, ROAS or pipeline goal per account or programme (non-brand target where branded search exists), used for the green/amber/red line in the readout.",
+    "platform — Platform being audited. Google Ads runs `references/google-ads-audit-checklist.md`; other platforms run the audit shortlist in their playbook (e.g. `references/linkedin-b2b-playbook.md`) under the same scoring. (google-ads | meta | linkedin | twitter-x | tiktok)",
+    "account-evidence — Exports and screens the audit can see (search terms report, conversion-action settings, Merchant Center diagnostics, campaign settings), each with its date range. A check whose evidence is absent is scored unknown, not fail.",
+    "marketing-context — Brand terms, conversion definitions and targets from the Paid Ads section, used for the brand/non-brand split and the target checks."
    ],
    "outputs": [
-    "Headline, description, and CTA variants per platform, each labelled with the framework and angle it tests. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`).",
-    "Per-campaign Red/Yellow/Green grade with its kill, hold, or scale action, the fatigue differential result, funnel diagnosis, and the profitability check. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`).",
-    "Platform selection, account and campaign structure, naming convention, budget allocation, test plan, and the measurement setup the campaign is graded on. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`).",
-    "Segment definitions with their build criteria, lookalike seed and rationale, retargeting windows by funnel stage, and the exclusion list. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`)."
+    "Comparison window and sources, the six-step check, one account-level HOLD/FIX/TEST/INVESTIGATE call (plus optional per-campaign calls), Facts / Hypotheses / Missing data, and a readout under 200 words. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`).",
+    "Headline, description, and CTA variants per platform, each labelled with the framework and angle it tests, an optional Creative research section (`references/creative-research.md`), and Facts / Hypotheses / Missing data under the angle recommendation. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`).",
+    "One row per check (result, evidence or missing source, draft fix on a fail), health and evidence coverage as separate numbers presented by coverage band, the unknowns list with the evidence that would resolve each, and Facts / Hypotheses / Missing data. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`).",
+    "Per-campaign Red/Yellow/Green grade with its kill, hold, or scale action, the fatigue differential result, funnel diagnosis, the profitability check, and Facts / Hypotheses / Missing data. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`).",
+    "Platform selection, account and campaign structure, naming convention, budget allocation, test plan, the measurement setup the campaign is graded on, and Facts / Hypotheses / Missing data. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`).",
+    "Segment definitions with their build criteria, lookalike seed and rationale, retargeting windows by funnel stage, the exclusion list, and Facts / Hypotheses / Missing data. `scope` is always required, so this route never falls back to the scratch area (`output.scratch`)."
    ],
    "prompts": [
     "Plan a Google Ads campaign for our SaaS product launch",
     "Write ad copy for our Facebook retargeting campaign",
     "Analyze our ad performance and recommend optimizations",
     "Structure an A/B test for our LinkedIn ad creative",
-    "Design audience segments for our Meta ads campaign"
+    "Design audience segments for our Meta ads campaign",
+    "Run this week's operating check on the Google Ads account",
+    "Audit our Google Ads account before we scale"
    ]
   },
   {
@@ -1914,13 +1953,17 @@
     "icp — Ideal customer profile used to judge which existing cohorts absorb the change and which churn.",
     "region-context — Regulatory notice periods and currency rules that constrain how a live price may be changed.",
     "pricing-structure — Target structure from the `pricing-structure` route, read back when the change is a move to a designed structure rather than a flat increase.",
-    "request — The change under consideration and its trigger — margin pressure, repositioning, or a competitor move."
+    "request — The change under consideration and its trigger — margin pressure, repositioning, or a competitor move.",
+    "icp — Ideal customer profile used to judge whether the page is clear to the right buyer.",
+    "marketing-context — Positioning and competitors used to judge value-proposition clarity and differentiation.",
+    "page — URL of the live pricing page, or its rendered text or HTML. A screenshot alone cannot answer the AI-agent readiness dimensions."
    ],
    "outputs": [
     "Leader check, change rationale, grandfathering rule, customer comms plan, rollout sequence, success metrics, and rollback trigger.",
     "Model comparison, fit assessment against segment and GTM motion, and the validation plan for the recommended model.",
     "Offer component classification (Leader, Filler, Add-on, Killer), value metric, tier definitions, feature differentiation, and price points with the assumptions behind each.",
-    "Research findings, competitor price set, and acceptable-price range, each labelled with its evidence quality."
+    "Research findings, competitor price set, and acceptable-price range, each labelled with its evidence quality.",
+    "Scores on both axes, paste-test result, dimension-by-dimension verdicts, prioritised fixes with hand-off skills, and the single highest-value fix."
    ],
    "prompts": [
     "Design a three-tier pricing structure for our SaaS product",
@@ -2079,6 +2122,7 @@
     "target-audience — Audience + positioning context (Target Audience / Customer Language sections) for page angles and keywords."
    ],
    "outputs": [
+    "Project configuration written by `pseo_init.py` (site, category, WordPress settings in YAML frontmatter); every other pSEO script reads it through `--config",
     "generated-pages (markdown)",
     "hub-pages (markdown)",
     "prefer a permanent directory)",
@@ -2086,6 +2130,7 @@
     "pseo-strategy-scratch (markdown)",
     "review-report (markdown)",
     "sitemap (xml)",
+    "{scope.marketing.seo}/programmatic/{project-name}/config.md",
     "{scope.marketing.seo}/programmatic/{project-name}/generated/{slug}.md",
     "{scope.marketing.seo}/programmatic/{project-name}/hubs/{category-slug}.md",
     "{scope.marketing.seo}/programmatic/{project-name}/pseo-strategy-{pattern}-{YYYY-MM-DD}.md",
@@ -2324,7 +2369,7 @@
    "skillName": "social-content",
    "catLabel": "marketing-content",
    "area": "marketing",
-   "desc": "Writes social posts for LinkedIn, X, and Substack, repurposes long-form content, and analyzes post performance.",
+   "desc": "Writes social posts for LinkedIn, X, Substack and Telegram channels, repurposes long-form content, and analyzes post performance.",
    "summary": "Create engaging social media content that builds audience and supports business goals.",
    "difficulty": "beginner",
    "inputType": "conversation",
@@ -2453,9 +2498,12 @@
    "requires": "[config]",
    "roles": "[Content Manager]",
    "inputs": [
-    "source-url — URL of the social media video or post to extract; determines platform-specific auth, subtitle, and stats handling.",
+    "source-url — URL of the social media video or post, or a local video/audio file path; determines platform-specific auth, subtitle, and stats handling (a path is `platform: local`).",
     "video-transcript — Downloaded transcript read and corrected before note synthesis; produced by the `download-transcript-and-metadata` route.",
     "video-metadata — Downloaded metadata read for chapters, stats, and comments used in the corroboration pass; produced by the `download-transcript-and-metadata` route.",
+    "question — The user's question or summary request about the video; decides which transcript passages are cited.",
+    "video-transcript — Transcript with fine markers (`--marker-interval 30` or `0`) from the `download-transcript-and-metadata` route, reused from scratch when it already exists for the same source and settings.",
+    "video-metadata — Metadata read for title, channel, transcript_source, subtitle_track and transcript_window, so the answer states what source it rests on.",
     "video-transcript — Corrected transcript synthesized into the note's sections rather than reflowed verbatim.",
     "video-metadata — Platform, stats, chapters, and comments merged into the note's header, tags, and Community Insights section.",
     "operator-profile — Read for `### Platform Entitlements` before any audio or video download — gates the `--whisper` and audio `--word-timestamps` fallback to entitled platforms, and, when screenshots are requested, decides whether frame capture uses local extraction (yt-dlp + ffmpeg) or Playwright.",
@@ -2464,7 +2512,8 @@
    ],
    "outputs": [
     "ASR corrections made against corroborating sources, prompt-injection flags, and chapter-based screenshot timestamp suggestions carried into note creation; no file is written by this route.",
-    "Clean transcript with 5-minute timestamp markers, from platform subtitles or Whisper audio transcription.",
+    "Answer in chat where each claim carries a [MM:SS] citation to the transcript, plus the transcript source and any window or caption limitation; no file is written.",
+    "Clean transcript with [MM:SS] timestamp markers (every 5 minutes by default, finer with --marker-interval), optionally limited to a --start/--end window, from platform subtitles or local Whisper audio transcription.",
     "Confirmation that the created note was opened in Obsidian via the advanced-uri handler; writes no new file.",
     "Platform, stats, chapters, tags, description, and top comments/creator replies for the video.",
     "Structured knowledge-base note synthesizing the transcript and metadata, with TL;DR, key takeaways, resources, and community insights; body guidance saves the final note under the resources root (`resource.root`) with a snake_case filename derived from the title.",
@@ -2477,7 +2526,8 @@
     "Summarize this TikTok and save it to my vault",
     "Transcribe this Instagram Reel and extract key points",
     "Make knowledge base notes from this LinkedIn video",
-    "Create notes from this video and map ideas to our vault capabilities"
+    "Create notes from this video and map ideas to our vault capabilities",
+    "What does this video say about pricing? Give timestamps"
    ]
   },
   {
@@ -2505,6 +2555,9 @@
     "content — Markdown file with schedule datetime in frontmatter",
     "caption — Post caption/hook text (accompanies the carousel)",
     "carousel-pdf — Flattened/rasterized PDF deck, plain ASCII filename (render slides to PNG then reassemble into an image-only PDF — do not upload a vector-text print-to-PDF export)",
+    "post-url — The post URL, or an lnkd.in short link (resolved to the post first)",
+    "comment-text — Comment text exactly as the owner approved it",
+    "image — Image to attach, linked from its canonical brand folder (for the BOB mascot see the product brand-assets register); never a copy made for the comment",
     "article — Markdown file with frontmatter (title, subtitle, tags, audience, status)",
     "content — Plain text or short markdown content for the note",
     "request — List posts request",
@@ -2529,11 +2582,13 @@
     "article (markdown)",
     "confirmation (markdown)",
     "conversation",
+    "marketing-content note with content_type comment, the approved text, the image path and the evidence screenshot comment-live-{YYYY-MM-DD}.png saved beside it",
     "note (markdown)",
     "post-list (markdown)",
     "prefer a permanent directory)",
     "registry-entry (json)",
     "video (video)",
+    "{company.marketing.linkedin}/{YYYY-MM-DD}-{slug}/{YYYY-MM-DD}_{slug}.md",
     "{quartz_content_path}/ai-news/{YYYY-MM-DD}.md",
     "{resource.root}/thirdbrain_videos.json",
     "{source-image-dir}/{source-image-stem}-thumbnail.jpg"
@@ -2657,8 +2712,8 @@
    "skillName": "webinar-strategy",
    "catLabel": "marketing-content",
    "area": "marketing",
-   "desc": "Plans and executes webinar-based customer acquisition strategies.",
-   "summary": "Plan, promote, and execute webinars that acquire customers by embedding product value into educational content delivered to borrowed audiences.",
+   "desc": "Plans and executes webinar-based customer acquisition strategies and in-person field events.",
+   "summary": "Plan, promote, and execute webinars that acquire customers by embedding product value into educational content delivered to borrowed audiences, and plan in-person and third-party events through the `field-event` route.",
    "difficulty": "beginner",
    "inputType": "conversation",
    "outputType": "document",
@@ -2668,17 +2723,27 @@
     "topic — Webinar topic or buyer pain point to address",
     "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
     "icp — loaded from your vault context",
-    "marketing-context — loaded from your vault context"
+    "marketing-context — loaded from your vault context",
+    "event — The event (name, date, location, organiser) or the event type being considered",
+    "role — Host, sponsor/exhibit, speak or attend; mixed roles are planned separately and share one follow-up system",
+    "primary-outcome — One of qualified meetings, authority, community or content",
+    "icp-attendees — Number of attendees matching the ICP, with its source; `unknown` when not known",
+    "budget-and-staff — Money available and who can work the event; cost lines missing here are named in the plan, not estimated"
    ],
    "outputs": [
+    "field-event-plan (markdown)",
     "webinar-strategy (markdown)",
+    "{scope.marketing.webinars}/field-event-{YYYY-MM-DD}.md",
     "{scope.marketing.webinars}/webinar-strategy-{YYYY-MM-DD}.md"
    ],
    "prompts": [
     "Plan a webinar series for our product launch",
     "Create a guest speaker outreach template for our webinar",
     "Design a webinar promotion campaign with email sequences",
-    "Build a webinar outline for our AI automation workshop"
+    "Build a webinar outline for our AI automation workshop",
+    "Should we sponsor this conference? Here is the prospectus",
+    "Plan our attendance at the trade show next month with pre-booked meetings",
+    "Write a call-for-papers abstract for this conference"
    ]
   },
   {
@@ -3899,12 +3964,16 @@
     "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
     "sheet — Path to an engager sheet produced by the qualify route",
     "selection — Which grades to draft for; defaults to A and B only",
-    "person — Name exactly as it appears on LinkedIn; company, if known, goes in the reason comment, not on the name line",
-    "reason — Free text — how the objection arrived. Kept as the compliance record."
+    "person — Name exactly as it appears on LinkedIn, and/or the email address the objection came from; each goes on its own line. Company, if known, goes in the reason comment, not on the name line",
+    "reason — Free text — how the objection arrived. Kept as the compliance record.",
+    "suppression_list — The global suppression list. Absent on a vault where nobody has objected yet; every recipient is then clear.",
+    "recipients — One recipient per line: 'Name <email>', 'Name', or 'email'"
    ],
    "outputs": [
+    "Blocked and clear recipients; exit code 3 when any recipient is blocked",
     "Cumulative engager history for company scope; the merge base for the next run, rewritten by the parser",
     "Cumulative engager history for one client scope; the merge base for the next run, rewritten by the parser",
+    "conversation",
     "engager-sheet (markdown)",
     "engager-sheet-client (markdown)",
     "first-contact-drafts (markdown)",
@@ -3919,7 +3988,8 @@
    "prompts": [
     "Here's who reacted to my close-process post — qualify them",
     "Turn this reaction list into warm leads, and flag anyone who engaged before",
-    "Marc asked me not to contact him again — suppress him"
+    "Marc asked me not to contact him again — suppress him",
+    "Check these cold-email recipients against the do-not-contact list"
    ]
   },
   {
@@ -4427,20 +4497,16 @@
    "skillName": "sales-enablement",
    "catLabel": "sales",
    "area": "sales",
-   "desc": "Creates pre-sale assets including webinar outlines, lead magnet structures, scope of work documents, and plain-language contract summaries.",
-   "summary": "Build pre-sale assets that move prospects toward a decision — webinar outlines, lead magnets, scopes of work, and contract summaries.",
+   "desc": "Creates pre-sale assets (lead magnet structures, scope of work documents) and reviews a received agreement before signature with a plain-language summary, bottom line,…",
+   "summary": "Build pre-sale assets that move prospects toward a decision (lead magnets and scopes of work), and review a received agreement before it is signed. Webinar structure, reminders and follow-up are owned by webinar-strategy; this skill does not draft webinars.",
    "difficulty": "beginner",
    "inputType": "conversation",
    "outputType": "document",
    "requires": "[none]",
    "roles": "[Head of Sales]",
    "inputs": [
-    "request — Webinar topic, the goal it serves (educate, generate leads, convert, launch, partner), the target audience, and the slot length available.",
-    "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
-    "profile — Company background used to write the credibility segment of the opening and to keep the host's claims true.",
-    "offerings — Services and pricing the pitch block transitions into, so the offer named on the webinar is one that actually exists.",
-    "tone-of-voice — Writing style for the registration page, hook, and email copy the outline drafts.",
     "request — Topic, target audience segment, and the promise the asset has to deliver, plus any format or production constraint already fixed.",
+    "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
     "profile — Company background supplying the authority the asset trades on and the audience it already reaches.",
     "offerings — Paid offering the asset's final-page CTA and nurture sequence point at, so the magnet leads somewhere real.",
     "tone-of-voice — Writing style for the landing page headline, bullets, and delivery email.",
@@ -4450,22 +4516,24 @@
     "offerings — Real service definitions and rates, so in-scope deliverables and the investment section match what is actually sold.",
     "tone-of-voice — Writing style for the narrative sections — overview and objective — while the commercial clauses stay literal.",
     "contract — The agreement to translate — service agreement, NDA, partnership, or vendor contract. Without it the route does not run; this skill summarises a real document and does not draft one.",
-    "request — What the summary is for and which side is being advised, plus any clause the caller already wants checked.",
+    "request — Which side is being advised, what the deal is, and any clause or worry the caller already wants checked.",
     "profile — Own trading identity, used to tell which named party in the contract is the reader's side.",
     "tone-of-voice — Writing style for the plain-language rewrite; the quoted clause references stay verbatim regardless."
    ],
    "outputs": [
     "Formal SOW — overview, in-scope and out-of-scope lists, milestone and payment table, acceptance criteria, assumptions and dependencies, change-management process, investment, and signature block.",
-    "Full webinar structure — registration and reminder copy, timed opening, three teaching blocks with interaction prompts, offer transition, pitch, seeded Q&A, and the attendee and no-show follow-up sequences.",
     "One recommended asset with its type, promise, delivery format, landing-page hook, section-by-section content outline, design notes, nurture topics, the non-obvious reason prospects stall, and the tradeoff against the rejected alternative.",
-    "Plain-language summary of obligations, money, timeline, exit and dispute terms, confidentiality and IP, plus a red-flag list for legal review, a key-dates table, and the standing note that the summary does not replace legal advice.",
-    "{company.sales}/sales-enablement-{descriptor}.md"
+    "Pre-signature review — bottom line (sign / sign after changes / do not sign before counsel review), top 3-5 items to raise, plain-language summary, red and yellow flags each with clause reference, reason and business ask, missing terms, what is standard, key dates, items for counsel, and the standing note that the review does not replace legal advice.",
+    "{company.sales}/sales-enablement-contract-summary-{descriptor}.md",
+    "{company.sales}/sales-enablement-lead-magnet-{descriptor}.md",
+    "{company.sales}/sales-enablement-sow-{descriptor}.md"
    ],
    "prompts": [
     "Create a lead magnet outline for our target audience",
     "Draft a scope of work document for this project",
     "Write a plain-language contract summary for the client",
-    "Build a webinar outline for our pre-sale pipeline"
+    "Review this MSA before we sign. We are the vendor. What would you push back on?",
+    "Check this mutual NDA before our partnership call"
    ]
   },
   {
@@ -4750,6 +4818,55 @@
    ]
   },
   {
+   "skillName": "warm-network-activation",
+   "catLabel": "sales",
+   "area": "sales",
+   "desc": "Ranks the people the owner already knows by relationship, not firmographics, then drafts a pitch-free re-warm message and a later 'do you know anyone who…' ask for the…",
+   "summary": "Start from the people the owner already knows, rank them on the strength of the tie, re-warm the best ones with a plain catch-up, and only then ask — indirectly — whether they know anyone who needs what the owner now offers. Every other skill in the `prospect` stage assumes a stranger to research; this one walks the other way, and it fills the calendar of the free business run-through that `business-baseline` already delivers.",
+   "difficulty": "beginner",
+   "inputType": "conversation",
+   "outputType": "document",
+   "requires": "[none]",
+   "roles": "[CEO / Founder, Head of Sales]",
+   "inputs": [
+    "exports — The owner's own LinkedIn Connections.csv data export and/or a phone contacts .vcf, saved outside the vault before parsing",
+    "recall — Names typed or dictated from the recall prompts (last 30 days, past jobs, people who sent work, local business owners)",
+    "people-notes — Existing person notes; the parser flags known contacts and any `## Prior relationship` section",
+    "run-note — The run note written by the dump route",
+    "answers — The owner's answers to the four questions per contact, in batches of about 20",
+    "people-notes — Person notes whose `## Prior relationship` section seeds the relationship-strength answer",
+    "run-note — The scored run note",
+    "tone-of-voice — The owner's voice rules; drafts are written in the register the owner uses with each person",
+    "suppression-list — Global do-not-contact list owned by linkedin-engager-leads; absent when nobody has objected yet",
+    "selection — Which people to draft for; defaults to tier A then B in rank order, about 10 per round",
+    "replies — Each contact's reply, pasted or summarised by the owner",
+    "icp — Canonical buyer; the offer sentence in the ask follows it",
+    "suppression-list — Global do-not-contact list, checked again before drafting",
+    "run-note — The run note, linked from the lead",
+    "reply — The reply that says yes, or names someone and their consent to be contacted"
+   ],
+   "outputs": [
+    "A `lead` with `source` network (their own business) or referral (an introduction), the introducer credited in the body",
+    "Dated run note (`type: analysis`, `analysis_type: warm-network-ranking`) holding the sources and the deduplicated dump",
+    "Dated, attributed bullets appended under `## Prior relationship` for A- and B-tier people or when the owner asks",
+    "One draft per person with dormancy band and the shared context it rests on; a Suppressed section for anyone dropped",
+    "One reply-plus-ask draft per person who replied",
+    "The same run note with the ranked Scores table (priority 4-12, tiers A/B/C, dormancy band)",
+    "{company.leads}/{lead-id}/lead.md",
+    "{company.sales.sequences}/warm-ask-{YYYY-MM-DD}.md",
+    "{company.sales.sequences}/warm-rewarm-{YYYY-MM-DD}.md",
+    "{company.sales}/warm-network-{YYYY-MM-DD}.md",
+    "{me.people}/{person-slug}.md"
+   ],
+   "prompts": [
+    "Help me activate my network — here's my LinkedIn connections export",
+    "Score these people I know and tell me who to reach out to first",
+    "Draft catch-up messages for my top ten, no pitch",
+    "Marc replied — draft the 'do you know anyone' follow-up",
+    "Lisa introduced her accountant; set him up for a free run-through"
+   ]
+  },
+  {
    "skillName": "win-loss-analysis",
    "catLabel": "sales",
    "area": "sales",
@@ -4783,7 +4900,7 @@
    "skillName": "ar-followup",
    "catLabel": "finance",
    "area": "finance",
-   "desc": "Drafts AR follow-ups from Gmail and invoice records, tracks outstanding invoices, and prepares payment reminders.",
+   "desc": "Issues invoices from vault records, drafts AR follow-ups from Gmail and invoice records, tracks outstanding invoices, and prepares payment reminders.",
    "summary": "Obsidian-native accounts receivable management. Track invoices from creation through collection, send payment reminders, and never lose sight of outstanding money.",
    "difficulty": "beginner",
    "inputType": "data",
@@ -4792,7 +4909,7 @@
    "roles": "[Finance Manager]",
    "inputs": [
     "invoice-template — Template the new invoice note is built from — supplies the frontmatter field set the route must populate.",
-    "profile — Supplies the legal client name, payment terms, and currency the invoice is issued under.",
+    "profile — Supplies the seller's invoicing identity and the client's billing details, payment terms, and currency.",
     "invoices — Existing invoice notes, scanned to find the highest `INV-{YYYY}-{NNN}` so the new ID is unique vault-wide.",
     "request — The invoice to raise — client, amount, and any deal or billing summary it is drawn from.",
     "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
@@ -4813,12 +4930,14 @@
    ],
    "outputs": [
     "Aging buckets, per-client outstanding balances, payment velocity, collection rate, and 60-day-plus alerts.",
+    "Client-facing invoice rendered with corporate-pdf `invoice` style and inspected before any send.",
     "Invoice updated with `last_reminder_date`, incremented `reminder_count`, `next_reminder_date`, and an appended Activity Log entry.",
     "Invoice updated with `paid_date`, `amount_paid`, `payment_method`, the `je_ref` wikilink, and an appended Activity Log entry.",
     "New invoice note with populated frontmatter, `payment_status`, and an initialised Activity Log.",
     "Reminder email shown for send/edit/cancel approval before anything leaves the vault.",
     "Total invoiced, total collected, total outstanding, outstanding-invoice count, and collection rate for the month.",
     "{client.invoices}/{invoice_id}.md",
+    "{client.invoices}/{invoice_id}.pdf",
     "{scope.finance}/AR/ar_aging_{YYYY-MM}.md",
     "{scope.finance}/AR/ar_summary_{YYYY-MM}.md"
    ],
@@ -5367,9 +5486,15 @@
     "checklist — Expected-invoice checklist (spreadsheet or markdown table) listing the supplier charges that must have an invoice for the period",
     "source-folder — Folder holding the downloaded PDFs; defaults to the user's Downloads folder",
     "drive-folder — Destination Drive folder name or ID for the period",
-    "checklist — Expected-invoice checklist to update with the newly filed invoices"
+    "checklist — Expected-invoice checklist to update with the newly filed invoices",
+    "source-folder — Folder holding the receipt files; the working set is confirmed with the user",
+    "claimant — Person who paid and is owed, as a wikilink; asked, never inferred",
+    "window-days — Days apart that still count as a possible duplicate; set by the owner for this run"
    ],
    "outputs": [
+    "Captured, skipped and flagged receipts plus the period summary",
+    "Copies of the receipt files the claim lines link to; sources left in place",
+    "Draft `expense-claim` note per claimant, reimbursement method and currency (Step R5)",
     "Draft `supplier-invoice` note created per collected invoice (Step 8).",
     "Filed/missing table plus exceptions, including the portal list when a checklist was supplied",
     "Google Drive/{folder-name}/yyyymmdd_supplier_invoiceid.pdf",
@@ -5378,7 +5503,9 @@
     "prefer a permanent directory)",
     "supplier-aliases (markdown)",
     "{scope.finance.accounting}/supplier_aliases.md",
-    "{scope.finance.ap-invoices}/SI-{YYYY}-{NNN}.md"
+    "{scope.finance.ap-invoices}/SI-{YYYY}-{NNN}.md",
+    "{scope.finance.expenses}/receipts/yyyymmdd_supplier_number.ext",
+    "{scope.finance.expenses}/{date}_{slug}.md"
    ],
    "prompts": [
     "Collect all invoices from Gmail for January 2026",
@@ -5953,7 +6080,7 @@
    "skillName": "contract-clause-analyzer",
    "catLabel": "engineering",
    "area": "operations",
-   "desc": "Analyze FIDIC contract clauses for risk allocation, obligations, notice periods, and deviations from standard conditions.",
+   "desc": "Analyze FIDIC construction contract clauses for risk allocation, obligations, notice periods, and deviations from standard conditions.",
    "summary": "Target Audience: PMC firms, engineering consultancies, quantity surveyors, and claims consultants managing FIDIC construction contracts in UAE/GCC.",
    "difficulty": "expert",
    "inputType": "conversation",
@@ -6377,7 +6504,7 @@
    "skillName": "integration-reference",
    "catLabel": "operations",
    "area": "operations",
-   "desc": "Looks up how to connect to a third-party SaaS tool — auth type and scopes, whether an API, MCP server, CLI or SDK exists, and worked request examples — across 93…",
+   "desc": "Looks up how to connect to a third-party SaaS tool — auth type and scopes, whether an API, MCP server, CLI or SDK exists, and worked request examples — across 106…",
    "summary": "The vault's catalogue of third-party tool integrations: what each tool offers (API, MCP, CLI, SDK), how authentication works, and what a working request looks like. Skills link here instead of restating connection detail that goes stale in a dozen places at once.",
    "difficulty": "beginner",
    "inputType": "conversation",
@@ -6752,7 +6879,7 @@
     "criteria — Criteria with weights; derived from the process when omitted",
     "artifact — Deliverable to score",
     "rubric — Rubric to score it against",
-    "fresh_context — Set true when invoked from a playbook quality gate — scoring context receives rubric, gate conditions, and artifact paths only",
+    "fresh_context — Set true when invoked from a playbook quality gate or for a Mode 3 deliverable — scoring context receives rubric, gate conditions, and artifact paths only",
     "artifact — Deliverable to sanity-check before deeper review",
     "output_path — Path to the file or inline content to validate",
     "rubric_hint — Optional rubric name — otherwise resolved from skill-quality-mapping",
@@ -6886,7 +7013,7 @@
    "skillName": "strategic-sourcing",
    "catLabel": "operations",
    "area": "operations",
-   "desc": "Sourcing strategy and supplier selection — spend analysis, Kraljic matrix, RFI/RFP/RFQ templates, TCO calculations, BATNA negotiation prep, and initial supplier…",
+   "desc": "Sourcing strategy and supplier selection — spend analysis, Kraljic matrix, RFI/RFP/RFQ templates, TCO calculations, BATNA negotiation prep, initial supplier evaluation…",
    "summary": "Guides purchasing optimization from spend visibility through supplier relationship management. For business owners, procurement managers, and operations leads who manage ongoing vendor relationships and purchasing categories.",
    "difficulty": "beginner",
    "inputType": "conversation",
@@ -6910,7 +7037,7 @@
     "Prepare a negotiation brief for our logistics contract renewal",
     "Build a quarterly supplier scorecard for our three key vendors",
     "Review this SaaS contract against standard terms",
-    "Create a full strategic sourcing plan for our marketing services spend"
+    "We're about to renew our logistics supplier. Review their new terms before we sign"
    ]
   },
   {
@@ -7838,6 +7965,50 @@
    ]
   },
   {
+   "skillName": "performance-framework",
+   "catLabel": "human-resources",
+   "area": "people",
+   "desc": "Sets up a business's layered performance framework through a short interview that first searches its own documents, then builds it from BOB's cross-industry SMB template…",
+   "summary": "Gives a small or mid-sized business, in any industry, one written standard for what good work looks like — so reviews, 1:1s and onboarding judge people against the same thing — and keeps mandatory certificates out of that judgement by tracking them separately with expiry reminders.",
+   "difficulty": "beginner",
+   "inputType": "conversation",
+   "outputType": "document",
+   "requires": "[none]",
+   "roles": "[CEO / Founder, HR Manager]",
+   "inputs": [
+    "answers — Answers YAML; scan writes a pre-filled one and the agent adds the owner's answers",
+    "extra-path — Extra folder or file to search, such as an exported drive folder",
+    "profile — Company profile — read for the company name and team size",
+    "company — Business name shown in the title",
+    "team-size — Number of people the framework covers; sets the cadence defaults",
+    "scale — Rating levels; default 4 (4 | 3)",
+    "role-families — Layer 2 module ids, comma-separated, from assets/framework-template.yaml",
+    "overlays — Layer 3 overlay ids, comma-separated",
+    "gates — Extra Layer 0 gate ids beyond the overlay's own",
+    "profile — Company profile — the source for team size, roles and jurisdiction; nothing is invented beyond it",
+    "instance — The instance to check; defaults to the company key",
+    "person — Holder's name; becomes the person-slug folder",
+    "gate-id — Gate id from the instance's compliance_gates list",
+    "certificate — Certification name, issue date, expiry date and evidence link, as supplied by the owner",
+    "days — Reminder window in days for records without their own; default from the instance, else 60"
+   ],
+   "outputs": [
+    "compliance-gate-record (markdown)",
+    "framework-instance (markdown)",
+    "renewal-list (text)",
+    "stdout",
+    "validation-result (text)",
+    "{company.people}/{person-slug}/compliance-gate_{gate-id}_{YYYY-MM-DD}.md",
+    "{company.performance-framework}"
+   ],
+   "prompts": [
+    "Interview me to set up our performance framework — we are a 14-person plumbing and heating firm",
+    "Set up a performance framework for a 12-person café with two shift leads",
+    "We are a 6-person accounting practice — build our framework on 3 levels",
+    "Which staff certificates expire in the next 60 days?"
+   ]
+  },
+  {
    "skillName": "performance-review",
    "catLabel": "human-resources",
    "area": "people",
@@ -7975,6 +8146,48 @@
     "workplace politics",
     "blocking behavior",
     "escalation path."
+   ]
+  },
+  {
+   "skillName": "ai-budget-review",
+   "catLabel": "business",
+   "area": "strategy",
+   "desc": "Builds an Excel workbook that puts every AI line item through M.",
+   "summary": "Generates the AI budget review workbook: an Inventory of AI line items scored on five questions with a suggested verdict per line, an Automations sheet that prices API workflows per run, a Model prices sheet with the date and source of every price, and a Summary with the reallocation pool.",
+   "difficulty": "beginner",
+   "inputType": "conversation",
+   "outputType": "document",
+   "requires": "[none]",
+   "roles": "[CEO / Founder, Finance Manager]",
+   "inputs": [
+    "request — Which budget this is for: organisation, budget year, and whether the workbook is internal or will be shown to a client.",
+    "scope — `company`, or a client-id under the clients root; decides which finance folder receives the file.",
+    "budget-year — Four-digit budget year. Sets the sheet title, the file name and the date the budget-year model prices are read at. Default: next calendar year.",
+    "line-items — AI line items and automations the owner supplies in the request or points at in vault notes (tool, seats, active users, cost, runs, tokens). Entered into the input columns as given; nothing is inferred to fill a gap.",
+    "rate-table — Model list prices per million tokens with their verification dates and sources; every price on the Model prices sheet comes from here.",
+    "fx-table — Newest fx-rates-table note with a USD row; its ECB quotation is inverted into EUR per USD. Absent, the caller passes the rate.",
+    "eur-per-usd — EUR per 1 USD when no FX note exists or the owner has a newer rate; its source and date travel with it onto the Settings sheet.",
+    "output — Destination workbook path when the caller wants one other than the scope's finance folder.",
+    "request — Who the example is for and which budget year it should show.",
+    "rate-table — Model list prices the example rows are priced from.",
+    "request — What changed — a provider price, a model added or retired, or the generator — so the refresh is checked against it.",
+    "rate-table — Rate table whose `_verified` dates must be current before the bundled files are rebuilt from it."
+   ],
+   "outputs": [
+    "Blank workbook shipped with the skill for readers who cannot run the generator.",
+    "Six-sheet formula-driven workbook — Summary, Guide, Inventory (200 rows), Automations (150 rows), Model prices, Settings — recalculated with zero formula errors.",
+    "The workbook with EX-/AU- example rows; never filed in a finance folder.",
+    "Worked example shipped with the skill, with its figures recorded in examples/example_run.md.",
+    "prefer a permanent directory)",
+    "{scope.finance}/ai_budget_review_{YYYY}.xlsx",
+    "{skills.root}/"
+   ],
+   "prompts": [
+    "Review our AI spend for the 2027 budget",
+    "Which of our AI subscriptions should we cut?",
+    "What does the ticket-triage automation cost per run at next year's volume, and what would the cheaper model save?",
+    "Build the AI budget workbook for client acme-ltd",
+    "Show me the example AI budget review"
    ]
   },
   {
@@ -8129,7 +8342,9 @@
     "ask boardroom",
     "ask the board",
     "sparring",
-    "spar with me"
+    "spar with me",
+    "step back",
+    "zoom out"
    ]
   },
   {
@@ -8148,10 +8363,12 @@
     "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
     "request — The complex or identity-level trade-off to analyze, including known variables, constraints, and what has already been ruled out.",
     "request — The goal, principle, or time period to check recent actions against.",
-    "request — The problem or situation the user is still working out, without a decision already framed."
+    "request — The problem or situation the user is still working out, without a decision already framed.",
+    "request — The user's step-back request; the conversation so far is the material being checked."
    ],
    "outputs": [
     "Accountability review — stated goals compared to recent actions, drift or gaps flagged, and course corrections suggested.",
+    "Appended under a step-back heading — original goal, path taken, assumptions with why-assumed and if-wrong, what was not considered, the verdict (sound, adjust, or wrong) and the next move.",
     "D-S-F-C record — the deconstructed decision, knowledge-base synthesis, mental model applied, and the recommendation with named trade-offs.",
     "Reflective question set that surfaces the real problem beneath the one originally stated.",
     "Session record for the quick-decision pass — clarifying questions asked, the quick filter applied, and the call made.",
@@ -8159,10 +8376,13 @@
    ],
    "prompts": [
     "ask zeus",
+    "take a step back",
     "coach me",
     "I need advice",
     "help me decide",
-    "Zeus."
+    "Zeus.",
+    "zoom out",
+    "are we going down the wrong path"
    ]
   },
   {
@@ -8558,7 +8778,7 @@
    "catLabel": "product-management",
    "area": "strategy",
    "desc": "Applies structured analytical frameworks — expected value thinking, regret minimization, and pre-mortems — to difficult decisions.",
-   "summary": "Applies structured analytical frameworks — expected value thinking, regret minimization, and pre-mortems — to difficult decisions. Use when user wants a specific framework applied, mentions 'decision framework,' 'expected value,' 'pre-mortem,' or 'decision paralysis.' For 1:1 strategic coaching with personal context, see ask-zeus. For multi-perspective board debate, see ask-boardroom.",
+   "summary": "Applies structured analytical frameworks — expected value thinking, regret minimization, and pre-mortems — to difficult decisions. Use when user wants a specific framework applied, mentions 'decision framework,' 'expected value,' 'pre-mortem,' or 'decision paralysis.' Also records a decision already taken ('log this decision') and reviews past decisions ('decision review', 'which decisions are due'). For 1:1 strategic coaching with personal context, see ask-zeus. For multi-perspective board debate, see ask-boardroom.",
    "difficulty": "beginner",
    "inputType": "conversation",
    "outputType": "document",
@@ -8574,7 +8794,10 @@
     "request — The plan or commitment to stress, and the horizon at which failure is imagined.",
     "preferred-option — The option already favoured — the pre-mortem has nothing to attack without it.",
     "decision-brief — Brief from the `full-decision` or `lightweight` route, read back so the failure modes attack the recorded assumptions rather than freshly invented ones.",
-    "request — The decision to classify and what undoing it would cost in time, money, and credibility."
+    "request — The decision to classify and what undoing it would cost in time, money, and credibility.",
+    "request — The decision as taken, with whatever the conversation already holds — alternatives, what tipped it, what it bets on, what would prove it wrong.",
+    "request — Optional window (e.g. the last six months) or topic; without one, the review covers the decisions that `scripts/decisions_due.py` lists as due.",
+    "scope — `company`, a client-id under {company.clients}/, or `all` — which decision folders to review"
    ],
    "outputs": [
     "Decision statement, options table, per-option assumptions with confidence labels, analysis under each framework, recommendation, success criteria, and review trigger.",
@@ -8583,6 +8806,10 @@
     "Options table, the dimensions they differ on, the uncertainty warning, and what evidence would upgrade the comparison to a full brief.",
     "Per-option expected-value calculation with each probability and value driver labelled by source and confidence.",
     "Per-option regret assessment at the stated horizon and the asymmetry that decides between them.",
+    "type: decision` note — statement, alternatives with why-not, rationale, assumptions, what would prove it wrong (signal and by-when date), reversibility line, related past decisions, and `review_date`.",
+    "type: report` — decisions reviewed, patterns, what worked, what did not, decisions still due, proposed outcome per note with the evidence behind it, and links to the lessons recorded in MEMORY.md.",
+    "{company.reports}/decision_review_{YYYY-MM-DD}.md",
+    "{scope.decisions}/{YYYY-MM-DD}_{slug}.md",
     "{scope.knowledge-base.product}/decision-frameworks-reversibility-{YYYY-MM-DD}.md",
     "{scope.knowledge-base.product}/decision-frameworks-{YYYY-MM-DD}.md"
    ],
@@ -8590,7 +8817,10 @@
     "Help me decide using expected value thinking",
     "Run a pre-mortem on our product launch plan",
     "Apply regret minimization to this career decision",
-    "I'm stuck between two options — help me think it through"
+    "I'm stuck between two options — help me think it through",
+    "Log this decision: we're moving bookkeeping to Beancount",
+    "Have I made a call like this before?",
+    "Which decisions are due for review?"
    ]
   },
   {
@@ -8874,8 +9104,8 @@
    "skillName": "kpi-dashboard-design",
    "catLabel": "product-management",
    "area": "strategy",
-   "desc": "Designs KPI dashboards, selects meaningful metrics, and applies visualization best practices for real-time monitoring.",
-   "summary": "Use this skill to define the dashboard before anyone builds it: what decisions it supports, which metrics belong, and how the view should be structured.",
+   "desc": "Designs KPI dashboards, selects meaningful metrics, and applies visualization best practices for real-time monitoring; builds a static, self-contained HTML dashboard…",
+   "summary": "Use this skill to define the dashboard before anyone builds it: what decisions it supports, which metrics belong, and how the view should be structured. The `build-html` route then builds it from the user's data as one static HTML file.",
    "difficulty": "beginner",
    "inputType": "conversation",
    "outputType": "document",
@@ -8884,12 +9114,21 @@
    "inputs": [
     "kpi_registry — Canonical KPI ids and thresholds. Bind to existing ids rather than defining parallel metrics that drift from the weekly KPI loop.",
     "request — What to produce",
-    "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set"
+    "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
+    "data — CSV, xlsx, public Google Sheet, pasted table, or a folder of same-shaped files with a stated join rule.",
+    "brief — Dashboard brief from the default route; when absent, write a short inline brief first.",
+    "kpi_registry — Registry ids and thresholds for the headline numbers and status colours."
    ],
    "outputs": [
+    "dashboard-html (html)",
+    "dashboard-html-company (html)",
+    "dashboard-screenshots (png)",
     "kpi-dashboard-design (markdown)",
     "kpi-dashboard-design-company (markdown)",
+    "prefer a permanent directory)",
+    "{client.knowledge-base.product}/dashboard-{slug}-{YYYY-MM-DD}.html",
     "{client.knowledge-base.product}/kpi-dashboard-design-{YYYY-MM-DD}.md",
+    "{company.knowledge-base.product}/dashboard-{slug}-{YYYY-MM-DD}.html",
     "{company.knowledge-base.product}/kpi-dashboard-design-{YYYY-MM-DD}.md"
    ],
    "prompts": [
@@ -9350,7 +9589,9 @@
    ],
    "prompts": [
     "Prioritize these features using RICE scoring",
-    "Generate a PRD template for our new feature",
+    "Write a PRD for SSO support for enterprise customers",
+    "Review this PRD and tell me what's missing",
+    "Give me the full standard PRD for our new feature",
     "Analyze these customer interview transcripts for patterns",
     "Build a product roadmap from our discovery findings"
    ]
@@ -9950,7 +10191,7 @@
    "requires": "[none]",
    "roles": "[]",
    "inputs": [
-    "conversation — The conversation to fact-check (current thread or pasted transcript)",
+    "conversation — The conversation to fact-check (current thread, pasted transcript, or a pasted research report)",
     "mode — Light validates highest-stakes claims only (at most 10 searches); Full validates all searchable claims (at most 25 searches) (light | full)"
    ],
    "outputs": [
@@ -10427,7 +10668,7 @@
    "catLabel": "utilities",
    "area": "foundational",
    "desc": "Layer-1 environment readiness check for a new BOB install — the one-command 'what do I need' front door.",
-   "summary": "The environment counterpart to `vault-preflight`. Where `vault-preflight` checks whether the business context exists (Layer 2), `bob-doctor` checks whether the machine is ready to run BOB at all (Layer 1) — OS, Obsidian, plugins, AI CLI, auth, paths, `uv`.",
+   "summary": "xe # bob-doctor — Layer-1 Environment Preflight",
    "difficulty": "beginner",
    "inputType": "conversation",
    "outputType": "document",
@@ -10453,7 +10694,7 @@
    "catLabel": "utilities",
    "area": "foundational",
    "desc": "Installs a freshly unpacked BOB vault — runs the interactive TUI installer that sets up system dependencies (Node, Python/uv, jq, git), AI CLIs through acp-doctor,…",
-   "summary": "<!-- context-pack: ok-file — release: bob-install runs from the unpacked release vault before any skill is installed, so its commands run from the vault root (owner decision 2026-09-23) -->",
+   "summary": "e xelor no # bob-install — First-Run Vault Installer",
    "difficulty": "beginner",
    "inputType": "conversation",
    "outputType": "document",
@@ -10472,6 +10713,9 @@
     "command — refresh (default) writes this host's entry; show prints it (with --tool NAME for one tool); hosts lists every machine in the file. (refresh | show | hosts)",
     "dry_run — refresh only: print this host's entry and write nothing.",
     "skills_lib — The skills pack: a local .zip, an https://….zip#sha256=<64 hex digits> URL, or a vault folder that serves itself. --lib on register_skills_mcp.py, --skills-lib on setup_core.py.",
+    "vault_path — Vault root. Auto-detected from the cwd when omitted.",
+    "tools — Comma-separated subset of claude,codex,agy (--tools). Default: every one on PATH.",
+    "yes — Write without asking (--yes); the diff is still printed. --dry-run writes nothing.",
     "headless — Run without prompts (--headless); installs every missing plugin in the manifest."
    ],
    "outputs": [
@@ -10479,16 +10723,22 @@
     "API keys written by the interactive phase 7. Never printed.",
     "API keys written when phase 7 is the selected phase. Never printed.",
     "Bases whose folder filters now name the active pack's folders.",
+    "Claude Code PostToolUse hooks (frontmatter, AGENTS.md refresh). Per machine; an existing file is backed up to ~/backups/{vault-name}/agent-hooks-{date}/ first.",
     "Claude Code's user MCP config, written by `claude mcp add --scope user`; Codex and Antigravity get theirs through their own `mcp add`. Never edited directly.",
     "JSON-compatible YAML, one entry per hostname under `hosts`. Only this host's `detected` section is rewritten; other hosts and this host's `config`, `install_policy` and `wanted` are kept. A copy of the previous file goes to ~/backups/{vault-name}/system-yaml-{date}/ first.",
     "The layout the vault was last rendered for, so a later pack change can be recognised. Written only with --write.",
     "The note templates with every {key} expanded to this workspace's folders.",
     "Written by setup.sh (Linux/WSL/macOS) to /tmp. On native Windows setup.ps1 tees the same transcript to %TEMP%\\thirdbrain-setup-{YYYYMMDD-HHMMSS}.log.",
+    "antigravity-hook-config (json)",
     "app.json, daily-notes.json, templates.json and the mapped plugin data.json files, merged in place — every other key and its order preserved.",
+    "codex-hook-config (json)",
     "updated-plugin-config (json)",
     "{vault.agents}/system.yaml",
     "{vault.bases}/",
     "{vault.templates}/",
+    "{vault}/.agents/hooks.json",
+    "{vault}/.claude/settings.json",
+    "{vault}/.codex/hooks.json",
     "{vault}/.env",
     "{vault}/.obsidian/",
     "{vault}/.obsidian/bob-rendered-paths.json",
@@ -10543,17 +10793,24 @@
     "templates_path — Path to existing templates folder; auto-detected if omitted",
     "vault_path — Absolute path to the user's vault root (minimum route must have run first)",
     "base_route — Which route's proposal to render (minimum | extend); defaults to minimum",
-    "entities — Explicit list of entity slugs to generate Bases for; if omitted, generates for all YAML source files lacking a matching .base"
+    "entities — Explicit list of entity slugs to generate Bases for; if omitted, generates for all YAML source files lacking a matching .base",
+    "vault_path — Absolute path to the workspace root"
    ],
    "outputs": [
     "added-yaml-source (yaml)",
     "bases (base)",
+    "clients-context (markdown)",
+    "company-context (markdown)",
     "diagnostic-report (markdown)",
+    "me-context (markdown)",
     "merge-report (markdown)",
     "prefer a permanent directory)",
     "proposal-report (markdown)",
     "updated-yaml-source (yaml)",
     "yaml-source (yaml)",
+    "{company.clients}/CONTEXT.md",
+    "{company.root}/CONTEXT.md",
+    "{me.root}/CONTEXT.md",
     "{vault.bases}/",
     "{vault.schemas.source}/"
    ],
@@ -10733,7 +10990,7 @@
     "table-image (png)",
     "the named output PNG (e.g. under {company.marketing}/...)",
     "the named output PNG, or {out-stem}-N.png per page",
-    "{out-stem}.pdf when --pdf is passed"
+    "{out-stem}.pdf when --pdf or --pdf-raster is passed"
    ],
    "prompts": [
     "Render the branded PDF",
@@ -10801,7 +11058,8 @@
     "Log this meeting with Sarah about the Q2 roadmap",
     "Create a task: Follow up with Acme Corp by Friday",
     "Save this idea about improving our onboarding flow",
-    "Classify this input and create the right Obsidian notes"
+    "Classify this input and create the right Obsidian notes",
+    "Brain dump: call Nidhi about the pilot, should I hire a VA, idea for a workshop format"
    ]
   },
   {
@@ -10839,7 +11097,6 @@
     "The note templates rendered for this pack, including a client template named with its client.* keys",
     "The pack copied to the new workspace's root, so every skill discovers it there",
     "The workspace map; every path and summary edited from the scaffold",
-    "context.yaml",
     "resolved-path (text)",
     "scaffold-report (text)",
     "stdout",
@@ -10847,7 +11104,8 @@
     "{skills.root}/context-{pack-id}/",
     "{skills.root}/context-{pack-id}/context.yaml",
     "{skills.root}/{skill-name}/",
-    "{vault.templates}/"
+    "{vault.templates}/",
+    "{workspace-root}/context.yaml"
    ],
    "prompts": [
     "Create a context pack for the prototype vault — clients live under Customers/ there",
@@ -10991,7 +11249,11 @@
    "requires": "[config]",
    "roles": "[CEO / Founder]",
    "inputs": [
-    "current_state — Weekly Priorities and Decisions Needed. Warn the owner when last_weekly_review is older than 10 days."
+    "current_state — Weekly Priorities and Decisions Needed. Warn the owner when last_weekly_review is older than 10 days.",
+    "briefing_config — The `daily_briefing:` yaml fence (not the packet's first fence). Missing or setup_complete not true triggers the one-time setup questions on an attended run.",
+    "morning_packet — Today's tasknotes morning packet; source of the decisions-awaiting and system-health line.",
+    "daily_focus — Today's personal-backlog daily-focus report; source of the focus line. Tasks are queried directly only when it is missing.",
+    "research_cycle — Latest continuous-research cycle briefing per configured domain; source of the News items."
    ],
    "outputs": [
     "briefing (markdown)",
@@ -11219,18 +11481,28 @@
    "roles": "[]",
    "inputs": [
     "subject — What to explain, e.g. 'how our lead routing works'",
-    "source-material — Code, logs, docs or a process note that describe what the system really does"
+    "source-material — Code, logs, docs or a process note that describe what the system really does",
+    "subject — The concept to explain, e.g. 'why early loan payments are mostly interest'",
+    "audience — Who reads it; default a smart reader who is not an expert in the subject",
+    "depth — one-screen: hook, one mechanism, takeaway; full (default): 3-7 mechanism sections, a three-to-five-minute scroll (one-screen | full)",
+    "source-material — Documents, data or notes the figures on the page are traced to",
+    "design — Brand DESIGN.md for company or client work (colours, font families); omitted for personal pages, which stay plain"
    ],
    "outputs": [
+    "Editable page source with explainer.css, explainer.js, theme.css and fonts/ beside it; {slug} is a short kebab-case name for the subject.",
     "Editable strip source; {slug} is a short kebab-case name for the subject.",
     "Optional (--svg): self-contained vector strip with logos and font embedded, for slides, print and carousels.",
     "Rendered strip at 2x, width = scenes x 340 + 60 px.",
+    "The page screen by screen; {viewport} is mobile (390x844 at 2x) or desktop (1280x800), {NN} the screen number. For render-and-inspect.",
+    "The same page as one file with CSS, JS, fonts and images inlined, for handing over offline.",
     "prefer a permanent directory)"
    ],
    "prompts": [
     "/doodle how our lead routing works",
     "Make a napkin sketch of the client onboarding flow for the proposal",
-    "Explain the invoice-collection automation to the client in one picture"
+    "Explain the invoice-collection automation to the client in one picture",
+    "Build an interactive explainer page on why early loan payments are mostly interest",
+    "Make an explainer page for our customer-success team on how a language model picks the next word"
    ]
   },
   {
@@ -11314,7 +11586,7 @@
    "inputs": [
     "request — The content or structure to visualize, plus any size, readability, or styling constraint the layout has to respect.",
     "diagram-type — Visual form to build. Left unset, the route picks the form that fits the relationships in the content; naming one overrides that choice and is what to do when the reader expects a specific shape. (flowchart | mind-map | hierarchy | relationship | comparison | timeline | matrix | freeform)",
-    "output-path — Destination the caller names for the generated note. Left unset, the file is written under the default output location using the `[topic].[diagram-type].md` naming rule.",
+    "output-path — Destination the caller names for the generated note. Left unset, the file is written under the default output location using the `{topic}.{diagram-type}.md` naming rule.",
     "diagram-file — Excalidraw note to modify, read back so existing element ids, group ids and container bindings survive the edit instead of being regenerated.",
     "request — The structural change to make, stated as elements and relationships rather than coordinates, so the route can re-derive the layout.",
     "diagram-file — Excalidraw note to check against the Validation Checklist and the `check_overlap.py` bounding-box preflight.",
@@ -11618,7 +11890,7 @@
     "writing-samples — Optional 3-5 writing samples for voice extraction"
    ],
    "outputs": [
-    "Each rewrite change as one sidecar item (line range, original, suggested, reason, priority, status) the user accepts or rejects per item; schema in content-scorer's references/suggestions-sidecar.md.",
+    "Each rewrite change as one sidecar item (line range, original, suggested, reason, priority, status) the user accepts or rejects per item; schema in `{skills.root}/.",
     "Each rewrite change as one sidecar item the user accepts or rejects per item, as for quick-humanize.",
     "Persistent voice DNA loaded silently by later runs. The `scope` input picks which of the two paths it lands in.",
     "Rewritten text with the change log and the before/after comparison, plus any `[YOUR: ...]` placeholders the user must fill.",
@@ -11817,6 +12089,46 @@
    ]
   },
   {
+   "skillName": "linkedin-mcp",
+   "catLabel": "integrations",
+   "area": "foundational",
+   "desc": "Reads LinkedIn through the owner's own signed-in browser via the vault-only LinkedIn MCP server (mcp-server-linkedin): researches people and companies, captures LinkedIn…",
+   "summary": "Operates the `linkedin` MCP server, which drives a real Chromium browser signed in as the owner and reads the LinkedIn page the owner would see. It is registered for this vault only. Reading is routine; sending is a publishing action under the vault's stop-and-ask rule, and LinkedIn's User Agreement prohibits automated access, so every route is built around low volume, single lookups and one approval per action.",
+   "difficulty": "advanced",
+   "inputType": "conversation",
+   "outputType": "document",
+   "requires": "[mcp]",
+   "roles": "[CEO / Founder, Head of Sales, HR Manager]",
+   "inputs": [
+    "target — LinkedIn profile or company URL, username, slug, or a name to search",
+    "purpose — Why the lookup is needed (meeting, lead, vacancy); decides which sections are read",
+    "search — Role keywords plus optional location, recency, level and work type",
+    "focus — What to look for: unanswered recruiters, a person, a topic; general triage when omitted",
+    "action — Recipient profile URL plus the exact message or connection note, already drafted",
+    "suppression-list — Global objection list; checked before every send. Absent file means an empty list.",
+    "eu_outreach_compliance — The four first-contact elements every message must carry."
+   ],
+   "outputs": [
+    "action-log (markdown)",
+    "contact_linkedin_* fields set on the existing type: lead note; {lead-note} is its file name",
+    "inbox-triage (markdown)",
+    "linkedin_* fields set on an existing Person note; {person} is that note's file name",
+    "prefer a permanent directory)",
+    "research-brief (markdown)",
+    "stdout",
+    "type: vacancy, side: applicant, application_status: captured",
+    "{lead.root}/{lead-note}.md",
+    "{me.job-search.inbox}/{job_title} - {company}.md",
+    "{me.people}/{person}.md"
+   ],
+   "prompts": [
+    "Brief me on linkedin.com/in/example-marieke before Thursday's meeting.",
+    "Find remote data engineering contracts in Belgium posted this week and file the ones I pick.",
+    "Which LinkedIn messages from recruiters are unanswered? Draft replies.",
+    "Send this connection request to the Head of Finance at Example Logistics."
+   ]
+  },
+  {
    "skillName": "macrodeck-config",
    "catLabel": "utilities",
    "area": "foundational",
@@ -11936,6 +12248,8 @@
     "duration — Meeting duration (e.g., 30 min, 1 hour)",
     "target — Meeting target (person, company, or topic)",
     "date_context — Meeting date and any context",
+    "profile — Company or client profile — makes goals and questions specific to the owner's business.",
+    "offerings — Offerings — what the owner sells, for goals and likely questions.",
     "source (Full Meeting-to-Execution Pipeline) — Transcript text, meeting notes, or recording-derived text",
     "context — loaded from your vault context",
     "client_kpi — Include client KPI update (only when context is client) (yes | no)",
@@ -12768,7 +13082,7 @@
    "roles": "[CEO / Founder, Head of Marketing, Head of Sales, Content Manager]",
    "inputs": [
     "brand — Brand config JSON (colors, fonts, scale, logo, mascot, footer). See references/brand-config-schema.md.",
-    "content — Slide-content JSON ({title, slides:[{class, foot, html}]}). Author html with the component classes in references/deck-structure.md.",
+    "content — Slide-content JSON ({title, slides:[{class, foot, html, notes?}]}). Author html with the component classes in references/deck-structure.md; optional plain-text speaker notes per slide.",
     "out — Output HTML path for the assembled deck (PDF rendered alongside via the render route).",
     "source (Re-brand an existing deck) — Source deck HTML to re-brand.",
     "from — Brand config the source deck currently uses (reskin maps by value, not variable name).",
@@ -13458,11 +13772,11 @@
    "roles": "[]",
    "inputs": [
     "product_configs — Product folders scanned to assemble a release.",
-    "bob_user_manual — Assembled print source packaged into the release; generated by branded-pdf.",
+    "bob_user_manual — Assembled print source packaged into the partner release only (generic lines ship docs pointers since 2026-10-17); generated by branded-pdf.",
     "partner_product — Partner product note read when building the partner release.",
     "playbooks — Playbook content copied into the release.",
     "upgrade_playbooks — Upgrade playbooks, held back by pricing-tier.",
-    "wiki_manual — User-manual chapters — the only place manual content is edited; copied verbatim.",
+    "wiki_manual — User-manual chapters — the only place manual content is edited; copied verbatim into the partner release, shipped as docs-site pointers by the generic lines (docs-online fence).",
     "release_config — RELEASE-CONFIG.md defining what the package includes",
     "release_config — Release config to build from",
     "output_path — Destination; defaults to the config's own output block",
@@ -18839,7 +19153,7 @@
    "privacy": "unlisted",
    "title": "Monday CEO Workflow",
    "thumbnail": "",
-   "subtitle": "KPIs reviewed with 13-week trends, open decisions analyzed and journaled, weekly priorities set, decision-log files written, KPI history updated",
+   "subtitle": "KPIs reviewed with 13-week trends, open decisions analyzed, due decision reviews surfaced, weekly priorities set, decision notes written, KPI history updated",
    "inputs": [
     {
      "label": "Week start date (Monday's date)",
@@ -18857,11 +19171,11 @@
    "outputs": [],
    "steps": [
     {
-     "label": "SCAN — Read `ceo_review_config.md`, all KPI files, `kpi_history.json` (last 13 weeks), `decision_journal.md` (last entry), and query TaskNotes tagged `#queue/decision` and `#queue/ceo-review`. Compute KPI domain statuses (green/amber/red).",
+     "label": "SCAN — Read `ceo_review_config.md`, all KPI files, `kpi_history.json` (last 13 weeks), due decision reviews (`decisions_due.py`), and query TaskNotes tagged `#queue/decision` and `#queue/ceo-review`. Compute KPI domain statuses (green/amber/red).",
      "actor": "agent"
     },
     {
-     "label": "PRESENT & COLLECT — Show Monday briefing: KPI dashboard with week-on-week delta, open decision queue (N items), triggered review dates from decision journal, CEO-flagged items. Ask: \"Any decisions to add or remove?\" Accept additions before executing.",
+     "label": "PRESENT & COLLECT — Show Monday briefing: KPI dashboard with week-on-week delta, open decision queue (N items), decision reviews due from `decisions_due.py`, CEO-flagged items. Ask: \"Any decisions to add or remove?\" Accept additions before executing.",
      "actor": "human"
     },
     {
@@ -18873,7 +19187,7 @@
      "actor": "agent"
     },
     {
-     "label": "JOURNAL + PRIORITIES — Append entry to `decision_journal.md`: decisions made, deferred, rationale, review dates. Create individual `decision-log` notes in `20-COMPANY/02-DECISIONS/` for each analyzed decision. Extract top 3 weekly priorities from review + decision outputs.",
+     "label": "RECORD + PRIORITIES — Create individual `type: decision` notes in `20-COMPANY/02-DECISIONS/` for each analyzed decision, each with a review date. Extract top 3 weekly priorities from review + decision outputs.",
      "actor": "agent"
     },
     {
