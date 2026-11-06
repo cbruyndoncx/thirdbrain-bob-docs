@@ -128,7 +128,9 @@ def main():
     copied = set()
 
     def norm(s):
-        return re.sub(r"[^a-z0-9]+", "-", Path(s).name.lower().removesuffix(".md")).strip("-")
+        path = Path(s)
+        stem = path.parent.name if path.name.lower() == "skill.md" else path.name.removesuffix(".md")
+        return re.sub(r"[^a-z0-9]+", "-", stem.lower()).strip("-")
 
     def relurl_docs(frm, docs_rel):
         return os.path.relpath(docs_rel, os.path.dirname(out_path(frm)) or ".").replace("\\", "/")

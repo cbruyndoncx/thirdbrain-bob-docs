@@ -27,7 +27,3 @@ Pages: 86  Images copied: 72
 - 01-BOB/user-manual/22-cheat-sheet.md
 - 01-BOB/user-manual/index.md
 
-## unresolved-link (2)
-- 02-Setup/skills_over_mcp.md: [[bob-doctor/SKILL.md]]
-- 02-Setup/skills_over_mcp.md: [[bob-install/SKILL.md]]
-
