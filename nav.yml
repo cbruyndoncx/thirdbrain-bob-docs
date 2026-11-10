@@ -103,6 +103,9 @@ nav:
 
   - Library: generated
 
+  # Generated in the vault each release (SKILL-PACKS.md); one anchor per pack (#core, #sales, ...).
+  - Skill packs: skill-packs.md
+
   - Help:
       - Troubleshooting:
           - Overview: 05-Troubleshoot/MOC-troubleshoot.md
