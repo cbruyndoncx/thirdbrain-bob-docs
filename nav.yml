@@ -125,3 +125,4 @@ nav:
 hidden:
   - 01-BOB/Onboarding/MOC-bob_onboarding.md          # a map of content; the menu does its job
   - 02-Setup/SYMLINK-SETUP.md                        # the long link-type reference behind symlink_setup
+  - credits.md                                       # generated from THIRD-PARTY-LICENSES.md; linked from the footer, address /credits/

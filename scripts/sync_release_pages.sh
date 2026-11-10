@@ -3,14 +3,15 @@
 # then commit and push. CI rebuilds the site. Run after a release, next to
 # sync_catalogue.sh: the vault regenerates these files during the release (vault-release),
 # and this repository only copies them; scripts/build_release_pages.py converts them.
-#   SKILL-PACKS.md  -> /skill-packs/  (one anchor per pack: #core, #sales, ...)
+#   SKILL-PACKS.md          -> /skill-packs/  (one anchor per pack: #core, #sales, ...)
+#   THIRD-PARTY-LICENSES.md -> /credits/
 # Usage: scripts/sync_release_pages.sh [--no-push] [VAULT]
 set -euo pipefail
 cd "$(dirname "$0")/.."
 PUSH=1
 if [[ "${1:-}" == "--no-push" ]]; then PUSH=0; shift; fi
 VAULT="${1:-/mnt/c/Users/bruyn/Documents/brncx-skills}"
-FILES=(SKILL-PACKS.md)
+FILES=(SKILL-PACKS.md THIRD-PARTY-LICENSES.md)
 for f in "${FILES[@]}"; do
   [[ -f "$VAULT/$f" ]] || { echo "missing source: $VAULT/$f" >&2; exit 1; }
 done

@@ -4,14 +4,14 @@
 #   WIKI_SRC   raw Obsidian wiki (default: wiki/, filled by scripts/sync_wiki.sh)
 #   CATALOGUE  skills and workflows library (default: data/catalogue.json, filled by
 #              scripts/sync_catalogue.sh)
-# The release pages (skill packs) come from data/release/, filled by scripts/sync_release_pages.sh.
+# The release pages (skill packs, credits) come from data/release/, filled by scripts/sync_release_pages.sh.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 WIKI="${1:-wiki}"
 CATALOGUE="${2:-data/catalogue.json}"
 rm -rf docs build && mkdir -p docs build reports
 python3 scripts/build_library.py "$CATALOGUE" docs --linkmap build/linkmap.json
+python3 scripts/build_release_pages.py data/release docs --linkmap build/linkmap.json   # before the wiki: adds its pages to the link map
 python3 scripts/export_wiki.py "$WIKI" docs --linkmap build/linkmap.json
-python3 scripts/build_release_pages.py data/release docs --linkmap build/linkmap.json
 cp -r assets/. docs/
 cp -r pages/. docs/   # site-only pages (the landing page), over the export

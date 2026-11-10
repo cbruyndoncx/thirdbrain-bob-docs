@@ -7,12 +7,18 @@ SRC_DIR is data/release/, filled by scripts/sync_release_pages.sh with files the
 generates at release time. This script only copies and converts; the content is generated
 in the vault (vault-release), never edited here.
 
-  SKILL-PACKS.md  -> skill-packs.md  one section per pack, each with a stable anchor named
-                                     after the pack id without `pack-` (#core, #sales, #pmbok)
+  SKILL-PACKS.md          -> skill-packs.md  one section per pack, each with a stable anchor
+                                             named after the pack id without `pack-` (#core, #sales)
+  THIRD-PARTY-LICENSES.md -> credits.md      the attributions for third-party-derived skills
 
 Conversions: front matter and HTML comments (the vault's GENERATED markers) are dropped,
 wikilinks become plain text or site links, and a skill name that starts a list item or a
-table row links to its Library page when the Library has one.
+table row links to its Library page when the Library has one. Vault maintenance notes (a
+blockquote starting "Generated from", which tells the vault owner how to regenerate) are dropped.
+
+With --linkmap, each page is also added to the link map under its vault name (`skill-packs`,
+`third-party-licenses`), so a Wiki page's [[SKILL-PACKS]] becomes a link to it. Run this before
+export_wiki.py.
 """
 import argparse, json, re, sys
 from pathlib import Path
@@ -20,7 +26,9 @@ from pathlib import Path
 PAGES = [
     # src file in SRC_DIR, page in DOCS_DIR, page title, add pack anchors
     ("SKILL-PACKS.md", "skill-packs.md", "Skill packs", True),
+    ("THIRD-PARTY-LICENSES.md", "credits.md", "Credits", False),
 ]
+MAINTENANCE_RE = re.compile(r"^> Generated from .*(?:\n>.*)*\n?", re.M)
 
 COMMENT_RE = re.compile(r"<!--.*?-->\n?", re.S)
 WIKI_RE = re.compile(r"!?\[\[([^\]]+?)\]\]")
@@ -45,7 +53,7 @@ def split_fm(text):
 
 
 def convert(text, linkmap, pack_anchors, name):
-    text = COMMENT_RE.sub("", split_fm(text))
+    text = MAINTENANCE_RE.sub("", COMMENT_RE.sub("", split_fm(text)))
     lines = text.split("\n")
     out, in_fence, anchors = [], None, []
 
@@ -117,6 +125,9 @@ def main():
         (docs / dest_name).write_text(f"---\ntitle: {title}\n---\n\n{body}", encoding="utf-8")
         extra = f" anchors={','.join(anchors)}" if anchors else ""
         print(f"{dest_name}: from {src_name}{extra}")
+        linkmap.setdefault(norm(Path(src_name).stem), dest_name)
+    if a.linkmap:
+        Path(a.linkmap).write_text(json.dumps(linkmap, indent=1))
 
 
 if __name__ == "__main__":
