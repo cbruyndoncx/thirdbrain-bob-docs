@@ -4,7 +4,7 @@ title: "BOB User Manual — 14. The Skills System"
 description: "How skills are structured, how BOB routes requests to them, what skill metadata means for setup, and how quality is managed"
 status: draft
 created: 2026-08-07
-modified: 2026-10-12
+modified: 2026-11-10
 tags: [bob, user-manual, wiki]
 ---
 
@@ -94,7 +94,7 @@ What this means in practice: if a skill produces output that surprises you, chec
 
 ## Where skills come from
 
-A full vault stores every shipped skill locally: the v2.8.0 release has over 380. A starter vault stores only the skills that set up and operate the vault: `context-pack`, `vault-validator`, `tasknotes`, `personal-backlog`, `obsidian-ops`, `bob-workspace-bootstrap`, `bob-workspace-compose`, `bob-install`, `bob-doctor`, `acp-doctor`, `obsidian-plugin-manager`, `vault-setup`, `vault-upgrade` and `vault-preflight`. They stay local because the agent hooks, the BOB Workspace plugin and the templates call them by path. Every other skill, and all playbooks and value chains, are served by the **skills MCP server**, or added from the free skill packs (`pack-core` holds over 200 skills, plus nine more packs, mostly one per department; each pack bundles the helper skills it depends on, so one pack works on its own).
+A full vault stores every shipped skill locally. A starter vault stores only the skills that set up and operate the vault: `context-pack`, `vault-validator`, `tasknotes`, `personal-backlog`, `obsidian-ops`, `bob-workspace-bootstrap`, `bob-workspace-compose`, `bob-install`, `bob-doctor`, `acp-doctor`, `obsidian-plugin-manager`, `vault-setup`, `vault-upgrade` and `vault-preflight`. They stay local because the agent hooks, the BOB Workspace plugin and the templates call them by path. Every other skill, and all playbooks and value chains, are served by the **skills MCP server**, or added from the free skill packs (the Core Pack of general skills, plus one pack per department; each pack bundles the helper skills it depends on, so one pack works on its own). What each pack holds, kept current with every release, is on the [[SKILL-PACKS|Skill Packs]] page.
 
 ### Local first, then the server
 
@@ -116,13 +116,13 @@ A skill never names your folders. It asks for a key such as `{company.clients}` 
 
 ## The 2026-10-08 skill audit
 
-Release v2.8.0 carries the results of a full audit of the vault's skills: over 400 skills were audited, and all of them pass the QMS gate when it is run in check mode (the run promotes nothing).
+On 2026-10-08 every skill in the vault was audited, and all of them pass the QMS gate when it is run in check mode (the run promotes nothing).
 
 The gate is the check a skill must pass before it is treated as release-ready. It combines a passing specification review and quality scorecard with structure checks: required sections in the right order, referenced files present, and a current model card for the skills that need one. Passing means the skill's specification meets the standard; it does not guarantee any single output, so keep reading results as drafts (see [[19-data-safety|chapter 19]]). You can inspect the results: scorecards in `{company.qms.scores}`, spec reviews in `{company.qms.spec-reviews}`, and the audit's regeneration report under `{company.qms.audits}` (folder `skill-audit-2026-10-08`). In user terms the audit changed:
 
 - Folder locations in skills are written as context keys, so a skill follows your workspace layout.
 - Each skill's Output Locations block was regenerated, so it lists where the skill saves its results.
-- The context-pack default key set now has over 350 keys; none was removed.
+- The context-pack default key set gained keys; none was removed.
 
 ## How new skills are created and certified
 

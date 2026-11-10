@@ -2,7 +2,7 @@
 
 ← [[Prompt Showcase]]
 
-The exhaustive companion to the curated showcase: **3520 example prompts (3462 unique)** auto-extracted from 397 skills' `description` and "When to use" sections. Type any of these in your own words.
+The exhaustive companion to the curated showcase: **3542 example prompts (3483 unique)** auto-extracted from 399 skills' `description` and "When to use" sections. Type any of these in your own words.
 
 > [!info] Curated vs complete
 > For a guided, by-area starting point see [[Prompt Showcase]]. This page is the full firehose — every advertised trigger across the whole skill library.
@@ -676,12 +676,13 @@ The exhaustive companion to the curated showcase: **3520 example prompts (3462 u
 - "make an emoji cheatsheet PDF"
 - "the emoji aren't showing in the PDF"
 - "render this doc on the Mac"
-- "make a flyer PNG"
+- "make a flyer or infographic"
 - "render the carousel slides"
 - "turn this table into an image for Skool"
 - "Build/rebuild the lead-magnet PDF"
 - "the emoji aren't rendering / show as blank boxes"
 - "Make a flyer / social card / printable handout"
+- "Make an infographic"
 - "Skool won't render my Markdown table"
 
 **brochure-generator**
@@ -1459,6 +1460,22 @@ The exhaustive companion to the curated showcase: **3520 example prompts (3462 u
 - "I need more ad variations"
 - "it's not X, it's Y"
 
+**ads-warehouse**
+- "which ad is working"
+- "pull last month's ad data"
+- "import this Ads Manager export"
+- "cost per lead by creative"
+- "which ads bring the best customers"
+- "When a client hands over an Ads Manager or Google Ads export instead of API access"
+
+**google-ads**
+- "upload these responsive search ads"
+- "launch the display ads"
+- "pause that campaign"
+- "raise the budget to 30 a day"
+- "The static-ads playbook reaches its upload step for Google Display"
+- "The owner asks to launch, pause or re-budget a campaign this vault created"
+
 **google-ads-scripts**
 - "Google Ads script"
 - "AdsApp API"
@@ -1701,6 +1718,8 @@ The exhaustive companion to the curated showcase: **3520 example prompts (3462 u
 - "content upgrade"
 - "make something to capture emails"
 - "promote this lead magnet"
+- "scorecard"
+- "quiz for my list"
 - "turn this topic into a download"
 
 **local-outreach**
@@ -1787,6 +1806,8 @@ The exhaustive companion to the curated showcase: **3520 example prompts (3462 u
 - "User wants paid social ad management → use `paid-ads`"
 
 **social-notes**
+- "find where I talked about"
+- "search my recordings"
 - "create notes from video"
 - "summarize this video"
 - "transcribe this"
@@ -4058,7 +4079,6 @@ The exhaustive companion to the curated showcase: **3520 example prompts (3462 u
 - "Plan My Next 12 Months"
 
 **bob-doctor**
-- "what do I need"
 - "check my setup"
 - "is my environment ready"
 - "why won't BOB run"
@@ -4360,12 +4380,18 @@ The exhaustive companion to the curated showcase: **3520 example prompts (3462 u
 - "trim video"
 - "extract audio"
 - "convert video"
+- "edit this recording by transcript"
+- "cut the retakes"
+- "remove the ums"
+- "put B-roll over this cut"
 - "Video file too large to upload"
 - "Optimize video for YouTube/social media"
 - "Reduce storage space"
 - "Extract audio from video"
 - "Trim video to specific segment"
 - "Scale down resolution"
+- "Remove retakes, fillers and long pauses from a spoken recording by editing its transcript"
+- "Put graphics or B-roll over a finished cut with the narration kept"
 
 **remotion-reference-pack**
 - "implement a Remotion composition"

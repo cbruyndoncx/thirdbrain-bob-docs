@@ -21,9 +21,9 @@ Reach for a **skill** for one task; reach for a **playbook** for a whole outcome
 
 | Playbook | When you'd run it |
 |---|---|
-| [[procure-to-pay|Procure-to-Pay cycle]] | You want the full buy-to-pay process run cleanly |
+| [[Procure-to-Pay cycle]] | You want the full buy-to-pay process run cleanly |
 | [[New supplier onboarding]] | You're bringing on a new supplier |
-| [[supplier-review-renewal|Supplier review and contract renewal]] | A supplier contract is up for review or renewal |
+| [[Supplier review and contract renewal]] | A supplier contract is up for review or renewal |
 
 → Browse every workflow in [[PLAYBOOKS]].
 

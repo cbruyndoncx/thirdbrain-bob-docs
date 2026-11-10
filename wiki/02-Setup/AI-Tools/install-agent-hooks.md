@@ -118,9 +118,19 @@ Create or merge `<vault>/.claude/settings.json`:
 }
 ```
 
-`install_agent_hooks.py` writes the same two entries with literal paths instead of
-`$CLAUDE_PROJECT_DIR`. Restart Claude Code in the vault. Run `/hooks` and check that both
-`PostToolUse` entries are listed.
+Bash edits are validated too: add a third `PostToolUse` entry with `"matcher": "Bash"` and the
+same `agent_hook.py` command. The adapter takes the `.md` paths named in the command and checks
+those modified in the last 120 seconds. Paths built at runtime (globs, variables) are not seen.
+
+The shared-browser lock is a `PreToolUse` entry with `"matcher": "mcp__playwright__.*"` and the
+command `uv run --quiet "<skills>/playwright-cli/scripts/browser_lock.py" hook`. It blocks a
+second session from driving the Playwright browser while another session holds the 15-minute
+lease.
+
+`install_agent_hooks.py` writes all four entries, the browser lock only where playwright-cli is
+installed, and `bob-doctor` checks them. It uses literal paths instead of
+`$CLAUDE_PROJECT_DIR`. Restart Claude Code in the vault. Run `/hooks` and check that the
+new entries are listed.
 
 ## Codex
 

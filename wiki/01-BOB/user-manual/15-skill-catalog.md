@@ -4,16 +4,16 @@ title: "BOB User Manual — 15. The Skill Catalog"
 description: "Representative skills grouped by business area, with what each is for and when to reach for it"
 status: draft
 created: 2026-08-07
-modified: 2026-10-12
+modified: 2026-11-10
 tags: [bob, user-manual, wiki]
 ---
 
 # 15. The Skill Catalog
 
-A **skill** is a packaged workflow for one business job — with defined inputs, steps, quality checks, and a defined output. The full BOB release (v2.8.0) ships over 380 skills; a starter vault stores 14 and receives the rest from the skills server or the free skill packs (see [[14-skills-system|chapter 14]]). You don't memorise them: describe what you want in plain words and BOB routes to the right one. This section shows the shape of the library through representative examples per area.
+A **skill** is a packaged workflow for one business job — with defined inputs, steps, quality checks, and a defined output. A full vault stores every skill BOB ships; a starter vault stores only the skills that operate the vault and receives the rest from the skills server or the free skill packs (see [[14-skills-system|chapter 14]]). What each pack holds, kept current with every release, is on the [[SKILL-PACKS|Skill Packs]] page. You don't memorise them: describe what you want in plain words and BOB routes to the right one. This section shows the shape of the library through representative examples per area.
 
 > **How invocation works**
-> A skill name like `/proposal-writer` is just the fastest path. Describing the job in plain English works equally well — BOB figures out the routing. The complete, always-current index is [[SKILLS]] at the vault root. In a starter vault that index lists only the local skills; ask BOB "search for a skill that does ..." and it queries the skills server. A skill that is not stored locally is read from the server, so it can be used the same way. The skills were audited against the QMS gate for v2.8.0; what that means and where to inspect it is in [[14-skills-system|chapter 14]].
+> A skill name like `/proposal-writer` is just the fastest path. Describing the job in plain English works equally well — BOB figures out the routing. The complete, always-current index is [[SKILLS]] at the vault root. In a starter vault that index lists only the local skills; ask BOB "search for a skill that does ..." and it queries the skills server. A skill that is not stored locally is read from the server, so it can be used the same way. Skills are checked against the QMS gate before they ship; what that means and where to inspect it is in [[14-skills-system|chapter 14]].
 
 ## Sales & Growth
 

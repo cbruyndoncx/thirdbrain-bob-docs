@@ -27,3 +27,8 @@ Pages: 86  Images copied: 72
 - 01-BOB/user-manual/22-cheat-sheet.md
 - 01-BOB/user-manual/index.md
 
+## unresolved-link (3)
+- 06-Prompt-Showcase/Buy Smart.md: [[Procure-to-Pay cycle]]
+- 06-Prompt-Showcase/Buy Smart.md: [[Supplier review and contract renewal]]
+- 06-Prompt-Showcase/Create & Publish Content.md: [[Publish YouTube content piece]]
+
