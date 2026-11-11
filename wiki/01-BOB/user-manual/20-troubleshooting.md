@@ -96,13 +96,13 @@ Yes — an operational-by-day-30 guarantee. "Operational" is a checkable bar: BO
 **"Where does my data live, and what leaves my machine?"**
 On your own machine, as plain Markdown files. Nothing is locked in our cloud, and you can open, edit, or move your data at any time. When you run a skill, the vault context it needs is sent to your AI provider as part of the prompt. The vault connects to other services only when you run a skill that does so, such as publishing to WordPress or LinkedIn. See [[19-data-safety|chapter 19]].
 
-### Skills, packs and editions
+### Skills and packs
 
 **"What is the difference between the Starter Vault and the full vault?"**
 The Starter Vault stores only the skills that operate the vault. Every other skill, playbook and value chain is served on demand by the skills MCP server, or added offline from the free skill packs. The full vault stores every skill, playbook and value chain in your vault, where you can fork and customise them. See [[14-skills-system|chapter 14, Where skills come from]].
 
-**"What's the difference between broad and specialist packs?"**
-Broad packs are general-purpose bundles that make you productive across a whole area of the business. Specialist packs are narrower and deeper, with tooling that usually takes more technical skill to integrate. All packs are free. What each pack holds is on the [[SKILL-PACKS|Skill Packs]] page.
+**"Are some packs paid, or 'pro'?"**
+No. Every pack is free, and packs have no free or pro editions: there is one pack per area of the business, plus a core pack of general skills. Some packs need more setup than others, such as connecting WordPress or your accounting data. What each pack holds is on the [[SKILL-PACKS|Skill Packs]] page.
 
 **"Do I need any packs to start?"**
 No. The Starter Vault is a complete system on its own. Add a pack when a specific need or client engagement calls for one.
