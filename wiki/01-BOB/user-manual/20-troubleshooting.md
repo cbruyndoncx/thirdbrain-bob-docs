@@ -64,8 +64,8 @@ These questions came from the ThirdBrain Tech community on Skool.
 
 ### Getting started
 
-**"Do I have to learn commands?"**
-No. You describe what you want in plain English; BOB picks the right skill or playbook. The [[Prompt Showcase]] gives copy-paste examples for every area of the business.
+**"Do I need to know how to code, or learn commands?"**
+No. You describe what you want in plain English; BOB picks the right skill or playbook. The vault is Markdown files that Obsidian renders, so no programming is involved. The [[Prompt Showcase]] gives copy-paste examples for every area of the business.
 
 **"Do I have to use Obsidian?"**
 No — but you'll want to. The skills, playbooks, and data model all run without Obsidian, and the AI works the same either way. What you lose without it is the human side: the vault's pre-configured plugins turn it into a workspace with dashboards, diagrams, PDFs, and reports. Without Obsidian you work with plain Markdown files in a folder. Everything still works; it's just much less pleasant day to day.
