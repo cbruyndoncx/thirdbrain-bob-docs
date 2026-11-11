@@ -7,7 +7,7 @@ title: Skill Packs
 
 **Skill Packs** are themed collections of skills: one **Core Pack** of general skills and one pack per department (marketing, business, enterprise, sales, media, operations, PMBOK, process, engineering). The full vault already contains every pack. The starter vault is the minimal workspace: it holds only the skills that operate the vault and reaches every other skill over the skills MCP server, or offline by unpacking a pack's ZIP into it.
 
-Each pack ZIP is self-contained: it carries the skills its members depend on, so one pack works on its own in a starter vault. A skill's **Free** or **Pro** label is its catalogue edition — Pro means specialised, harder to install, enterprise-grade — and both editions of a department ship in the same pack.
+Each pack ZIP is self-contained: it carries the skills its members depend on, so one pack works on its own in a starter vault. Every pack, the Core Pack included, is free, and each department's skills all ship in that department's one pack.
 
 **How to activate a pack:** Open **Settings > Skills Manager**, search or browse by category, and use **bulk enable** on the skills you want. Each pack below lists its skills for easy filtering.
 
@@ -53,47 +53,47 @@ The **Core Pack** (`pack-core`, 202 skills, `pricing-tier: starter`) holds the g
 ## Department Packs
 <!-- END GENERATED: PACKS -->
 
-Each department pack below is one self-contained ZIP: its Free and Pro skills together, plus the
-skills they depend on.
+Each department pack below is one self-contained ZIP: its own skills plus the skills they depend
+on.
 
 <!-- BEGIN GENERATED: PACK pack-business -->
 ### Business Pack
 
 Business operations, reporting and advisory skills, plus executive coaching and owner productivity
 
-`pack-business` — 31 skills: 27 Free (`pricing-tier: pack-business-free`), 4 Pro (`pricing-tier: pack-business-pro`)
+`pack-business` — 31 skills
 
-- `ai-budget-review` — Free
-- `ai-session-ledger` — Free
-- `ai-transformation` — Free
-- `ai-work-audit` — Free
-- `ask-boardroom` — Free
-- `ask-zeus` — Free
-- `bob-ai-audit` — Free
-- `business-baseline` — Free
-- `business-pulse` — Free
-- `business-reporting` — Free
-- `buyback-rate` — Pro
-- `catalog-csv-ingest` — Free
-- `catalog-reply` — Free
-- `client-health-tracker` — Free
-- `client-offboarding` — Free
-- `coaching-discovery` — Pro
-- `customer-pulse` — Free
-- `drafting-data-privacy-docs` — Free
-- `executive-advisory` — Pro
-- `idea-validator` — Free
-- `operating-dashboard` — Free
-- `order-to-pay` — Free
-- `owner-priority-system` — Pro
-- `process-kaizen` — Free
-- `purchase-order` — Free
-- `purchase-requisition` — Free
-- `roi-calculator` — Free
-- `supplier-feedback` — Free
-- `survey-feedback-pipeline` — Free
-- `testimonial-collector` — Free
-- `time-tracking-reporter` — Free
+- `ai-budget-review`
+- `ai-session-ledger`
+- `ai-transformation`
+- `ai-work-audit`
+- `ask-boardroom`
+- `ask-zeus`
+- `bob-ai-audit`
+- `business-baseline`
+- `business-pulse`
+- `business-reporting`
+- `buyback-rate`
+- `catalog-csv-ingest`
+- `catalog-reply`
+- `client-health-tracker`
+- `client-offboarding`
+- `coaching-discovery`
+- `customer-pulse`
+- `drafting-data-privacy-docs`
+- `executive-advisory`
+- `idea-validator`
+- `operating-dashboard`
+- `order-to-pay`
+- `owner-priority-system`
+- `process-kaizen`
+- `purchase-order`
+- `purchase-requisition`
+- `roi-calculator`
+- `supplier-feedback`
+- `survey-feedback-pipeline`
+- `testimonial-collector`
+- `time-tracking-reporter`
 
 Bundled runtime dependencies (13): `bob-workspace-compose`, `branded-pdf`, `coa-account`, `context-pack`, `fetch-google-sheet`, `journal-entry-poster`, `json-canvas`, `model-cost-benchmark`, `pdf-report`, `personal-backlog`, `tasknotes`, `user-feedback-system`, `vault-preflight`
 <!-- END GENERATED: PACK pack-business -->
@@ -110,14 +110,14 @@ Bundled runtime dependencies (13): `bob-workspace-compose`, `branded-pdf`, `coa-
 
 Engineering consultancy — FIDIC contract analysis, EOT claims, variation orders, delay analysis
 
-`pack-engineering` — 6 skills: 6 Pro (`pricing-tier: pack-engineering-pro`)
+`pack-engineering` — 6 skills
 
-- `boq-audit` — Pro
-- `contract-clause-analyzer` — Pro
-- `contractor-claims-response` — Pro
-- `delay-analysis-tool` — Pro
-- `eot-claims-preparer` — Pro
-- `variation-order-analyzer` — Pro
+- `boq-audit`
+- `contract-clause-analyzer`
+- `contractor-claims-response`
+- `delay-analysis-tool`
+- `eot-claims-preparer`
+- `variation-order-analyzer`
 
 Bundled runtime dependencies (3): `context-pack`, `personal-backlog`, `tasknotes`
 <!-- END GENERATED: PACK pack-engineering -->
@@ -132,45 +132,45 @@ Bundled runtime dependencies (3): `context-pack`, `personal-backlog`, `tasknotes
 
 HR, finance, compliance, accounts review and enterprise operations skills
 
-`pack-enterprise` — 37 skills: 28 Free (`pricing-tier: pack-enterprise-free`), 9 Pro (`pricing-tier: pack-enterprise-pro`)
+`pack-enterprise` — 37 skills
 
-- `ar-followup` — Free
-- `audit-findings-tracker` — Free
-- `bank-reconciliation` — Free
-- `be-accounts-review` — Pro
-- `coa-account` — Free
-- `collections-escalation` — Pro
-- `ct-return-preparer` — Free
-- `ecl-calculator` — Free
-- `employee-onboarding` — Free
-- `employment-contract-templates` — Free
-- `eu-accounts-review` — Pro
-- `financial-decision-cadence` — Pro
-- `financial-reporting` — Pro
-- `financial-statement-generator` — Free
-- `fixed-asset-register` — Free
-- `food-label-compliance` — Pro
-- `fs-notes-generator` — Free
-- `fx-revaluation` — Free
-- `gratuity-calculator` — Free
-- `hiring` — Free
-- `hr-ops` — Free
-- `ifs-internal-audit` — Pro
-- `invoice-collector` — Pro
-- `invoice-description` — Free
-- `lease-register` — Free
-- `nl-accounts-review` — Pro
-- `one-on-ones` — Free
-- `owner-value-view` — Free
-- `period-close-orchestrator` — Free
-- `prepare-application` — Free
-- `revenue-recognition-tracker` — Free
-- `review-job` — Free
-- `skill-gap-learning-path` — Free
-- `tax-season-organizer` — Free
-- `trial-balance-generator` — Free
-- `vat-return-preparer` — Free
-- `wps-sif-generator` — Free
+- `ar-followup`
+- `audit-findings-tracker`
+- `bank-reconciliation`
+- `be-accounts-review`
+- `coa-account`
+- `collections-escalation`
+- `ct-return-preparer`
+- `ecl-calculator`
+- `employee-onboarding`
+- `employment-contract-templates`
+- `eu-accounts-review`
+- `financial-decision-cadence`
+- `financial-reporting`
+- `financial-statement-generator`
+- `fixed-asset-register`
+- `food-label-compliance`
+- `fs-notes-generator`
+- `fx-revaluation`
+- `gratuity-calculator`
+- `hiring`
+- `hr-ops`
+- `ifs-internal-audit`
+- `invoice-collector`
+- `invoice-description`
+- `lease-register`
+- `nl-accounts-review`
+- `one-on-ones`
+- `owner-value-view`
+- `period-close-orchestrator`
+- `prepare-application`
+- `revenue-recognition-tracker`
+- `review-job`
+- `skill-gap-learning-path`
+- `tax-season-organizer`
+- `trial-balance-generator`
+- `vat-return-preparer`
+- `wps-sif-generator`
 
 Bundled runtime dependencies (9): `branded-pdf`, `context-pack`, `corporate-pdf`, `journal-entry-poster`, `pdf-report`, `performance-framework`, `performance-review`, `personal-backlog`, `tasknotes`
 <!-- END GENERATED: PACK pack-enterprise -->
@@ -187,66 +187,66 @@ Bundled runtime dependencies (9): `branded-pdf`, `context-pack`, `corporate-pdf`
 
 Full marketing toolkit — strategy, content, SEO audits, ads, analytics, conversion, plus advanced SEO publishing and automation
 
-`pack-marketing` — 58 skills: 50 Free (`pricing-tier: pack-marketing-free`), 8 Pro (`pricing-tier: pack-marketing-seo-pro`)
+`pack-marketing` — 58 skills
 
-- `ab-test-setup` — Free
-- `ad-creative` — Free
-- `analytics-tracking` — Free
-- `app-store-optimization` — Free
-- `blotato` — Free
-- `blotato-publisher` — Pro
-- `cold-outreach` — Free
-- `commentary-video` — Free
-- `competitor-alternatives` — Free
-- `content-destinations` — Free
-- `content-repurposer` — Free
-- `content-scorer` — Pro
-- `content-strategy` — Free
-- `copy-editing` — Free
-- `copywriting` — Free
-- `course-builder` — Free
-- `cro` — Free
-- `customer-persona-panels` — Free
-- `email-sequence` — Free
-- `free-tool-strategy` — Free
-- `ga4-analytics` — Free
-- `geo-audit` — Free
-- `google-ads-scripts` — Free
-- `gtm-tagging` — Free
-- `icp-discovery` — Free
-- `influencer-outreach` — Free
-- `launch-execution` — Free
-- `launch-strategy` — Free
-- `lead-magnet-generator` — Free
-- `local-outreach` — Free
-- `market-sizing-analysis` — Free
-- `marketing-ideas` — Free
-- `marketing-psychology` — Free
-- `marketing-report` — Free
-- `messaging-coherence` — Free
-- `meta-ads` — Free
-- `metalsmith-publisher` — Pro
-- `onboarding-cro` — Free
-- `paid-ads` — Free
-- `paywall-upgrade-cro` — Free
-- `positioning-craft` — Free
-- `premium-design` — Free
-- `pricing-strategy` — Free
-- `product-marketing-context` — Free
-- `product-page-audit` — Free
-- `profile-cms` — Free
-- `programmatic-seo` — Pro
-- `referral-program` — Free
-- `schema-markup` — Pro
-- `seo-audit` — Free
-- `seo-content-machine` — Pro
-- `social-content` — Free
-- `social-listening` — Free
-- `social-media-audit` — Free
-- `webinar-strategy` — Free
-- `website-audit` — Free
-- `wordpress-publisher` — Pro
-- `wordpress-theme-builder` — Pro
+- `ab-test-setup`
+- `ad-creative`
+- `analytics-tracking`
+- `app-store-optimization`
+- `blotato`
+- `blotato-publisher`
+- `cold-outreach`
+- `commentary-video`
+- `competitor-alternatives`
+- `content-destinations`
+- `content-repurposer`
+- `content-scorer`
+- `content-strategy`
+- `copy-editing`
+- `copywriting`
+- `course-builder`
+- `cro`
+- `customer-persona-panels`
+- `email-sequence`
+- `free-tool-strategy`
+- `ga4-analytics`
+- `geo-audit`
+- `google-ads-scripts`
+- `gtm-tagging`
+- `icp-discovery`
+- `influencer-outreach`
+- `launch-execution`
+- `launch-strategy`
+- `lead-magnet-generator`
+- `local-outreach`
+- `market-sizing-analysis`
+- `marketing-ideas`
+- `marketing-psychology`
+- `marketing-report`
+- `messaging-coherence`
+- `meta-ads`
+- `metalsmith-publisher`
+- `onboarding-cro`
+- `paid-ads`
+- `paywall-upgrade-cro`
+- `positioning-craft`
+- `premium-design`
+- `pricing-strategy`
+- `product-marketing-context`
+- `product-page-audit`
+- `profile-cms`
+- `programmatic-seo`
+- `referral-program`
+- `schema-markup`
+- `seo-audit`
+- `seo-content-machine`
+- `social-content`
+- `social-listening`
+- `social-media-audit`
+- `webinar-strategy`
+- `website-audit`
+- `wordpress-publisher`
+- `wordpress-theme-builder`
 
 Bundled runtime dependencies (10): `brand-system`, `branded-pdf`, `context-pack`, `corporate-pdf`, `linkedin-engager-leads`, `pdf-report`, `personal-backlog`, `social-notes`, `social-publisher`, `tasknotes`
 <!-- END GENERATED: PACK pack-marketing -->
@@ -263,17 +263,17 @@ Bundled runtime dependencies (10): `brand-system`, `branded-pdf`, `context-pack`
 
 Video generation, image creation, and media processing
 
-`pack-media` — 9 skills: 9 Free (`pricing-tier: pack-media-free`)
+`pack-media` — 9 skills
 
-- `ai-image-gen` — Free
-- `ai-video-gen` — Free
-- `avatar-video` — Free
-- `explainer-video-guide` — Free
-- `hyperframes-studio` — Free
-- `marketing-video-guide` — Free
-- `process-video` — Free
-- `remotion-reference-pack` — Free
-- `veo-video-gen` — Free
+- `ai-image-gen`
+- `ai-video-gen`
+- `avatar-video`
+- `explainer-video-guide`
+- `hyperframes-studio`
+- `marketing-video-guide`
+- `process-video`
+- `remotion-reference-pack`
+- `veo-video-gen`
 
 Bundled runtime dependencies (4): `context-pack`, `personal-backlog`, `social-notes`, `tasknotes`
 <!-- END GENERATED: PACK pack-media -->
@@ -288,20 +288,20 @@ Bundled runtime dependencies (4): `context-pack`, `personal-backlog`, `social-no
 
 Manufacturing, supply chain, procurement, and logistics
 
-`pack-operations` — 12 skills: 12 Pro (`pricing-tier: pack-operations-pro`)
+`pack-operations` — 12 skills
 
-- `bill-of-materials` — Pro
-- `delivery-confirmation` — Pro
-- `demand-forecasting` — Pro
-- `demand-signal-analysis` — Pro
-- `erp-reference` — Pro
-- `integration-reference` — Pro
-- `order-management` — Pro
-- `packaging-logistics` — Pro
-- `production-planning` — Pro
-- `production-scheduling` — Pro
-- `quality-control` — Pro
-- `strategic-sourcing` — Pro
+- `bill-of-materials`
+- `delivery-confirmation`
+- `demand-forecasting`
+- `demand-signal-analysis`
+- `erp-reference`
+- `integration-reference`
+- `order-management`
+- `packaging-logistics`
+- `production-planning`
+- `production-scheduling`
+- `quality-control`
+- `strategic-sourcing`
 
 Bundled runtime dependencies (3): `context-pack`, `personal-backlog`, `tasknotes`
 <!-- END GENERATED: PACK pack-operations -->
@@ -316,22 +316,22 @@ Bundled runtime dependencies (3): `context-pack`, `personal-backlog`, `tasknotes
 
 Full PMBOK 7/8 project management framework
 
-`pack-pmbok` — 14 skills: 14 Pro (`pricing-tier: pack-pmbok-pro`)
+`pack-pmbok` — 14 skills
 
-- `project-change-control` — Pro
-- `project-charter` — Pro
-- `project-closure` — Pro
-- `project-context` — Pro
-- `project-evm` — Pro
-- `project-procurement` — Pro
-- `project-quality` — Pro
-- `project-raci` — Pro
-- `project-resource` — Pro
-- `project-risk` — Pro
-- `project-schedule` — Pro
-- `project-stakeholder` — Pro
-- `project-status` — Pro
-- `project-wbs` — Pro
+- `project-change-control`
+- `project-charter`
+- `project-closure`
+- `project-context`
+- `project-evm`
+- `project-procurement`
+- `project-quality`
+- `project-raci`
+- `project-resource`
+- `project-risk`
+- `project-schedule`
+- `project-stakeholder`
+- `project-status`
+- `project-wbs`
 
 Bundled runtime dependencies (3): `context-pack`, `personal-backlog`, `tasknotes`
 <!-- END GENERATED: PACK pack-pmbok -->
@@ -346,16 +346,16 @@ Bundled runtime dependencies (3): `context-pack`, `personal-backlog`, `tasknotes
 
 Governed business-process orchestration — Process Harness runner, policy gates, and the order-to-cash / procure-to-pay case skills
 
-`pack-process` — 8 skills: 8 Pro (`pricing-tier: pack-process-pro`)
+`pack-process` — 8 skills
 
-- `process-harness` — Pro
-- `process-harness-capture-order` — Pro
-- `process-harness-credit-check` — Pro
-- `process-harness-invoice-issue` — Pro
-- `process-harness-invoice-match` — Pro
-- `process-harness-invoice-status` — Pro
-- `process-harness-payment-prep` — Pro
-- `process-harness-supplier-invoice` — Pro
+- `process-harness`
+- `process-harness-capture-order`
+- `process-harness-credit-check`
+- `process-harness-invoice-issue`
+- `process-harness-invoice-match`
+- `process-harness-invoice-status`
+- `process-harness-payment-prep`
+- `process-harness-supplier-invoice`
 
 Bundled runtime dependencies (3): `context-pack`, `personal-backlog`, `tasknotes`
 <!-- END GENERATED: PACK pack-process -->
@@ -371,24 +371,24 @@ Bundled runtime dependencies (3): `context-pack`, `personal-backlog`, `tasknotes
 
 Pipeline management, prospect research, qualification, and outbound
 
-`pack-sales` — 16 skills: 16 Free (`pricing-tier: pack-sales-free`)
+`pack-sales` — 16 skills
 
-- `client-ascension` — Free
-- `consultative-selling` — Free
-- `decision-maker-mapper` — Free
-- `demo-script` — Free
-- `guarantee-designer` — Free
-- `lead-qualifier` — Free
-- `money-model-builder` — Free
-- `objection-playbook` — Free
-- `offer-builder` — Free
-- `prospect-audit` — Free
-- `sales-closer` — Free
-- `sales-enablement` — Free
-- `sales-forecast` — Free
-- `sales-metrics-dashboard` — Free
-- `sales-pipeline-report` — Free
-- `warm-network-activation` — Free
+- `client-ascension`
+- `consultative-selling`
+- `decision-maker-mapper`
+- `demo-script`
+- `guarantee-designer`
+- `lead-qualifier`
+- `money-model-builder`
+- `objection-playbook`
+- `offer-builder`
+- `prospect-audit`
+- `sales-closer`
+- `sales-enablement`
+- `sales-forecast`
+- `sales-metrics-dashboard`
+- `sales-pipeline-report`
+- `warm-network-activation`
 
 Bundled runtime dependencies (6): `branded-pdf`, `context-pack`, `linkedin-engager-leads`, `pdf-report`, `personal-backlog`, `tasknotes`
 <!-- END GENERATED: PACK pack-sales -->
@@ -403,18 +403,18 @@ Bundled runtime dependencies (6): `branded-pdf`, `context-pack`, `linkedin-engag
 ## Quick Reference
 
 <!-- BEGIN GENERATED: QUICK REFERENCE -->
-| Pack | Skills | Free | Pro | Bundled | Skills in ZIP |
-|------|--------|------|-----|---------|---------------|
-| Business Pack | 31 | 27 | 4 | 13 | 44 |
-| Engineering Pack | 6 | 0 | 6 | 3 | 9 |
-| Enterprise Pack | 37 | 28 | 9 | 9 | 46 |
-| Marketing Pack | 58 | 50 | 8 | 10 | 68 |
-| Media Pack | 9 | 9 | 0 | 4 | 13 |
-| Operations Pack | 12 | 0 | 12 | 3 | 15 |
-| PMBOK Pack | 14 | 0 | 14 | 3 | 17 |
-| Process Pack | 8 | 0 | 8 | 3 | 11 |
-| Sales Pack | 16 | 16 | 0 | 6 | 22 |
-| **Total department skills** | **191** | | | | |
+| Pack | Skills | Bundled | Skills in ZIP |
+|------|--------|---------|---------------|
+| Business Pack | 31 | 13 | 44 |
+| Engineering Pack | 6 | 3 | 9 |
+| Enterprise Pack | 37 | 9 | 46 |
+| Marketing Pack | 58 | 10 | 68 |
+| Media Pack | 9 | 4 | 13 |
+| Operations Pack | 12 | 3 | 15 |
+| PMBOK Pack | 14 | 3 | 17 |
+| Process Pack | 8 | 3 | 11 |
+| Sales Pack | 16 | 6 | 22 |
+| **Total department skills** | **191** | | |
 
 Combined with the 202-skill Core Pack, the full library contains **393 skills**.
 <!-- END GENERATED: QUICK REFERENCE -->
@@ -437,33 +437,33 @@ today because of it — so the cycle is accepted rather than broken (system revi
 decision D5, option A). What follows from accepting it is the rule below.
 
 **Release rule: ship all 17, or none of them.** Releasing a subset produces a package whose
-skills reference sibling skills the recipient does not have. Fifteen sit in
-`pack-enterprise-free` (the Enterprise Pack), `order-to-pay` sits in `pack-business-free` (the
-Business Pack), and `journal-entry-poster` sits in `starter` (re-tiered 2026-09-20; the Core Pack).
+skills reference sibling skills the recipient does not have. Fifteen sit in the Enterprise Pack
+(`pack-enterprise`), `order-to-pay` sits in the Business Pack (`pack-business`), and
+`journal-entry-poster` sits in the Core Pack (`pack-core`; re-tiered 2026-09-20).
 The cycle is documentation, not a runtime dependency, so the pack closure does not bundle it:
 the Enterprise Pack ZIP carries 16 of the 17 (`journal-entry-poster` is bundled as a runtime
 dependency, `order-to-pay` is not), and the Business Pack carries 2. Check this list before
 cutting a release that includes any member.
 
-| Skill | pricing-tier |
+| Skill | Pack |
 |---|---|
-| `ar-followup` | pack-enterprise-free |
-| `bank-reconciliation` | pack-enterprise-free |
-| `ct-return-preparer` | pack-enterprise-free |
-| `ecl-calculator` | pack-enterprise-free |
-| `financial-statement-generator` | pack-enterprise-free |
-| `fixed-asset-register` | pack-enterprise-free |
-| `fs-notes-generator` | pack-enterprise-free |
-| `fx-revaluation` | pack-enterprise-free |
-| `gratuity-calculator` | pack-enterprise-free |
-| `journal-entry-poster` | starter |
-| `lease-register` | pack-enterprise-free |
-| `order-to-pay` | pack-business-free |
-| `period-close-orchestrator` | pack-enterprise-free |
-| `revenue-recognition-tracker` | pack-enterprise-free |
-| `trial-balance-generator` | pack-enterprise-free |
-| `vat-return-preparer` | pack-enterprise-free |
-| `wps-sif-generator` | pack-enterprise-free |
+| `ar-followup` | `pack-enterprise` |
+| `bank-reconciliation` | `pack-enterprise` |
+| `ct-return-preparer` | `pack-enterprise` |
+| `ecl-calculator` | `pack-enterprise` |
+| `financial-statement-generator` | `pack-enterprise` |
+| `fixed-asset-register` | `pack-enterprise` |
+| `fs-notes-generator` | `pack-enterprise` |
+| `fx-revaluation` | `pack-enterprise` |
+| `gratuity-calculator` | `pack-enterprise` |
+| `journal-entry-poster` | `pack-core` |
+| `lease-register` | `pack-enterprise` |
+| `order-to-pay` | `pack-business` |
+| `period-close-orchestrator` | `pack-enterprise` |
+| `revenue-recognition-tracker` | `pack-enterprise` |
+| `trial-balance-generator` | `pack-enterprise` |
+| `vat-return-preparer` | `pack-enterprise` |
+| `wps-sif-generator` | `pack-enterprise` |
 
 
 ---
