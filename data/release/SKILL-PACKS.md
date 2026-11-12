@@ -187,10 +187,11 @@ Bundled runtime dependencies (9): `branded-pdf`, `context-pack`, `corporate-pdf`
 
 Full marketing toolkit — strategy, content, SEO audits, ads, analytics, conversion, plus advanced SEO publishing and automation
 
-`pack-marketing` — 58 skills
+`pack-marketing` — 60 skills
 
 - `ab-test-setup`
 - `ad-creative`
+- `ads-warehouse`
 - `analytics-tracking`
 - `app-store-optimization`
 - `blotato`
@@ -211,6 +212,7 @@ Full marketing toolkit — strategy, content, SEO audits, ads, analytics, conver
 - `free-tool-strategy`
 - `ga4-analytics`
 - `geo-audit`
+- `google-ads`
 - `google-ads-scripts`
 - `gtm-tagging`
 - `icp-discovery`
@@ -408,15 +410,15 @@ Bundled runtime dependencies (6): `branded-pdf`, `context-pack`, `linkedin-engag
 | Business Pack | 31 | 13 | 44 |
 | Engineering Pack | 6 | 3 | 9 |
 | Enterprise Pack | 37 | 9 | 46 |
-| Marketing Pack | 58 | 10 | 68 |
+| Marketing Pack | 60 | 10 | 70 |
 | Media Pack | 9 | 4 | 13 |
 | Operations Pack | 12 | 3 | 15 |
 | PMBOK Pack | 14 | 3 | 17 |
 | Process Pack | 8 | 3 | 11 |
 | Sales Pack | 16 | 6 | 22 |
-| **Total department skills** | **191** | | |
+| **Total department skills** | **193** | | |
 
-Combined with the 202-skill Core Pack, the full library contains **393 skills**.
+Combined with the 202-skill Core Pack, the full library contains **395 skills**.
 <!-- END GENERATED: QUICK REFERENCE -->
 
 ---
