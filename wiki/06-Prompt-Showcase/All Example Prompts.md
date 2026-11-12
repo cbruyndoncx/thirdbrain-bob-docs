@@ -2,7 +2,7 @@
 
 ← [[Prompt Showcase]]
 
-The exhaustive companion to the curated showcase: **3542 example prompts (3483 unique)** auto-extracted from 399 skills' `description` and "When to use" sections. Type any of these in your own words.
+The exhaustive companion to the curated showcase: **3543 example prompts (3484 unique)** auto-extracted from 399 skills' `description` and "When to use" sections. Type any of these in your own words.
 
 > [!info] Curated vs complete
 > For a guided, by-area starting point see [[Prompt Showcase]]. This page is the full firehose — every advertised trigger across the whole skill library.
@@ -2280,6 +2280,7 @@ The exhaustive companion to the curated showcase: **3542 example prompts (3483 u
 - "search the vault"
 - "manage tasks"
 - "Obsidian CLI"
+- "restore my Agent Client sessions"
 
 **obsidian-clipper-template-creator**
 - "web clipper"
