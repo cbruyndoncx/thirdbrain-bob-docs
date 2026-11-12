@@ -1,7 +1,7 @@
 {
  "release": "thirdbrain-full-v2.9.0",
  "counts": {
-  "skills": 382,
+  "skills": 383,
   "workflows": 110,
   "playbooks": 82
  },
@@ -832,16 +832,21 @@
     "url — Website whose existing content is being audited for optimization opportunities.",
     "performance-data — Search Console or Analytics export (clicks, impressions, CTR, position, sessions) scored into performance quadrants. Absent, the audit falls back to manual signals (site-prefixed searches, social shares, backlink counts).",
     "icp — ICP/persona document whose pains and language anchor the trend hunt when the user doesn't supply topics directly.",
-    "topics-or-links — Topics, keywords, links, or thread summaries to mine for trends. Absent, trend hunting runs against the ICP's pains instead.",
+    "topics-or-links — Topics, keywords, links, or thread summaries to mine for trends. Absent, trend hunting runs against the ICP's pains instead, as a dated 7-day scan.",
     "keyword-data — Keyword export (Ahrefs / SEMrush / GSC) clustered by topic, buyer stage, intent, and quick wins.",
     "url — Website compared against competitor content to find coverage gaps.",
-    "marketing-context — Named competitors and positioning that set the comparison set for the gap matrix."
+    "marketing-context — Named competitors and positioning that set the comparison set for the gap matrix.",
+    "pillars — 3-5 content pillars to use. Absent, they are read from the marketing context or strategy; when several sets exist and none is in force, the user is asked which.",
+    "marketing-context — Positioning and the owner's real experience that Motivational and Observation cells draw on.",
+    "published-topics — Titles already published or scheduled on the target channel, compared against every cell. Absent, the cells are labelled as not checked."
    ],
    "outputs": [
     "Content pillars with rationale, prioritized topic list scored on customer impact / content-market fit / search potential / resources with an information-gain line per searchable topic, the 60/30/10 calendar split, a distribution plan per flagship piece, and the topic cluster map.",
+    "Draft note with the pillar × format grid (each cell addressed as pillar × format), the strongest cell, the top five cells by score, and the published-topics check. Saved with status draft.",
     "Gap matrix scoring competitor topics you don't cover, quick-win keyword clusters (positions 11-20), and validated content gaps with priority.",
-    "Myth vs Reality, Common Mistakes, Framework, Case Snippet, Tooling, Future Lens.",
+    "Myth vs Reality, Common Mistakes, Framework, Case Snippet, Tooling, Future Lens. Opens with an \"As of\" line and closes with a coverage note naming sources checked, sources not reached, and that indexed search is not a full feed scan.",
     "Prioritized list of existing content by URL and current metrics, performance quadrant, opportunity type (CTR / ranking / conversion / refresh / consolidation), specific action, expected impact, and effort required.",
+    "{scope.marketing.seo}/strategy/content-matrix-{YYYY-MM-DD}.md",
     "{scope.marketing.seo}/strategy/content-strategy-{YYYY-MM-DD}.md"
    ],
    "prompts": [
@@ -1474,7 +1479,7 @@
    "skillName": "lead-magnet-generator",
    "catLabel": "marketing-content",
    "area": "marketing",
-   "desc": "Turns a topic into a downloadable lead magnet — guide, checklist, template, or toolkit — plus three promotion posts written from distinct angles (contrarian, pain-first,…",
+   "desc": "Turns a topic into a downloadable lead magnet — guide, checklist, template, toolkit, or self-scored scorecard — plus three promotion posts written from distinct angles…",
    "summary": "Target audience: anyone who needs a gated asset that earns an email address, and the posts that make people want it.",
    "difficulty": "beginner",
    "inputType": "conversation",
@@ -1489,6 +1494,9 @@
     "tone-of-voice — Tone of voice — keeps the posts on-brand",
     "topic — The subject of the magnet",
     "format — guide, checklist, template, or toolkit",
+    "topic — The decision or readiness question the scorecard answers",
+    "reader-types — The 4 to 6 reader types when already known; derived from the ICP when omitted",
+    "icp — ICP — who the scorecard sorts",
     "magnet — Path to the existing lead magnet"
    ],
    "outputs": [
@@ -1501,7 +1509,8 @@
     "Turn this topic into a lead magnet with promotion posts",
     "Make a checklist we can gate for email capture",
     "Write three LinkedIn angles for our existing pricing guide",
-    "We need a downloadable template for fit-out contractors"
+    "We need a downloadable template for fit-out contractors",
+    "Build a self-scored readiness scorecard for our newsletter"
    ]
   },
   {
@@ -1664,31 +1673,40 @@
    "skillName": "meta-ads",
    "catLabel": "marketing-ads",
    "area": "marketing",
-   "desc": "Prepares Meta Ads dry-run campaign plans from approved strategy and creative inputs and analyzes user-supplied performance exports.",
-   "summary": "Governed interface for Meta Ads Manager automation. This initial scaffold defines the safety contract and workflow boundary; it does not install credentials, call live mutation endpoints, or launch campaigns.",
-   "difficulty": "beginner",
+   "desc": "Creates Meta (Facebook and Instagram) campaigns paused from an approved plan, activates or re-budgets them only on the owner's confirmation, and analyzes their results…",
+   "summary": "Governed interface for Meta campaigns: a dry-run plan the owner approves, paused creation through the Marketing API, activation and budget changes behind a confirmation, and analysis from the ads warehouse. Reads never go to Meta from here; they go through `ads-warehouse`, which keeps agents inside Meta's rate limits.",
+   "difficulty": "advanced",
    "inputType": "conversation",
    "outputType": "document",
-   "requires": "[paid-ads, ad-creative]",
-   "roles": "[]",
+   "requires": "[paid-ads, ad-creative, ads-warehouse, api-key]",
+   "roles": "[Head of Marketing]",
    "inputs": [
     "paid-ads-strategy — Approved strategy from the paid-ads skill with objective, audience, budget, and measurement logic.",
-    "creative-brief — Approved creative variants and asset references from ad-creative.",
-    "account-context — Ad account, page, pixel, offer, and destination identifiers supplied without secrets.",
+    "creative-review — PASS review of the creatives against the ad-creative rubric (qms-quality).",
+    "ad-account — ad-account note with account_id, page_id, pixel_id, currency and daily_budget_cap; no secrets.",
     "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
-    "performance-export — User-supplied Meta Ads performance export with spend and outcome metrics.",
-    "campaign-plan — Campaign plan containing objective, budget assumptions, and measurement definitions."
+    "campaign-plan — Approved plan; refused when the ad-plan block changed after approval.",
+    "confirmation — First 12 characters of the plan hash, or the object ID, given after the owner said yes.",
+    "warehouse-data — `ads-warehouse` query output for the campaign's account and window; an Ads Manager export is imported first.",
+    "campaign-plan — Campaign plan containing objective, budget assumptions, and measurement definitions.",
+    "test-account — ad-account note with kind test and a page_id."
    ],
    "outputs": [
-    "campaign-dry-run (markdown)",
+    "Each object changed and its new status or budget.",
+    "campaign-plan (markdown)",
+    "creation-log (jsonl)",
     "performance-analysis (markdown)",
+    "verification-report (json)",
     "{scope.marketing.sea}/campaigns/meta-{campaign}-{YYYY-MM-DD}.md",
+    "{scope.marketing.sea}/data/creations/{plan}.jsonl",
+    "{scope.marketing.sea}/data/verification/meta-{account_id}-{date}.json",
     "{scope.marketing.sea}/reports/meta-{campaign}-{YYYY-MM-DD}.md"
    ],
    "prompts": [
-    "Prepare a paused Meta Ads campaign plan from this strategy and creative brief; do not call Meta.",
-    "Analyze this Meta Ads export and recommend pause, hold, or scale without changing the account.",
-    "Check whether this Meta campaign plan has every identifier and approval needed for a future dry run."
+    "Prepare a paused Meta campaign plan from this strategy and the approved creatives.",
+    "Create the approved META_Leads_SMB-Owners_FreeTrial_20261110 plan, paused.",
+    "Analyze last week's Meta results and recommend pause, hold, or scale.",
+    "Run the Meta integration test on our sandbox ad account."
    ]
   },
   {
@@ -1976,7 +1994,7 @@
    "skillName": "process-video",
    "catLabel": "video",
    "area": "marketing",
-   "desc": "Process videos using ffmpeg - compress, trim, scale, extract audio, convert formats.",
+   "desc": "Process videos using ffmpeg - compress, trim, scale, extract audio, convert formats, edit a spoken recording through its transcript, and lay graphics or B-roll over a…",
    "summary": "Process videos using ffmpeg - compress, trim, scale, extract audio, convert formats.",
    "difficulty": "advanced",
    "inputType": "conversation",
@@ -1985,11 +2003,20 @@
    "roles": "[]",
    "inputs": [
     "request — What to produce",
-    "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set"
+    "scope — `company`, or a client-id under {company.clients}/ — a string with one reserved value, not a closed set",
+    "recording — Source video with an audio track; never changed",
+    "word-timestamps — words.json for this recording from social-notes `--word-timestamps`",
+    "base-video — Video to lay the cutaways over, usually the edited-mp4",
+    "cutaways — JSON list of {start, end, file, from, audio}; from and audio are optional"
    ],
    "outputs": [
+    "Kept source ranges, cut points on the new timeline, seconds removed",
     "Processed video for a marketing project (company or client scope)",
+    "Transcript with deletions marked in strikethrough, reviewed before rendering",
+    "Word timestamps on the new timeline, for captions, cut-downs and cutaway timing",
+    "assembled-mp4 (video)",
     "compressed-mp4 (video)",
+    "edited-mp4 (video)",
     "extracted-audio (audio)",
     "prefer a permanent directory)",
     "scaled-mp4 (video)",
@@ -2000,7 +2027,9 @@
     "Compress this video file for YouTube upload",
     "Trim this screen recording to remove the first 30 seconds",
     "Extract the audio track from this video",
-    "Scale this 4K video down to 1080p for web"
+    "Scale this 4K video down to 1080p for web",
+    "Edit this recording by transcript and cut the retakes",
+    "Put this B-roll over 01:20 to 01:26 of the cut"
    ]
   },
   {
@@ -2382,11 +2411,21 @@
     "brand-voice — Locked brand and tone-of-voice context used to write in voice.",
     "target-audience — Target audience, ICP, and positioning context.",
     "content-calendar — Content calendar for scheduling.",
-    "content-pillars — Content pillars for topic selection.",
-    "published-corpus — Folder of the scope's marketing-content notes; scripts/corpus_scan.py reads every published piece of the target platform from it before drafting."
+    "content-pillars — Content pillars for topic selection. Read the scope's canonical set; do not write a second pillar file next to it.",
+    "published-corpus — Folder of the scope's marketing-content notes; scripts/corpus_scan.py reads every published piece of the target platform from it before drafting.",
+    "scope — `company`, or a client-id under {company.clients}/; selects whose log and voice files are read",
+    "draft — The LinkedIn draft to score, a note or a file the caller points to.",
+    "performance-log — Post history the draft is compared with; without usable rows the score is editorial only.",
+    "brand-voice — Voice rules the voice criterion is scored against; absent, that criterion is unavailable.",
+    "scope — `company`, or a client-id under {company.clients}/; selects whose voice files and folder are used",
+    "reference-transcript — Transcript of the reference Reel from social-notes' download-transcript-and-metadata route.",
+    "topic — The topic and supplied facts the new script states; the reference supplies shape, not content.",
+    "brand-voice — Voice rules the script is written and reviewed against."
    ],
    "outputs": [
     "Content Performance Review (references/content-review.md) — top and bottom posts, patterns, do-more and stop-doing calls, next-cycle bets.",
+    "Scorecard with data-source line, five criteria, fixes marked data or editorial; saved with status draft.",
+    "Script note with reference analysis, timed sections, mirrored caption and review findings; saved with status draft.",
     "Self-learning loop Step 4 — patterns found across the last ~10 logged posts and the rule changes they justify, written before `social-content-rules.md` is updated.",
     "content-calendar (markdown)",
     "content-pillars (markdown)",
@@ -2394,21 +2433,21 @@
     "social-content (markdown)",
     "social-content-rules (markdown)",
     "{scope.marketing.social}/content-calendar.md",
-    "{scope.marketing.social}/content-pillars.md",
     "{scope.marketing.social}/performance-log.md",
     "{scope.marketing.social}/reviews/loop-analysis-{YYYY-MM-DD}.md",
+    "{scope.marketing.social}/reviews/{YYYY-MM-DD}_draft-score_{slug}.md",
     "{scope.marketing.social}/reviews/{YYYY-MM-DD}_review.md",
     "{scope.marketing.social}/social-content-rules.md",
-    "{scope.marketing.social}/{YYYY-MM-DD}_{slug}.md"
+    "{scope.marketing.social}/{YYYY-MM-DD}_{slug}.md",
+    "{scope.marketing.strategy}/content-pillars.md"
    ],
    "prompts": [
     "Write a LinkedIn post about our latest product update",
-    "Create a content calendar for our social channels this month",
     "Repurpose this blog post into a Twitter thread",
-    "Generate hook formulas for our Instagram engagement posts",
     "Log my last 5 LinkedIn posts and their metrics",
     "Run the content loop — what's working?",
-    "What patterns do you see in my content performance?"
+    "Score this LinkedIn draft against my own post history",
+    "Script a Reel like this one about our onboarding checklist"
    ]
   },
   {
@@ -2504,6 +2543,8 @@
     "question — The user's question or summary request about the video; decides which transcript passages are cited.",
     "video-transcript — Transcript with fine markers (`--marker-interval 30` or `0`) from the `download-transcript-and-metadata` route, reused from scratch when it already exists for the same source and settings.",
     "video-metadata — Metadata read for title, channel, transcript_source, subtitle_track and transcript_window, so the answer states what source it rests on.",
+    "sources — Folders, media files or URLs to index; a local file uses a same-named .words.json, .srt or .vtt when one exists.",
+    "queries — What to find, written as several --query variants; matching is on words, so the agent supplies synonyms and word forms.",
     "video-transcript — Corrected transcript synthesized into the note's sections rather than reflowed verbatim.",
     "video-metadata — Platform, stats, chapters, and comments merged into the note's header, tags, and Community Insights section.",
     "operator-profile — Read for `### Platform Entitlements` before any audio or video download — gates the `--whisper` and audio `--word-timestamps` fallback to entitled platforms, and, when screenshots are requested, decides whether frame capture uses local extraction (yt-dlp + ffmpeg) or Playwright.",
@@ -2515,7 +2556,9 @@
     "Answer in chat where each claim carries a [MM:SS] citation to the transcript, plus the transcript source and any window or caption limitation; no file is written.",
     "Clean transcript with [MM:SS] timestamp markers (every 5 minutes by default, finer with --marker-interval), optionally limited to a --start/--end window, from platform subtitles or local Whisper audio transcription.",
     "Confirmation that the created note was opened in Obsidian via the advanced-uri handler; writes no new file.",
+    "One timestamped chunk file per recording; rebuilt by re-running the index command.",
     "Platform, stats, chapters, tags, description, and top comments/creator replies for the video.",
+    "Ranked moments with source path, start and end times and the transcript text.",
     "Structured knowledge-base note synthesizing the transcript and metadata, with TL;DR, key takeaways, resources, and community insights; body guidance saves the final note under the resources root (`resource.root`) with a snake_case filename derived from the title.",
     "Word-level start/end timestamps; produced only when --word-timestamps is passed. Consumed by content-repurposer's long-to-shorts route.",
     "prefer a permanent directory)",
@@ -2527,7 +2570,8 @@
     "Transcribe this Instagram Reel and extract key points",
     "Make knowledge base notes from this LinkedIn video",
     "Create notes from this video and map ideas to our vault capabilities",
-    "What does this video say about pricing? Give timestamps"
+    "What does this video say about pricing? Give timestamps",
+    "Search my recordings for where I talked about pricing objections"
    ]
   },
   {
@@ -2562,6 +2606,7 @@
     "content — Plain text or short markdown content for the note",
     "request — List posts request",
     "draft-title — Title of the draft to delete",
+    "publication — Substack subdomain, or a custom host",
     "account — Instagram handle with the @ prefix; selects the stored Graph API credentials",
     "images — One image (--image) or 2 to 20 images (--carousel)",
     "caption — Caption text, or a caption file (--caption-file)",
@@ -2583,12 +2628,14 @@
     "confirmation (markdown)",
     "conversation",
     "marketing-content note with content_type comment, the approved text, the image path and the evidence screenshot comment-live-{YYYY-MM-DD}.png saved beside it",
+    "marketing-content note, status draft, for the owner to paste into Substack settings",
     "note (markdown)",
     "post-list (markdown)",
     "prefer a permanent directory)",
     "registry-entry (json)",
     "video (video)",
     "{company.marketing.linkedin}/{YYYY-MM-DD}-{slug}/{YYYY-MM-DD}_{slug}.md",
+    "{company.marketing.substack}/{YYYY-MM-DD}-publication-setup/publication-setup.md",
     "{quartz_content_path}/ai-news/{YYYY-MM-DD}.md",
     "{resource.root}/thirdbrain_videos.json",
     "{source-image-dir}/{source-image-stem}-thumbnail.jpg"
@@ -2599,6 +2646,7 @@
     "Schedule LinkedIn post for Monday",
     "Publish this article to Substack",
     "List my Substack drafts",
+    "Draft a new welcome email and About page for my Substack",
     "Post these three images to my Instagram as a carousel"
    ]
   },
@@ -8046,6 +8094,30 @@
    ]
   },
   {
+   "skillName": "review-job",
+   "catLabel": "human-resources",
+   "area": "people",
+   "desc": "Compare one captured vacancy note with the candidate's documented evidence and record an evidence-based fit assessment (fit_tier, recommendation) in that note.",
+   "summary": "Use `/review-job path/to/job-note.md` from the vault root. An agent that has just captured a vacancy note runs it on that note without being asked. It reads one applicant-side vacancy note and the approved candidate profile, judges fit requirement by requirement against documented evidence only, and writes the assessment back into that one note.",
+   "difficulty": "beginner",
+   "inputType": "conversation",
+   "outputType": "document",
+   "requires": "[context-pack]",
+   "roles": "[]",
+   "inputs": [
+    "job-note — The one vacancy note to review, given as a path or note name.",
+    "candidate-profile — Approved candidate profile and the evidence it links to."
+   ],
+   "outputs": [
+    "The vacancy note, with the Fit assessment section and fit_tier, assessment_date and recommendation updated in place.",
+    "{me.job-search.jobs}/{status-folder}/{vacancy-note}.md"
+   ],
+   "prompts": [
+    "/review-job Functional Analyst - VEB",
+    "/review-job path/to/Jobs/Inbox/Data Analyst Antwerp - USG Professionals.md"
+   ]
+  },
+  {
    "skillName": "skill-gap-learning-path",
    "catLabel": "human-resources",
    "area": "people",
@@ -10667,7 +10739,7 @@
    "skillName": "bob-doctor",
    "catLabel": "utilities",
    "area": "foundational",
-   "desc": "Layer-1 environment readiness check for a new BOB install — the one-command 'what do I need' front door.",
+   "desc": "Layer-1 environment readiness check for a new BOB install.",
    "summary": "xe # bob-doctor — Layer-1 Environment Preflight",
    "difficulty": "beginner",
    "inputType": "conversation",
@@ -10677,7 +10749,9 @@
    "inputs": [
     "vault — Vault path (defaults to auto-detected root from CWD).",
     "deep — Also scan every note for indexer-stalling size/duplication and broken symlinks. Costs a full vault walk (~30-60s on WSL/NTFS); off by default.",
-    "skills — Also check every installed — frontmatter loads as YAML, outbound/gate declarations agree, the 500-line cap, every context_inputs key is referenced, and (advisory) no workflow runs over 15 steps — plus every skill script's LLM-SDK imports against the triaged allowlist, and list each offender. Reads ~400 files and ~900 scripts (~14s on WSL/NTFS); off by default."
+    "skills — Also check every installed — frontmatter loads as YAML, outbound/gate declarations agree, the 500-line cap, every context_inputs key is referenced, and (advisory) no workflow runs over 15 steps — plus every skill script's LLM-SDK imports against the triaged allowlist, and list each offender. Reads ~400 files and ~900 scripts (~14s on WSL/NTFS); off by default.",
+    "codex — Also list the skills Codex itself discovers from the vault's .agents/skills (codex app-server, temporary HOME and CODEX_HOME, vault as working directory) and compare them with the catalogue: counts, missing, extra, load errors. SKIP when codex is not on PATH or cannot list skills without sign-in; WARN on timeout. Needs no credentials. Slow on a large vault (about 5 minutes for ~400 skills on WSL/NTFS); off by default.",
+    "codex-timeout — Seconds to wait for Codex under codex (default 600) before the row reports WARN."
    ],
    "outputs": [
     "bob-doctor-report (markdown)",
@@ -13359,7 +13433,7 @@
    "catLabel": "integrations",
    "area": "foundational",
    "desc": "Publishes modules and lessons into a Skool.com classroom AND posts to the Skool Community feed (incl.",
-   "summary": "Creates and edits modules (sets/folders), lessons (pages) and Community feed posts in a Skool.com community, with one browser route: `playwright-cli`. It drives a single headed browser session with a persistent profile (log in once; the login is kept), and ships the helper scripts for the edit operations that Skool's editor makes fragile: text edits that keep formatting, file attachments, file removal, draft/publish and pinning.",
+   "summary": "Creates and edits modules (sets/folders), lessons (pages) and Community feed posts in a Skool.com community, with one browser route: `playwright-cli`. It drives a single headed browser session with a persistent profile (log in once; the login is kept), and ships the helper scripts for the edit operations that Skool's editor makes fragile: text edits that keep formatting, link changes, file attachments, file removal, page and course draft/publish, page and course deletion, and pinning.",
    "difficulty": "beginner",
    "inputType": "conversation",
    "outputType": "document",
@@ -14144,7 +14218,7 @@
     "CEO / Founder",
     "Operations Manager"
    ],
-   "pricingTier": "pack-business-free",
+   "pricingTier": "pack-business",
    "category": "business",
    "filterGroup": "strategy",
    "area": "strategy",
@@ -14214,7 +14288,7 @@
    "primaryRoles": [
     "CEO / Founder"
    ],
-   "pricingTier": "pack-business-free",
+   "pricingTier": "pack-business",
    "category": "business",
    "filterGroup": "strategy",
    "area": "strategy",
@@ -14357,7 +14431,7 @@
     "CEO / Founder",
     "Operations Manager"
    ],
-   "pricingTier": "pack-business-free",
+   "pricingTier": "pack-business",
    "category": "business",
    "filterGroup": "strategy",
    "area": "strategy",
@@ -14430,7 +14504,7 @@
     "Head of Marketing",
     "Content Manager"
    ],
-   "pricingTier": "pack-marketing-free",
+   "pricingTier": "pack-marketing",
    "category": "marketing-content",
    "filterGroup": "marketing",
    "area": "marketing",
@@ -14502,7 +14576,7 @@
     "Head of Marketing",
     "Content Manager"
    ],
-   "pricingTier": "pack-marketing-free",
+   "pricingTier": "pack-marketing",
    "category": "marketing-content",
    "filterGroup": "marketing",
    "area": "marketing",
@@ -14574,7 +14648,7 @@
     "Head of Marketing",
     "Content Manager"
    ],
-   "pricingTier": "pack-marketing-free",
+   "pricingTier": "pack-marketing",
    "category": "marketing-content",
    "filterGroup": "marketing",
    "area": "marketing",
@@ -14730,7 +14804,7 @@
    "primaryRoles": [
     "Operations Manager"
    ],
-   "pricingTier": "pack-engineering-pro",
+   "pricingTier": "pack-engineering",
    "category": "engineering",
    "filterGroup": "engineering",
    "area": "operations",
@@ -14802,7 +14876,7 @@
     "Head of Marketing",
     "Content Manager"
    ],
-   "pricingTier": "pack-marketing-free",
+   "pricingTier": "pack-marketing",
    "category": "marketing-content",
    "filterGroup": "marketing",
    "area": "marketing",
@@ -14938,7 +15012,7 @@
     "Head of Marketing",
     "Product Manager"
    ],
-   "pricingTier": "pack-marketing-free",
+   "pricingTier": "pack-marketing",
    "category": "marketing-funnel",
    "filterGroup": "marketing",
    "area": "marketing",
@@ -14996,7 +15070,7 @@
    "primaryRoles": [
     "Operations Manager"
    ],
-   "pricingTier": "pack-engineering-pro",
+   "pricingTier": "pack-engineering",
    "category": "engineering",
    "filterGroup": "engineering",
    "area": "operations",
@@ -15062,7 +15136,7 @@
    "primaryRoles": [
     "Operations Manager"
    ],
-   "pricingTier": "pack-engineering-pro",
+   "pricingTier": "pack-engineering",
    "category": "engineering",
    "filterGroup": "engineering",
    "area": "operations",
@@ -15199,7 +15273,7 @@
    "primaryRoles": [
     "Head of Marketing"
    ],
-   "pricingTier": "pack-marketing-free",
+   "pricingTier": "pack-marketing",
    "category": "marketing-content",
    "filterGroup": "marketing",
    "area": "marketing",
@@ -15270,7 +15344,7 @@
    "primaryRoles": [
     "Head of Marketing"
    ],
-   "pricingTier": "pack-marketing-free",
+   "pricingTier": "pack-marketing",
    "category": "marketing-ads",
    "filterGroup": "marketing",
    "area": "marketing",
@@ -20653,11 +20727,11 @@
   {
    "slug": "pb-publish-youtube-content",
    "skillName": "pb-publish-youtube-content",
-   "youtubeId": "kOXEyI_snrg",
-   "published": "2026-04-01",
+   "youtubeId": "YOofwiJ2OsE",
+   "published": "2026-11-12",
    "privacy": "public",
    "title": "YouTube is the plan.",
-   "thumbnail": "https://img.youtube.com/vi/kOXEyI_snrg/maxresdefault.jpg",
+   "thumbnail": "https://img.youtube.com/vi/YOofwiJ2OsE/maxresdefault.jpg",
    "subtitle": "Script, thumbnails, description, and LinkedIn post ready",
    "inputs": [
     {
@@ -20681,6 +20755,10 @@
     {
      "label": "Thumbnail options",
      "icon": "🖼️"
+    },
+    {
+     "label": "YouTube description",
+     "icon": "📄"
     },
     {
      "label": "LinkedIn promotion post",
@@ -20707,6 +20785,10 @@
     {
      "label": "Review script",
      "actor": "human"
+    },
+    {
+     "label": "yt-description-seo → YouTube description",
+     "actor": "agent"
     },
     {
      "label": "ai-image-gen → thumbnails",
@@ -22297,7 +22379,7 @@
    "primaryRoles": [
     "Head of Sales"
    ],
-   "pricingTier": "pack-sales-free",
+   "pricingTier": "pack-sales",
    "category": "sales",
    "filterGroup": "sales",
    "area": "sales",
@@ -22501,7 +22583,7 @@
     "Head of Marketing",
     "Content Manager"
    ],
-   "pricingTier": "pack-marketing-seo-pro",
+   "pricingTier": "pack-marketing",
    "category": "marketing-seo",
    "filterGroup": "marketing",
    "area": "marketing",
@@ -22572,7 +22654,7 @@
     "Head of Marketing",
     "Content Manager"
    ],
-   "pricingTier": "pack-marketing-free",
+   "pricingTier": "pack-marketing",
    "category": "marketing-content",
    "filterGroup": "marketing",
    "area": "marketing",
@@ -22638,7 +22720,7 @@
    "primaryRoles": [
     "Operations Manager"
    ],
-   "pricingTier": "pack-engineering-pro",
+   "pricingTier": "pack-engineering",
    "category": "engineering",
    "filterGroup": "engineering",
    "area": "operations",
@@ -22708,7 +22790,7 @@
    "primaryRoles": [
     "Head of Marketing"
    ],
-   "pricingTier": "pack-marketing-free",
+   "pricingTier": "pack-marketing",
    "category": "marketing-seo",
    "filterGroup": "marketing",
    "area": "marketing",
